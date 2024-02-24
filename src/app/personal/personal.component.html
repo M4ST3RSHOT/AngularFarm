@@ -1,0 +1,47 @@
+<hr>
+<h4 style="text-align: center;">Personal</h4>
+<hr>
+<button (click)="openDialog()" class="btn btn-primary"><mat-icon>group_add</mat-icon> Crear Usuario</button>
+<hr>
+<table class="table">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Password</th>
+            <th scope="col">Fecha de inicio</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">CI</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Opcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of personal;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellido}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.fecha_inicio}}</td>
+            <td>{{item.tipo}}</td>
+            <td>{{item.ci}}</td>
+            <td>{{item.correo}}</td>
+            <td>{{item.telefono}}</td>
+            <td>{{item.direccion}}</td>
+            <td>{{item.salario}}</td>
+            <td>
+                <img src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
+            </td>
+            <td>
+                <button class="btn btn-success btn-sm" (click)="actualizar(item)"><mat-icon> border_color</mat-icon></button>
+                <button class="btn btn-danger btn-sm" (click)="eliminar(item)"><mat-icon>delete_forever</mat-icon></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

@@ -1,1 +1,59 @@
-<p>crear-producto works!</p>
+<h2 mat-dialog-title>Crear un nuevo Producto</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="agregar">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Aspirina" formControlName="nombre" name="nombre">
+            <!-- <mat-error>{{error_nombre()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Descripción</mat-label>
+            <input matInput placeholder="Capsula de aspyrina marca tantos" formControlName="nombre" name="nombre">
+            <!-- <mat-error>{{error_nombre()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Unidad</mat-label>
+            <input matInput placeholder="gr" formControlName="nombre" name="nombre">
+            <!-- <mat-error>{{error_nombre()}}</mat-error> -->
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Peso</mat-label>
+            <input matInput placeholder="00.00" formControlName="apellido" name="apellido">
+            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Categoría</mat-label>
+            <input matInput placeholder="Pildoras" formControlName="apellido" name="apellido">
+            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input matInput placeholder="0.50Bs" formControlName="apellido" name="apellido">
+            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Precio de Compra</mat-label>
+            <input matInput placeholder="0.30" formControlName="apellido" name="apellido">
+            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Precio de Venta</mat-label>
+            <input matInput placeholder="0.50" formControlName="apellido" name="apellido">
+            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+        </mat-form-field>
+
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="agregar" [disabled]="!agregar.valid" class="btn btn-danger">Guardar</button>
+</mat-dialog-actions>

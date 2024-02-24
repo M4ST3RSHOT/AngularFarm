@@ -1,0 +1,98 @@
+<h2 mat-dialog-title>Crear Personal</h2>
+<form [formGroup]="agregar">
+<mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="nombre">
+    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Apellido</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="apellido">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Placeholder" type="password" formControlName="password">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+
+ <mat-form-field appearance="fill">
+    <mat-label>Fecha de Inicio</mat-label>
+    <input matInput placeholder="1999-12-31" formControlName="fecha_inicio">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Fecha de Inicio</mat-label>
+    <input matInput formControlName="fecha_inicio" [disabled]="true" [matDatepicker]="releasedAtPicker">
+    <mat-hint>DD/MM/AAAA</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="releasedAtPicker" [disabled]="false">
+    </mat-datepicker-toggle>
+    <mat-datepicker #releasedAtPicker [disabled]="false">
+    </mat-datepicker>
+  </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <input formControlName="tipo" placeholder="tipo" matInput [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of options; track option) {
+          <mat-option [value]="option">{{option}}</mat-option>
+        }
+      </mat-autocomplete>
+      <mat-error>error</mat-error>
+    </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>CI</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="ci"> 
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Correo</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="correo">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Telefono</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="telefono">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Direccion</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="direccion">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Salario</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="salario">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>imagen</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="imagen">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" >
+    <mat-label>farmacia_id</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="farmacia_id">
+    <mat-error>error</mat-error>
+  </mat-form-field>
+
+</form>
+<mat-dialog-content class="mat-typography">
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" class="btn btn-primary" >Guardar</button>
+</mat-dialog-actions>
+
