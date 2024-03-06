@@ -24,4 +24,10 @@ export class PersonalService {
   actualizar(formulario:Personal,id:number): Observable<Personal[]> {
     return this.http.put<Personal[]>(this.base + 'personal/'+id,formulario)
   }
+  
+  subirimagen(file:File,nombre:string): Observable<any> {
+    const fd = new FormData
+    fd.append('image',file,nombre)
+    return this.http.post(this.base + 'personal/imagen',fd)
+  }
 }

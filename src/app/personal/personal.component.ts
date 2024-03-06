@@ -12,6 +12,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { animation } from '@angular/animations';
 
 @Component({
   selector: 'app-personal',
@@ -71,8 +72,9 @@ export class PersonalComponent implements OnInit {
     imagen: '',
     farmacia_id: '1',
     }
-    const dialogRef = this.dialog.open(CrearPersonalComponent,{data:personal});
+    const dialogRef = this.dialog.open(CrearPersonalComponent,{data:{personal:personal,texto:"Crear Usuario"}});
 
+    
     dialogRef.afterClosed().subscribe(result => {
       personal={
         id: 0,
@@ -86,15 +88,17 @@ export class PersonalComponent implements OnInit {
       telefono: result.value.telefono,
       direccion: result.value.direccion,
       salario: result.value.salario,
-      imagen: result.value.imagen,
+      imagen: result.value.nombreimagen,
       farmacia_id: result.value.farmacia_id,
       }
+      console.log()
+      personal.fecha_inicio=this.convertirfecha(personal.fecha_inicio)
       this.personalServ.agregar(personal).subscribe(data=>{
         this.personal=data
         this.toastr.success('Exito','Registro guardado')
       },
       error=>{
-        this.toastr.error('Error','Operacion Cancelada')
+        this.toastr.error('Error','Operacion Cancelada')   
       })
     });
   }
@@ -102,7 +106,7 @@ export class PersonalComponent implements OnInit {
 
   actualizar(item:Personal) {
     let personal:Personal
-    const dialogRef = this.dialog.open(CrearPersonalComponent,{data:item});
+    const dialogRef = this.dialog.open(CrearPersonalComponent,{data:{personal:item,texto:"Editar Usuario"}});
     dialogRef.afterClosed().subscribe(result => {
       personal={
       id: item.id,
@@ -116,9 +120,10 @@ export class PersonalComponent implements OnInit {
       telefono: result.value.telefono,
       direccion: result.value.direccion,
       salario: result.value.salario,
-      imagen: result.value.imagen,
+      imagen: result.value.nombreimagen,
       farmacia_id: result.value.farmacia_id,
       }
+      personal.fecha_inicio=this.convertirfecha(personal.fecha_inicio)
       this.personalServ.actualizar(personal,item.id).subscribe(data=>{
         this.personal=data
         this.toastr.success('Exito','Registro Actualizado')
@@ -128,7 +133,18 @@ export class PersonalComponent implements OnInit {
       })
     });
   }
+  
+  convertirStringADate(fechaString: string): Date {
+    return new Date(fechaString);
+  }
+
+  convertirfecha(fecha: string): string {
+    const fechaConvertida = this.convertirStringADate(fecha);
+    const anio = fechaConvertida.getFullYear();
+    const mes = fechaConvertida.getMonth() + 1; // Se agrega 1 porque getMonth() devuelve valores de 0 a 11
+    const dia = fechaConvertida.getDate();
+    fecha=anio+"-"+mes+"-"+dia
+    return fecha
+  }
 
 }
-
-

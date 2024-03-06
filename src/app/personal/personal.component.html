@@ -35,7 +35,7 @@
             <td>{{item.direccion}}</td>
             <td>{{item.salario}}</td>
             <td>
-                <img src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
+                <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
             </td>
             <td>
                 <button class="btn btn-success btn-sm" (click)="actualizar(item)"><mat-icon> border_color</mat-icon></button>

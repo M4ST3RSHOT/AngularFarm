@@ -96,6 +96,7 @@ import { ReporteComponent } from './reporte/reporte.component';
 import { CrearPersonalComponent } from './personal/crear-personal/crear-personal.component';
 
 import { FormControl } from '@angular/forms';
+import { ImagenRotaDirective } from './imagen-rota.directive';
 
 
 const router: Routes = [];
@@ -113,7 +114,8 @@ const router: Routes = [];
     CompraComponent,
     ProveedorComponent,
     ReporteComponent,
-    CrearPersonalComponent
+    CrearPersonalComponent,
+    ImagenRotaDirective
   ],
   imports: [
     BrowserModule,
