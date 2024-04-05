@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonalService } from './personal.service';
+import { PersonalService } from '../services/personal.service';
 import { ToastrService } from 'ngx-toastr';
 import { Personal } from '../models/personal';
 import { environment } from '../environments/environments.prod';
@@ -24,9 +24,12 @@ export class PersonalComponent implements OnInit {
   constructor(private personalServ: PersonalService, public dialog: MatDialog, private toastr:ToastrService) { }
   base = environment.base
   personal: Personal[] = []
+
+  
   ngOnInit(): void {
     this.personalServ.listar().subscribe(data => {
       this.personal = data
+      console.log(data)
     })
   }
 
@@ -89,7 +92,7 @@ export class PersonalComponent implements OnInit {
       direccion: result.value.direccion,
       salario: result.value.salario,
       imagen: result.value.nombreimagen,
-      farmacia_id: result.value.farmacia_id,
+      farmacia_id: '1',
       }
       console.log()
       personal.fecha_inicio=this.convertirfecha(personal.fecha_inicio)
@@ -121,7 +124,7 @@ export class PersonalComponent implements OnInit {
       direccion: result.value.direccion,
       salario: result.value.salario,
       imagen: result.value.nombreimagen,
-      farmacia_id: result.value.farmacia_id,
+      farmacia_id: '1',
       }
       personal.fecha_inicio=this.convertirfecha(personal.fecha_inicio)
       this.personalServ.actualizar(personal,item.id).subscribe(data=>{

@@ -1,59 +1,76 @@
-<h2 mat-dialog-title>Crear un nuevo Producto</h2>
+<h2 mat-dialog-title>{{texto}}</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="agregar">
         <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Aspirina" formControlName="nombre" name="nombre">
-            <!-- <mat-error>{{error_nombre()}}</mat-error> -->
+            <input matInput placeholder="Aspirina" formControlName="nombre">
+            <mat-error>{{error_nombre()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Descripción</mat-label>
-            <input matInput placeholder="Capsula de aspyrina marca tantos" formControlName="nombre" name="nombre">
-            <!-- <mat-error>{{error_nombre()}}</mat-error> -->
+            <input matInput placeholder="Capsula de aspyrina marca tantos" formControlName="descripcion">
+            <mat-error>{{error_descripcion()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Unidad</mat-label>
-            <input matInput placeholder="gr" formControlName="nombre" name="nombre">
-            <!-- <mat-error>{{error_nombre()}}</mat-error> -->
+            <input matInput placeholder="gr" formControlName="unidad">
+            <mat-error>{{error_unidad()}}</mat-error>
         </mat-form-field>
-
 
         <mat-form-field appearance="fill">
             <mat-label>Peso</mat-label>
-            <input matInput placeholder="00.00" formControlName="apellido" name="apellido">
-            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+            <input matInput placeholder="00.00" formControlName="peso" >
+            <mat-error>{{error_peso()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Categoría</mat-label>
-            <input matInput placeholder="Pildoras" formControlName="apellido" name="apellido">
-            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Precio</mat-label>
-            <input matInput placeholder="0.50Bs" formControlName="apellido" name="apellido">
-            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+            <mat-label>Categoría_id</mat-label>
+            <input matInput placeholder="Pildoras" formControlName="categoria_id" >
+            <mat-error>{{error_categoria_id()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Precio de Compra</mat-label>
-            <input matInput placeholder="0.30" formControlName="apellido" name="apellido">
-            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+            <input matInput placeholder="0.00" formControlName="precio_compra" >
+            <mat-error>{{error_precio_compra()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Precio de Venta</mat-label>
-            <input matInput placeholder="0.50" formControlName="apellido" name="apellido">
-            <!-- <mat-error>{{error_apellido()}}</mat-error> -->
+            <input matInput placeholder="0.00" formControlName="precio_venta" >
+            <mat-error>{{error_precio_venta()}}</mat-error>
         </mat-form-field>
 
+        <mat-form-field appearance="fill">
+            <mat-label>Imagen</mat-label>
+            <input matInput value="{{name}}">
+            <input 
+            type="file"
+            id="fileInput"
+            name="fileInput"
+            accept="image/*"
+            (change)="cargarimagen($event)"
+            formControlName="imagen"
+            />
+            <mat-icon matSuffix>image</mat-icon>
+          </mat-form-field>
+        
+          <div class="text-center">
+            <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
+          </div>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Stock actual</mat-label>
+            <input matInput placeholder="0" formControlName="stock" >
+        </mat-form-field>
 
     </form>
+
+<mat-dialog-content class="mat-typography">
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
-    <button mat-button [mat-dialog-close]="agregar" [disabled]="!agregar.valid" class="btn btn-danger">Guardar</button>
+  <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Guardar</button>
 </mat-dialog-actions>

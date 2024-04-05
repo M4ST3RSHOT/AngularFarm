@@ -1,14 +1,38 @@
-<p>hola soy un cliente XD con angular material</p>
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
-
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-        <mat-label>Leave a comment</mat-label>
-        <mat-select></mat-select>
-    </mat-form-field>
-</form>
+<hr>
+<h4 style="text-align: center;">Clientes</h4>
+<hr>
+<button (click)="openDialog()" class="btn btn-primary"><mat-icon>group_add</mat-icon> Crear Cliente</button>
+<hr>
+<table class="table">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha de nacimiento</th>
+            <th scope="col">CI</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Opcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cliente;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellido}}</td>
+            <td>{{item.fecha_nacimiento}}</td>
+            <td>{{item.ci}}</td>
+            <td>{{item.correo}}</td>
+            <td>{{item.telefono}}</td>
+            <td>
+                <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
+            </td>
+            <td>
+                <button class="btn btn-success btn-sm" (click)="actualizar(item)"><mat-icon> border_color</mat-icon></button>
+                <button class="btn btn-danger btn-sm" (click)="eliminar(item)"><mat-icon>delete_forever</mat-icon></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

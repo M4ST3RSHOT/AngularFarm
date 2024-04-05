@@ -13,8 +13,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/inicio">INICIO</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/venta">VENTAS</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/venta" role="button" data-bs-toggle="dropdown" aria-expanded="false">VENTAS</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/venta">Listar Ventas</a></li>
+                            <li><a class="dropdown-item" href="/crear-venta">Registrar Nueva Venta</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/compra">COMPRAS</a>
@@ -38,11 +42,8 @@
                         <a class="nav-link" href="/reporte">REPORTES</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-darck" type="submit">Buscar</button>
-                </form>
             </div>
         </div>
     </div>
 </nav>
+

@@ -89,7 +89,6 @@ import { ProductoComponent } from './producto/producto.component';
 import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { PersonalComponent } from './personal/personal.component';
-import { VentaComponent } from './venta/venta.component';
 import { CompraComponent } from './compra/compra.component';
 import { ProveedorComponent } from './proveedor/proveedor.component';
 import { ReporteComponent } from './reporte/reporte.component';
@@ -97,6 +96,15 @@ import { CrearPersonalComponent } from './personal/crear-personal/crear-personal
 
 import { FormControl } from '@angular/forms';
 import { ImagenRotaDirective } from './imagen-rota.directive';
+import { DetalleComponent } from './detalle/detalle.component';
+import { FacturaComponent } from './factura/factura.component';
+import { LoteComponent } from './lote/lote.component';
+import { FarmaciaComponent } from './farmacia/farmacia.component';
+import { CrearCategoriaComponent } from './categoria/crear-categoria/crear-categoria.component';
+import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
+import { CrearProveedorComponent } from './proveedor/crear-proveedor/crear-proveedor.component';
+import { NuevaFacturaComponent } from './factura/nueva-factura/nueva-factura.component';
+import { ClienteFacturaComponent } from './factura/cliente-factura/cliente-factura.component';
 
 
 const router: Routes = [];
@@ -110,12 +118,20 @@ const router: Routes = [];
     CrearProductoComponent,
     CategoriaComponent,
     PersonalComponent,
-    VentaComponent,
     CompraComponent,
     ProveedorComponent,
     ReporteComponent,
     CrearPersonalComponent,
-    ImagenRotaDirective
+    ImagenRotaDirective,
+    DetalleComponent,
+    FacturaComponent,
+    LoteComponent,
+    FarmaciaComponent,
+    CrearCategoriaComponent,
+    CrearClienteComponent,
+    CrearProveedorComponent,
+    NuevaFacturaComponent,
+    ClienteFacturaComponent,
   ],
   imports: [
     BrowserModule,

@@ -30,4 +30,5 @@ export class PersonalService {
     fd.append('image',file,nombre)
     return this.http.post(this.base + 'personal/imagen',fd)
   }
+  
 }

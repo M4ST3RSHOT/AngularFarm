@@ -1,7 +1,7 @@
 <hr>
-<h4 style="text-align: center;">Personal</h4>
+<h4 style="text-align: center;">Producto</h4>
 <hr>
-<button (click)="abrirDialogo()" class="btn btn-primary"><mat-icon>group_add</mat-icon> Crear Usuario</button>
+<button (click)="openDialog()" class="btn btn-primary"><mat-icon>add</mat-icon> Crear Producto</button>
 <hr>
 <table class="table">
     <thead class="table-primary">
@@ -14,28 +14,28 @@
             <th scope="col">Categoria</th>
             <th scope="col">Precio de Compra</th>
             <th scope="col">Precio de Venta</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Stock actual</th>
             <th scope="col">Opcion</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let producto of productos;let i=index">
+        <tr *ngFor="let item of producto;let i=index">
             <td>{{i+1}}</td>
-            <td>{{producto.nombre}}</td>
-            <td>{{producto.descripcion}}</td>
-            <td>{{producto.unidad}}</td>
-            <td>{{producto.peso}}</td>
-            <td>{{producto.categoria_id}}</td>
-            <td>{{producto.precio_compra}}</td>
-            <td>{{producto.precio_venta}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.unidad}}</td>
+            <td>{{item.peso}}</td>
+            <td>{{item.categoria_id}}</td>
+            <td>{{item.precio_compra}}</td>
+            <td>{{item.precio_venta}}</td>
             <td>
-                <button class="btn btn-success btn-sm" (click)="update(producto)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-
-                <button class="btn btn-danger btn-sm" (click)="delete(producto)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-
+                <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
+            </td>
+            <td>{{item.stock}}</td>
+            <td>
+                <button class="btn btn-success btn-sm" (click)="actualizar(item)"><mat-icon> border_color</mat-icon></button>
+                <button class="btn btn-danger btn-sm" (click)="eliminar(item)"><mat-icon>delete_forever</mat-icon></button>
             </td>
         </tr>
     </tbody>

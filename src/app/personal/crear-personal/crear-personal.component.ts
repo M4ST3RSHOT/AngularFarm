@@ -8,7 +8,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { environment } from '../../environments/environments.prod';
-import { PersonalService } from '../personal.service';
+import { PersonalService } from '../../services/personal.service';
 
 
 @Component({
