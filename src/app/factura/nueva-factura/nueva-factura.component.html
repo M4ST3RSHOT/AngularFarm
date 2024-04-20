@@ -9,7 +9,7 @@
     <br>
     <div class="container">
       <div class="row">
-      <div class="col-md-6" *ngIf="sig==0">
+      <div class="col-md-6">
         <mat-card class="example-card">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -39,7 +39,7 @@
           </mat-card-header>
         </mat-card>
       </div>
-        <div class="col-md-6" *ngIf="sig==0">
+        <div class="col-md-6">
           <mat-card class="example-card">
             <mat-card-header>
               <form class="example-form" [formGroup]="descuento_info">
@@ -47,8 +47,8 @@
                   <mat-label>Descuento</mat-label>
                     <input placeholder="%" matInput formControlName="descuento" type="text" value="0%" name="descuento"
                         [formControl]="myControl"
-                        [matAutocomplete]="auto">
-                  <mat-autocomplete #auto="matAutocomplete">
+                        [matAutocomplete]="auto2">
+                  <mat-autocomplete #auto2="matAutocomplete">
                     @for (option of options; track option) {
                       <mat-option [value]="option" (click)="setear_descuento(option)">{{option}}</mat-option>
                     }
@@ -62,7 +62,7 @@
     </div>
 
         <br>
-          <div class="container" *ngIf="sig==0">
+          <div class="container">
             <mat-card class="example-card">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -70,8 +70,8 @@
                   <div>
                     <mat-form-field>
                       <mat-label>Producto</mat-label>
-                      <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput formControlName="nombre_producto" [formControl]="opcionControlproducto" [matAutocomplete]="auto" >
-                      <mat-autocomplete #auto="matAutocomplete">
+                      <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput formControlName="nombre_producto" [formControl]="opcionControlproducto" [matAutocomplete]="auto1" >
+                      <mat-autocomplete #auto1="matAutocomplete">
                         <mat-option *ngFor="let producto of opcionesFiltradasproducto | async" [value]="producto.nombre" (click)="setear_producto(producto)">
                           {{producto.nombre}} {{producto.peso}} {{producto.unidad}} 
                         </mat-option>
@@ -111,7 +111,7 @@
             </mat-card>
           </div>
           <br>
-          <div class="container" *ngIf="sig==0">
+          <div class="container">
             <mat-card class="example-card">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>

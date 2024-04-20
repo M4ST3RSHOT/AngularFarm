@@ -1,0 +1,19 @@
+
+
+<mat-card class="mi-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Ho, Ya te vas?</mat-card-title>
+      <mat-card-subtitle>Nombre: {{nombre}} {{apellido}}</mat-card-subtitle>
+      <mat-card-subtitle>Rol: {{tipo}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+            <div class="contenedor"><div class="contenido">
+          <mat-card-actions>
+            <button mat-fab extended color="assent" style="color: black" [routerLink]="'/menu/home'">No, Volver</button>
+            <button mat-fab extended color="warn" style="color: white" (click)="salir()"><mat-icon style="font-size: 15px;" style="color: white">reply</mat-icon>Si, Cerrar Sesion</button>
+          </mat-card-actions>
+        </div></div>
+    </mat-card-content>
+  </mat-card>
+  

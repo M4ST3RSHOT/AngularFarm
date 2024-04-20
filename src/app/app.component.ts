@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,21 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Angular';
+  constructor(private route:Router,private toastr:ToastrService){}
+  type:string | null | undefined
+  ngOnInit(){
+    this.type = localStorage.getItem("access")
+    if(this.type=="")
+    {      
+      this.toastr.warning("No inicio Sesion",'Inicia sesion');
+      this.route.navigate(["/login"]);
+    }
+  }
+
+  volver(){
+
+  }
+  iniciar_sesion(){
+
+  }
 }

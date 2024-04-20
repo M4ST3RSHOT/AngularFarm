@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { animation } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal',
@@ -21,7 +22,9 @@ import { animation } from '@angular/animations';
 })
 
 export class PersonalComponent implements OnInit {
-  constructor(private personalServ: PersonalService, public dialog: MatDialog, private toastr:ToastrService) { }
+  constructor(private route:Router,private personalServ: PersonalService, public dialog: MatDialog, private toastr:ToastrService) { 
+
+  }
   base = environment.base
   personal: Personal[] = []
 
@@ -29,12 +32,11 @@ export class PersonalComponent implements OnInit {
   ngOnInit(): void {
     this.personalServ.listar().subscribe(data => {
       this.personal = data
-      console.log(data)
     })
   }
 
   llenar_imagen(nombre: string): string {
-    return this.base + 'personal/imagen/' + nombre
+    return this.base + 'user/imagen/' + nombre
   }
 
   eliminar(item:Personal):void{

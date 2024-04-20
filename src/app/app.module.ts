@@ -84,7 +84,6 @@ import { MenuComponent } from './menu/menu.component';
 import { ClienteComponent } from './cliente/cliente.component';
 
 
-import { InicioComponent } from './inicio/inicio.component';
 import { ProductoComponent } from './producto/producto.component';
 import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
 import { CategoriaComponent } from './categoria/categoria.component';
@@ -105,6 +104,12 @@ import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.com
 import { CrearProveedorComponent } from './proveedor/crear-proveedor/crear-proveedor.component';
 import { NuevaFacturaComponent } from './factura/nueva-factura/nueva-factura.component';
 import { ClienteFacturaComponent } from './factura/cliente-factura/cliente-factura.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AdminComponent } from './menu/admin/admin.component';
+import { InventarioComponent } from './menu/inventario/inventario.component';
+import { VentasComponent } from './menu/ventas/ventas.component';
 
 
 const router: Routes = [];
@@ -112,7 +117,6 @@ const router: Routes = [];
   declarations: [
     AppComponent,
     MenuComponent,
-    InicioComponent,
     ProductoComponent,
     ClienteComponent,
     CrearProductoComponent,
@@ -132,6 +136,12 @@ const router: Routes = [];
     CrearProveedorComponent,
     NuevaFacturaComponent,
     ClienteFacturaComponent,
+    LoginComponent,
+    HomeComponent,
+    LogoutComponent,
+    AdminComponent,
+    InventarioComponent,
+    VentasComponent,
   ],
   imports: [
     BrowserModule,
