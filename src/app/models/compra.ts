@@ -1,7 +1,7 @@
-export interface Compra {
+export interface Compra { //adquiere
     id:number,
-    proveedor_id:string,
-    fecha:string,
     montototal:string,
-    personal_id:string,
+    fecha:string,
+    proveedor_id:string,
+    user_id:string,   
 }

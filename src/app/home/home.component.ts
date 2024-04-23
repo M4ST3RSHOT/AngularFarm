@@ -11,8 +11,6 @@ export class HomeComponent implements OnInit{
   constructor(private route:Router,private toastr:ToastrService){}
   type:string | null | undefined
   ngOnInit(){
-    console.log(localStorage.getItem("access"))
-    console.log(this.type)
     this.type = localStorage.getItem("access")
     if(this.type=="" ||this.type=="2" ||this.type=="3" )
     {      

@@ -4,6 +4,6 @@ export interface Factura {
     subtotal:string,
     descuento:string,
     total:string,
-    personal_id:string,
+    user_id:string,
     cliente_id:string,    
 }

@@ -1,3 +1,7 @@
+<app-admin *ngIf="type=='1'"></app-admin>
+<app-ventas *ngIf="type=='2'"></app-ventas>
+<app-inventario *ngIf="type=='3'"></app-inventario>
+
 <hr>
 <h4 style="text-align: center;">Ventas</h4>
 <hr>
@@ -23,7 +27,7 @@
             <td>{{item.subtotal}}</td>
             <td>{{item.descuento}}</td>
             <td>{{item.total}}</td>
-            <td>{{item.personal_id}}</td>
+            <td>{{item.user_id}}</td>
             <td>{{item.cliente_id}}</td>
             <td>
                 <button class="btn btn-danger btn-sm" (click)="eliminar_factura(item)"><mat-icon>delete_forever</mat-icon></button>

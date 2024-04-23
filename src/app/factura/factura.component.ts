@@ -19,12 +19,19 @@ import { identifierName } from '@angular/compiler';
 })
 export class FacturaComponent implements OnInit{
 
-  constructor(private facturaserv: FacturaService, public dialog: MatDialog, private toastr:ToastrService, private router:Router) { }
+  constructor(private route:Router,private facturaserv: FacturaService, public dialog: MatDialog, private toastr:ToastrService, private router:Router) { }
   base = environment.base
   factura: Factura[] = []
   a1:number=0
 
+  type:string | null | undefined
   ngOnInit(): void {
+    this.type = localStorage.getItem("access")
+    if(this.type==""||this.type=="3" )
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
     this.facturaserv.listar().subscribe(data => {
       this.factura = data
     })

@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { animation } from '@angular/animations';
 import { Producto } from '../models/producto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto',
@@ -22,12 +23,19 @@ import { Producto } from '../models/producto';
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent implements OnInit {
-  constructor(private productoServ: ProductoService, public dialog: MatDialog, private toastr:ToastrService) { }
+  constructor(private route:Router,private productoServ: ProductoService, public dialog: MatDialog, private toastr:ToastrService) { }
   base = environment.base
   producto: Producto[] = []
 
+  type:string | null | undefined
 
   ngOnInit(): void {
+    this.type = localStorage.getItem("access")
+    if(this.type=="")
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
     this.productoServ.listar().subscribe(data => {
       this.producto = data
     })

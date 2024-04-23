@@ -13,6 +13,7 @@ import { Observable, map, of, startWith } from 'rxjs';
 import { ProductoService } from '../../services/producto.service';
 import Swal from 'sweetalert2';
 import { Cliente } from '../../models/cliente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nueva-factura',
@@ -42,13 +43,13 @@ import { Cliente } from '../../models/cliente';
     detalleee=[];
     fecha = new Date;
     fecha1=""+this.fecha.getFullYear()+"-"+(this.fecha.getMonth()+1)+"-"+(this.fecha.getDate());
-    public formulario_factura={id:0,fecha:this.fecha1,subtotal:0,descuento:0,total:0,personal_id:1,cliente_id:0}
-    public info_factura:Factura={id:0,fecha:this.fecha1,subtotal:'0',descuento:'0',total:'0',personal_id:'1',cliente_id:'0'}
+    public formulario_factura={id:0,fecha:this.fecha1,subtotal:0,descuento:0,total:0,user_id:1,cliente_id:0}
+    public info_factura:Factura={id:0,fecha:this.fecha1,subtotal:'0',descuento:'0',total:'0',user_id:'1',cliente_id:''}
     matrizinfocliente:Cliente={id:0,nombre:'',apellido:'',fecha_nacimiento:'',ci:'',correo:'',telefono:'',imagen:''}
     opcionesproducto: Producto[] = [];
     opcionescliente: Cliente[] = [];
     
-    constructor(private toastr: ToastrService,private dialog:MatDialog,private dialogo:MatDialog,private detalle:DetalleService,private producto:ProductoService,private cliente:ClienteService,private factura:FacturaService) {}
+    constructor(private route:Router,private toastr: ToastrService,private dialog:MatDialog,private dialogo:MatDialog,private detalle:DetalleService,private producto:ProductoService,private cliente:ClienteService,private factura:FacturaService) {}
 
     get id(){return this.nuevo.get('nombre_producto'); }
     get nombre(){return this.nuevo.get('descripcion'); }
@@ -92,8 +93,14 @@ import { Cliente } from '../../models/cliente';
       descuento: new FormControl('')
     })
 
+    type:string | null | undefined
     ngOnInit(): void {
-      
+      this.type = localStorage.getItem("access")
+    if(this.type==""||this.type=="3" )
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
       this.producto.listar().subscribe(data => {
         this.opcionesproducto = data;
         this.opcionesFiltradasproducto = this.opcionControlproducto.valueChanges.pipe(
@@ -236,6 +243,7 @@ import { Cliente } from '../../models/cliente';
           //recuperando id de factura y añadiendo los detalles
           //actualizar los stocks de los productos
 
+          console.log(this.info_factura)
           this.factura.agregar(this.info_factura).subscribe(data=>{
             for (let i = 0; i < this.matrizdetalle.length; i++) {
               let a:Detalle={id:0,producto_id:'',cantidad:'',factura_id:''}

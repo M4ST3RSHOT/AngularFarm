@@ -36,5 +36,8 @@ export class ProductoService {
   actualizarstock(stock:number,id:number): Observable<Producto[]> {
     return this.http.put<Producto[]>(this.base + 'producto/'+id,stock)
   }
+  actualizarstockplus(stock:number,id:number): Observable<Producto[]> {
+    return this.http.put<Producto[]>(this.base + 'producto/'+id,stock)
+  }
   
 }

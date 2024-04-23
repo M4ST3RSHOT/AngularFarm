@@ -6,6 +6,7 @@ import { environment } from '../environments/environments.prod';
 import { Cliente } from '../models/cliente';
 import Swal from 'sweetalert2';
 import { CrearClienteComponent } from './crear-cliente/crear-cliente.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente',
@@ -15,12 +16,20 @@ import { CrearClienteComponent } from './crear-cliente/crear-cliente.component';
 
 export class ClienteComponent implements OnInit{
 
-  constructor(private clienteServ: ClienteService, public dialog: MatDialog, private toastr:ToastrService) { }
+  constructor(private route:Router,private clienteServ: ClienteService, public dialog: MatDialog, private toastr:ToastrService) { }
+  
+  type:string | null | undefined
   base = environment.base
   cliente: Cliente[] = []
 
   
   ngOnInit(): void {
+    this.type = localStorage.getItem("access")
+    if(this.type=="" || this.type=="3" )
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
     this.clienteServ.listar().subscribe(data => {
       this.cliente = data
     })

@@ -6,6 +6,7 @@ import { environment } from '../environments/environments.prod';
 import { Proveedor } from '../models/proveedor';
 import Swal from 'sweetalert2';
 import { CrearProveedorComponent } from './crear-proveedor/crear-proveedor.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proveedor',
@@ -14,12 +15,18 @@ import { CrearProveedorComponent } from './crear-proveedor/crear-proveedor.compo
 })
 export class ProveedorComponent {
 
-  constructor(private proveedorServ: ProveedorService, public dialog: MatDialog, private toastr:ToastrService) { }
+  constructor(private route:Router, private proveedorServ: ProveedorService, public dialog: MatDialog, private toastr:ToastrService) { }
   base = environment.base
   proveedor: Proveedor[] = []
-
-  
+  type:string | null | undefined
   ngOnInit(): void {
+    
+    this.type = localStorage.getItem("access")
+    if(this.type=="" ||this.type=="2" ||this.type=="3" )
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
     this.proveedorServ.listar().subscribe(data => {
       this.proveedor = data
     })
@@ -51,6 +58,7 @@ export class ProveedorComponent {
     proveedor={
       id: 0,
     nombre: '',
+    cinit: '',
     telefono: '',
     direccion: '',
     }
@@ -61,6 +69,7 @@ export class ProveedorComponent {
       proveedor={
         id: 0,
       nombre: result.value.nombre,
+      cinit: result.value.nombre,
       telefono: result.value.telefono,
       direccion: result.value.direccion,
       }
@@ -82,6 +91,7 @@ export class ProveedorComponent {
       proveedor={
       id: item.id,
       nombre: result.value.nombre,
+      cinit: result.value.cinit,
       telefono: result.value.telefono,
       direccion: result.value.direccion,
       }

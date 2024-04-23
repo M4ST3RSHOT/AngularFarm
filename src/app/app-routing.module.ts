@@ -10,11 +10,11 @@ import { ProveedorComponent } from './proveedor/proveedor.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { FacturaComponent } from './factura/factura.component';
 import { NuevaFacturaComponent } from './factura/nueva-factura/nueva-factura.component';
-import { ClienteFacturaComponent } from './factura/cliente-factura/cliente-factura.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FarmaciaComponent } from './farmacia/farmacia.component';
+import { NuevaCompraComponent } from './compra/nueva-compra/nueva-compra.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,11 +23,11 @@ const routes: Routes = [
   { path: 'categoria', component: CategoriaComponent },
   { path: 'personal', component: PersonalComponent },
   { path: 'compra', component: CompraComponent },
+  { path: 'crear-compra', component: NuevaCompraComponent },
   { path: 'proveedor', component: ProveedorComponent },
   { path: 'reporte', component: ReporteComponent },
   { path: 'venta', component: FacturaComponent },
   { path: 'crear-venta', component: NuevaFacturaComponent },
-  { path: 'cliente-factura', component: ClienteFacturaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'farmacia', component: FarmaciaComponent },

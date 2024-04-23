@@ -13,6 +13,7 @@ import { animation } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
 import { Categoria } from '../models/categoria';
 import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,12 +23,18 @@ import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.compo
 })
 export class CategoriaComponent implements OnInit {
 
-  constructor(private categoriaServ: CategoriaService, public dialog: MatDialog, private toastr:ToastrService) { }
+  constructor(private route:Router, private categoriaServ: CategoriaService, public dialog: MatDialog, private toastr:ToastrService) { }
 
   base = environment.base
   categoria: Categoria[] = []
-
+  type:string | null | undefined
   ngOnInit(): void {
+    this.type = localStorage.getItem("access")
+    if(this.type=="")
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
     this.categoriaServ.listar().subscribe(data => {
       this.categoria = data
     })

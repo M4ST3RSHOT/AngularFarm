@@ -1,1 +1,34 @@
-<h1>Esto es una compra</h1>
+<app-admin *ngIf="type=='1'"></app-admin>
+<app-ventas *ngIf="type=='2'"></app-ventas>
+<app-inventario *ngIf="type=='3'"></app-inventario>
+
+<hr>
+<h4 style="text-align: center;">Ventas</h4>
+<hr>
+<button (click)="nueva_factura()" class="btn btn-primary"><mat-icon>add</mat-icon> Crear una Venta </button>
+<hr>
+<table class="table">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">provedoor_id</th>
+            <th scope="col">fecha</th>
+            <th scope="col">monto_total</th>
+            <th scope="col">personal</th>
+            <th scope="col">Opcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of compra;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.proveedor_id}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.montototal}}</td>
+            <td>{{item.user_id}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="eliminar_factura(item)"><mat-icon>delete_forever</mat-icon></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

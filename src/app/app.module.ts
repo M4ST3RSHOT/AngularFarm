@@ -95,21 +95,20 @@ import { CrearPersonalComponent } from './personal/crear-personal/crear-personal
 
 import { FormControl } from '@angular/forms';
 import { ImagenRotaDirective } from './imagen-rota.directive';
-import { DetalleComponent } from './detalle/detalle.component';
 import { FacturaComponent } from './factura/factura.component';
-import { LoteComponent } from './lote/lote.component';
 import { FarmaciaComponent } from './farmacia/farmacia.component';
 import { CrearCategoriaComponent } from './categoria/crear-categoria/crear-categoria.component';
 import { CrearClienteComponent } from './cliente/crear-cliente/crear-cliente.component';
 import { CrearProveedorComponent } from './proveedor/crear-proveedor/crear-proveedor.component';
 import { NuevaFacturaComponent } from './factura/nueva-factura/nueva-factura.component';
-import { ClienteFacturaComponent } from './factura/cliente-factura/cliente-factura.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminComponent } from './menu/admin/admin.component';
 import { InventarioComponent } from './menu/inventario/inventario.component';
 import { VentasComponent } from './menu/ventas/ventas.component';
+import { NuevaCompraComponent } from './compra/nueva-compra/nueva-compra.component';
+
 
 
 const router: Routes = [];
@@ -127,21 +126,19 @@ const router: Routes = [];
     ReporteComponent,
     CrearPersonalComponent,
     ImagenRotaDirective,
-    DetalleComponent,
     FacturaComponent,
-    LoteComponent,
     FarmaciaComponent,
     CrearCategoriaComponent,
     CrearClienteComponent,
     CrearProveedorComponent,
     NuevaFacturaComponent,
-    ClienteFacturaComponent,
     LoginComponent,
     HomeComponent,
     LogoutComponent,
     AdminComponent,
     InventarioComponent,
     VentasComponent,
+    NuevaCompraComponent,
   ],
   imports: [
     BrowserModule,

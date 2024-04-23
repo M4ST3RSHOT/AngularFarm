@@ -10,12 +10,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LogoutComponent implements OnInit{
 
+  type:string | null | undefined
   nombre:string | null | undefined
   apellido:string | null | undefined
   tipo:string | null | undefined
 
   constructor(private route:Router,private toastr:ToastrService){}
   ngOnInit(): void {
+    this.type = localStorage.getItem("access")
+    if(this.type=="")
+    {      
+      this.toastr.warning("No tiene acceso",'Inicia sesion');
+      this.route.navigate(["/home"]);
+    }
     this.nombre= localStorage.getItem('nombre_usuario');
     this.apellido = localStorage.getItem('apellido_usuario');
     this.tipo = localStorage.getItem('tipo_usuario');
