@@ -83,7 +83,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MenuComponent } from './menu/menu.component';
 import { ClienteComponent } from './cliente/cliente.component';
 
-
+import { DetallarCompraComponent } from './compra/detallar-compra/detallar-compra.component';
 import { ProductoComponent } from './producto/producto.component';
 import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
 import { CategoriaComponent } from './categoria/categoria.component';
@@ -108,6 +108,7 @@ import { AdminComponent } from './menu/admin/admin.component';
 import { InventarioComponent } from './menu/inventario/inventario.component';
 import { VentasComponent } from './menu/ventas/ventas.component';
 import { NuevaCompraComponent } from './compra/nueva-compra/nueva-compra.component';
+import { DetallarFacturaComponent } from './factura/detallar-factura/detallar-factura.component';
 
 
 
@@ -139,6 +140,8 @@ const router: Routes = [];
     InventarioComponent,
     VentasComponent,
     NuevaCompraComponent,
+    DetallarFacturaComponent,
+    DetallarCompraComponent
   ],
   imports: [
     BrowserModule,

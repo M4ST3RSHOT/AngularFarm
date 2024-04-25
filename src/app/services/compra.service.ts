@@ -27,4 +27,7 @@ export class CompraService {
   actualizar(formulario:Compra,id:number): Observable<Compra[]> {
     return this.http.put<Compra[]>(this.base + 'adquiere/'+id,formulario)
   }
+  detallar(id:number): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'adquiere/detallar/'+id)
+  }
 }

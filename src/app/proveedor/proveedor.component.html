@@ -1,9 +1,11 @@
 <app-admin *ngIf="type=='1'"></app-admin>
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
-<hr>
-<h4 style="text-align: center;">Proveedores</h4>
-<hr>
+<div class="mi-card">
+    <hr>
+    <h4 style="text-align: center;">Proveedores</h4>
+    <hr>
+</div>
 <button (click)="openDialog()" class="btn btn-primary"><mat-icon>group_add</mat-icon> Crear Proveedor</button>
 <hr>
 <table class="table">
@@ -17,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of proveedor;let i=index">
+        <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}" *ngFor="let item of proveedor;let i=index">
             <td>{{i+1}}</td>
             <td>{{item.nombre}}</td>
             <td>{{item.telefono}}</td>

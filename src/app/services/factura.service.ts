@@ -16,8 +16,8 @@ export class FacturaService {
   constructor(private http: HttpClient) { }
 
   base = environment.base
-  listar(): Observable<Factura[]> {
-    return this.http.get<Factura[]>(this.base + 'factura')
+  listar(): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'factura')
   }
   eliminar(id:number): Observable<Factura[]> {
     return this.http.delete<Factura[]>(this.base + 'factura/'+id)
@@ -27,6 +27,9 @@ export class FacturaService {
   }
   actualizar(formulario:Factura,id:number): Observable<Factura[]> {
     return this.http.put<Factura[]>(this.base + 'factura/'+id,formulario)
+  }
+  detallar(id:number): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'factura/detallar/'+id)
   }
 
   // async factura_factura(id:number): Promise<Factura[]> {

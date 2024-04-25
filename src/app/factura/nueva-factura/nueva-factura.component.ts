@@ -153,13 +153,11 @@ import { Router } from '@angular/router';
       let a:number
       a = parseInt(a1)
       this.desc=a*0.01
-      console.log(this.desc)
       this.formulario_factura.total=this.formulario_factura.subtotal-(this.formulario_factura.subtotal*this.desc)
       this.formulario_factura.descuento=this.desc
     }
 
     validarcantidad(x:any){
-      console.log(x)
       if(this.form.stock<x){
         this.nuevo.get('cantidad')?.setErrors({'max':this.form.stock})
       }
@@ -243,7 +241,6 @@ import { Router } from '@angular/router';
           //recuperando id de factura y añadiendo los detalles
           //actualizar los stocks de los productos
 
-          console.log(this.info_factura)
           this.factura.agregar(this.info_factura).subscribe(data=>{
             for (let i = 0; i < this.matrizdetalle.length; i++) {
               let a:Detalle={id:0,producto_id:'',cantidad:'',factura_id:''}

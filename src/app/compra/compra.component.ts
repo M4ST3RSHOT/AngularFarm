@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { CompraService } from '../services/compra.service';
 import { Compra } from '../models/compra';
 import { DateAdapter } from '@angular/material/core';
+import { DetallarCompraComponent } from './detallar-compra/detallar-compra.component';
 
 @Component({
   selector: 'app-compra',
@@ -17,7 +18,7 @@ export class CompraComponent implements OnInit{
 
   constructor(private route:Router, public dialog: MatDialog, private toastr:ToastrService, private router:Router, private compraserv:CompraService,) { }
   base = environment.base
-  compra: Compra[] = []
+  compra: any[] = []
   a1:number=0
 
   type:string | null | undefined
@@ -33,6 +34,10 @@ export class CompraComponent implements OnInit{
     })
   }
 
+
+  detallarcompra(item:any){
+    const dialogRef = this.dialog.open(DetallarCompraComponent,{data:item});
+}
 
   nueva_factura():void {
     this.router.navigate(['/crear-compra']);

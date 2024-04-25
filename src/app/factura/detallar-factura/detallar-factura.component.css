@@ -1,4 +1,9 @@
-.mi-card {
+/* Estilos personalizados para el mat-dialog */
+.mat-dialog-custom {
+    width: 10%; /* Ancho relativo */
+    height: 10px; /* Altura relativa */
+  }
+  .mi-card {
     background-color: lightblue;  /* Cambiar el color de fondo del card */
     border-radius: 10px;  /* Agregar bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Agregar sombra */

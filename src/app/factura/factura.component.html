@@ -1,36 +1,41 @@
 <app-admin *ngIf="type=='1'"></app-admin>
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
-
+<div class="mi-card">
 <hr>
 <h4 style="text-align: center;">Ventas</h4>
 <hr>
+</div>
 <button (click)="nueva_factura()" class="btn btn-primary"><mat-icon>add</mat-icon> Crear una Venta </button>
 <hr>
-<table class="table">
+<table class="table table-sm table-bordered table-responsive-sm">
     <thead class="table-primary">
         <tr>
             <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">Fecha</th>
             <th scope="col">Subtotal</th>
             <th scope="col">Descuento</th>
             <th scope="col">Total</th>
-            <th scope="col">Personal_id</th>
-            <th scope="col">Cliente_id</th>
-            <th scope="col">Opcion</th>
+            <th scope="col">personal</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">CI</th>
+            <th scope="col">Detallar</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of factura;let i=index">
+        <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}"  *ngFor="let item of factura;let i=index">
             <td>{{i+1}}</td>
+            <td>{{item.idfactura}}</td>
             <td>{{item.fecha}}</td>
             <td>{{item.subtotal}}</td>
             <td>{{item.descuento}}</td>
             <td>{{item.total}}</td>
-            <td>{{item.user_id}}</td>
-            <td>{{item.cliente_id}}</td>
+            <td>{{item.nombreusuario}}</td>
+            <td>{{item.nombrecliente}} {{item.apellidocliente}}</td>
+            <td>{{item.cicliente}}</td>
             <td>
-                <button class="btn btn-danger btn-sm" (click)="eliminar_factura(item)"><mat-icon>delete_forever</mat-icon></button>
+                <button class="btn btn-primary btn-sm" (click)="detallarventa(item)"><mat-icon>visibility</mat-icon></button>
             </td>
         </tr>
     </tbody>
