@@ -1,3 +1,5 @@
+<div class="container">
+
 <h2 mat-dialog-title>{{texto}}</h2>
 <form [formGroup]="agregar">
 
@@ -31,6 +33,8 @@
     <mat-error *ngIf="fecha_inicio?.invalid">{{error_fecha_inicio()}}</mat-error>
   </mat-form-field>
 
+<br>
+  
     <mat-form-field appearance="fill">
       <mat-label>Tipo</mat-label>
       <input formControlName="tipo" placeholder="tipo" matInput [matAutocomplete]="auto">
@@ -60,6 +64,8 @@
     <mat-error *ngIf="telefono?.invalid">{{error_telefono()}}</mat-error>
   </mat-form-field>
 
+  <br>
+
   <mat-form-field appearance="fill">
     <mat-label>Direccion</mat-label>
     <input matInput placeholder="Placeholder" formControlName="direccion">
@@ -78,6 +84,7 @@
     <mat-error *ngIf="imagen?.invalid">{{error_imagen()}}</mat-error>
   </mat-form-field> -->
 
+  <br>
 
   <mat-form-field appearance="fill">
     <mat-label>Imagen</mat-label>
@@ -97,12 +104,6 @@
     <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
   </div>
 
-  <mat-form-field appearance="fill" >
-    <mat-label>farmacia_id</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="farmacia_id">
-    <mat-error>error</mat-error>
-  </mat-form-field>
-
 </form>
 
 <mat-dialog-content class="mat-typography">
@@ -112,3 +113,4 @@
   <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Guardar</button>
 </mat-dialog-actions>
 
+</div>

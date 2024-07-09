@@ -1,5 +1,79 @@
 <!--REPORTES Y GRAFICOS BONITOS CUANDO EL ADMIN ENTRE A LA APP -->
 
-<app-admin *ngIf="type=='1'"></app-admin>
+<app-admin *ngIf="type=='1'">
+</app-admin>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4 col-custom">
+            <div id="carouselExampleControls" class="image" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="assets/images/Reporte de inventario.jpg" >
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/images/Reporte de ventas.jpg" >
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/images/reporte economico.jpg" >
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                </div>
+        </div>
+        <div class="col-4 col-custom">
+            INFORME DE PRODUCTOS MAS VENDIDOS SEMANAL <hr>
+            <a href="/reporte/inventario">
+            <div class="image">
+            <img src="assets/images/Reporte de inventario.jpg" alt="">
+            </div>
+            </a>
+        </div>
+        <div class="col-4 col-custom">
+            INFORME DE PRODUCTOS MAS VENDIDOS MENSUAL <hr>
+            <a href="/reporte/ventas">
+            <div class="image">
+            <img src="assets/images/Reporte de ventas.jpg" alt="">
+            </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 col-custom">
+            PRODUCTOS EN PELIGRO DE VENCIMIENTO <hr>
+            <a href="/reporte/economico">
+            <div class="image">
+            <img src="assets/images/reporte economico.jpg" alt="">
+            </div>
+            </a>
+        </div>
+        <div class="col-4 col-custom">
+            ACCIONES RAPIDAS
+            <div class=""><hr>
+                <button mat-stroked-button class="col-12">Registrar cliente</button>
+                <button mat-stroked-button class="col-12">Registrar nuevo producto</button>
+                <button mat-stroked-button class="col-12">Registrar compra</button>
+                <button mat-stroked-button class="col-12">Registrar venta</button>
+                <button mat-stroked-button class="col-12">Realizar informe</button>
+            </div>
+    </div>
+    <div class="col-4 col-custom">
+        CONSULTA DE PRODUCTOS EN ALMACEN <hr>
+        <a href="reporte/ventasusuario">
+        <div class="image">
+        <img src="assets/images/reporte ventas por usuario.jpg" alt="">
+        </div>
+    </a>
+</div>
+</div>
+
+
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>

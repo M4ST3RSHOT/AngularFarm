@@ -1,12 +1,13 @@
 <app-admin *ngIf="type=='1'"></app-admin>
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
+<div class="container">
 <div class="mi-card">
 <hr>
-<h4 style="text-align: center;">Ventas</h4>
+<h4 style="text-align: center;">Compras</h4>
 <hr>
 </div>
-<button (click)="nueva_factura()" class="btn btn-primary"><mat-icon>add</mat-icon> Crear una Venta </button>
+<button (click)="nueva_factura()" class="btn btn-primary"><mat-icon>add</mat-icon> Crear una Compra </button>
 <hr>
 <table class="table">
     <thead class="table-primary">
@@ -34,4 +35,4 @@
         </tr>
     </tbody>
 </table>
-
+</div>

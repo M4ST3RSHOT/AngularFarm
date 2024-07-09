@@ -13,3 +13,7 @@
   .contenido {
     text-align: center; /* Alinear texto al centro */
   }
+
+  .cabe{
+    justify-content: center;
+  }

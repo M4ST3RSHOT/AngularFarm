@@ -1,3 +1,7 @@
+.mi-container {
+  background-color: rgb(161, 196, 208);  /* Cambiar el color de fondo del card */
+}
+
 .mi-card {
     background-color: lightblue;  /* Cambiar el color de fondo del card */
     border-radius: 10px;  /* Agregar bordes redondeados */

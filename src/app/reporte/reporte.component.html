@@ -1,3 +1,55 @@
 <app-admin *ngIf="type=='1'"></app-admin>
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
+
+<div class="container">
+    <div class="mi-card">
+        <hr>
+        <h4 style="text-align: center;">REPORTES</h4>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-4 col-custom">
+            Reporte de Compras
+            <a href="/reporte/compras">
+            <div class="image">
+            <img src="assets/images/Reporte de compras.jpg">
+            </div>
+            </a>
+        </div>
+        <div class="col-4 col-custom">
+            Reporte de Inventario
+            <a href="/reporte/inventario">
+            <div class="image">
+            <img src="assets/images/Reporte de inventario.jpg" alt="">
+            </div>
+            </a>
+        </div>
+        <div class="col-4 col-custom">
+            Reporte de Ventas
+            <a href="/reporte/ventas">
+            <div class="image">
+            <img src="assets/images/Reporte de ventas.jpg" alt="">
+            </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 col-custom">
+            Reporte de Economico
+            <a href="/reporte/economico">
+            <div class="image">
+            <img src="assets/images/reporte economico.jpg" alt="">
+            </div>
+            </a>
+        </div>
+        <div class="col-4 col-custom">
+            Reporte de Ventas por usuario
+            <a href="reporte/ventasusuario">
+            <div class="image">
+            <img src="assets/images/reporte ventas por usuario.jpg" alt="">
+            </div>
+        </a>
+    </div>
+</div>
+

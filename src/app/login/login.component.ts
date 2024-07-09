@@ -41,30 +41,24 @@ export class LoginComponent {
         let personal:Personal=data['user'][0]
         localStorage.setItem('id_usuario',personal.id+"")
         localStorage.setItem('nombre_usuario',personal.nombre)
-        localStorage.setItem('email_usuario',personal.correo)
         localStorage.setItem('password_usuario',personal.password)
-        localStorage.setItem('fechainicio_usuario',personal.fecha_inicio)
         localStorage.setItem('tipo_usuario',personal.tipo)
         localStorage.setItem('ci_usuario',personal.ci)
         localStorage.setItem('apellido_usuario',personal.apellido)
-        localStorage.setItem('direccion_usuario',personal.direccion)
-        localStorage.setItem('telefono_usuario',personal.telefono)
-        localStorage.setItem('salario_usuario',personal.salario)
-        localStorage.setItem('farmaciaid_usuario',personal.farmacia_id)
         localStorage.setItem('imagen_usuario',personal.imagen)
         localStorage.setItem('token',token)
         switch(personal.tipo){
           case 'Administrador':
             localStorage.setItem('access',1+"")
-            console.log('este usuario es administrador');
+            this.toastr.success("Haz iniciado Sesión como administrador", 'En hora buena!');
             this.route.navigate(["/home"]);break;
           case 'Ventas':
             localStorage.setItem('access',2+"")
-            console.log('este usuario es ventas');
+            this.toastr.success("Haz iniciado Sesión como ventas", 'En hora buena!');
             this.route.navigateByUrl("/home");break;
           case 'Inventario':
             localStorage.setItem('access',3+"")
-            console.log('este usuario es inventario');
+            this.toastr.success("Haz iniciado Sesión como inventario", 'En hora buena!');
             this.route.navigateByUrl("/home");break;
           default:
             console.log('Usuario Incorrecto, intentelo de nuevo');

@@ -25,6 +25,8 @@
             <mat-error>{{error_peso()}}</mat-error>
         </mat-form-field>
 
+        <br>
+
         <mat-form-field appearance="fill">
             <mat-label>Categoría_id</mat-label>
             <input matInput placeholder="Pildoras" formControlName="categoria_id" >
@@ -44,6 +46,13 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
+            <mat-label>Stock actual</mat-label>
+            <input matInput placeholder="0" formControlName="stock" >
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill">
             <mat-label>Imagen</mat-label>
             <input matInput value="{{name}}">
             <input 
@@ -61,10 +70,7 @@
             <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
           </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Stock actual</mat-label>
-            <input matInput placeholder="0" formControlName="stock" >
-        </mat-form-field>
+          
 
     </form>
 

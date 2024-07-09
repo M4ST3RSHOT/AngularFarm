@@ -3,9 +3,9 @@
 <app-inventario *ngIf="type=='3'"></app-inventario>
 
 <mat-card class="mi-card">
-  <mat-card-header>
+  <mat-card-header class="cabe">
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Nueva Compra</mat-card-title>
+    <mat-card-title><a>Nueva Compra</a></mat-card-title>
     <mat-card-subtitle>Nro de documento : {{formulario_compra.id}}</mat-card-subtitle>
     <mat-card-subtitle>Fecha : {{formulario_compra.fecha}}</mat-card-subtitle>
   </mat-card-header>
@@ -152,7 +152,7 @@
         <mat-card-actions>
           <button mat-fab extended color="warn" style="color: white" [routerLink]="'/inicio'"><mat-icon style="font-size: 15px;" style="color: white">reply</mat-icon> Volver</button>
           <button mat-fab extended color="assent" style="color: black" (click)="limpiar()"><mat-icon style="font-size: 15px;" style="color: black">restore_from_trash</mat-icon> limpiar</button>
-          <button mat-fab extended color="primary" style="color: rgb(144, 255, 70)" (click)="realizar_venta()"><mat-icon style="font-size: 15px;" style="color: rgb(144, 255, 70)">attach_money</mat-icon> Vender</button>
+          <button mat-fab extended color="primary" style="color: rgb(144, 255, 70)" (click)="realizar_venta()"><mat-icon style="font-size: 15px;" style="color: rgb(144, 255, 70)">attach_money</mat-icon> Comprar</button>
         </mat-card-actions>
       </div></div>
   </mat-card-content>

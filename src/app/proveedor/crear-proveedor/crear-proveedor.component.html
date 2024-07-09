@@ -1,11 +1,19 @@
+<div class="container">
 <h2 mat-dialog-title>{{texto}}</h2>
 <form [formGroup]="agregar">
 <mat-form-field appearance="fill">
-
     <mat-label>Nombre</mat-label>
     <input matInput placeholder="Placeholder" formControlName="nombre">
     <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
   </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>CI/NIT</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="nombre">
+    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
+  </mat-form-field>
+
+  <br>
 
   <mat-form-field appearance="fill">
     <mat-label>Telefono</mat-label>
@@ -27,4 +35,5 @@
   <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
   <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Guardar</button>
 </mat-dialog-actions>
+</div>
 

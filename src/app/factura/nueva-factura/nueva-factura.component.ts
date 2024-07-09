@@ -14,6 +14,7 @@ import { ProductoService } from '../../services/producto.service';
 import Swal from 'sweetalert2';
 import { Cliente } from '../../models/cliente';
 import { Router } from '@angular/router';
+import { error } from 'console';
 
 @Component({
   selector: 'app-nueva-factura',
@@ -208,27 +209,25 @@ import { Router } from '@angular/router';
     }
 
     realizar_venta(){
-      
       let id:number=0
       let factura_id:string='0'
       for (let i = 0; i < this.ventas.length; i++) {
       let matrizinfodetalle:Detalle={id:0,producto_id:'',cantidad:'',factura_id:'0'}
       let info={id:'',stock:''}
-          matrizinfodetalle.cantidad=this.ventas[i][5]
-          matrizinfodetalle.producto_id=this.ventas[i][0]
-          matrizinfodetalle.id=id
-          matrizinfodetalle.factura_id=factura_id
-          info.id=matrizinfodetalle.producto_id
-          info.stock=matrizinfodetalle.cantidad
-          this.matrizdetalle.push(matrizinfodetalle)
-          this.matrizproducto.push(info)
+        matrizinfodetalle.cantidad=this.ventas[i][5]
+        matrizinfodetalle.producto_id=this.ventas[i][0]
+        matrizinfodetalle.id=id
+        matrizinfodetalle.factura_id=factura_id
+        info.id=matrizinfodetalle.producto_id
+        info.stock=matrizinfodetalle.cantidad
+        this.matrizdetalle.push(matrizinfodetalle)
+        this.matrizproducto.push(info)
       }
       this.formulario_factura.cliente_id=this.matrizinfocliente.id
       this.info_factura.subtotal=this.formulario_factura.subtotal.toString()
       this.info_factura.descuento=this.formulario_factura.descuento.toString()
       this.info_factura.total=this.formulario_factura.total.toString()
       this.info_factura.cliente_id=this.formulario_factura.cliente_id.toString()
-
       Swal.fire({
         title: 'Esta seguro de que quiere realizar la venta?',
         icon: 'success',
@@ -237,41 +236,49 @@ import { Router } from '@angular/router';
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.value) {
-          // guardar la factura
-          //recuperando id de factura y añadiendo los detalles
-          //actualizar los stocks de los productos
-
           this.factura.agregar(this.info_factura).subscribe(data=>{
             for (let i = 0; i < this.matrizdetalle.length; i++) {
               let a:Detalle={id:0,producto_id:'',cantidad:'',factura_id:''}
               a.factura_id=data.toString()
               a.producto_id=this.matrizdetalle[i].producto_id
               a.cantidad=this.matrizdetalle[i].cantidad
-              this.detalle.agregar(a).subscribe(data=>{})
+              this.detalle.agregar(a).subscribe(data=>{
+              },error=>{
+                if(error.status==500)
+                  this.toastr.error("Revise su conexión","Error");
+                else
+                  this.toastr.error("Error al agregar la factura","Error");
+                });
               }
-          })
-
+          },error=>{
+            if(error.status==500)
+              this.toastr.error("Revise su conexión","Error");
+            else
+              this.toastr.error("Error al agregar la factura","Error");
+            });
           for (let i = 0; i < this.matrizproducto.length; i++) {
-
-            //recuperar los productos que que conocemos su id en matriz producto
-
             this.producto.mostrar(this.matrizproducto[i].id).subscribe(data=>{
             let a:Producto={id:0,nombre:'',descripcion:'',unidad:'',peso:'',categoria_id:'',precio_compra:'',precio_venta:'',imagen:'',stock:''}
             let nuevostock=0
             a=data
             nuevostock=parseInt(data.stock)-this.matrizproducto[i].stock
             a.stock=nuevostock.toString()
-            this.producto.actualizar(a,a.id).subscribe(data=>{})
+            this.producto.actualizar(a,a.id).subscribe(data=>{
+            },error=>{
+              if(error.status==500)
+                this.toastr.error("Revise su conexión","Error");
+              else
+                this.toastr.error("Error al agregar los productos","Error");
+              });
             })
             }            
-
-            Swal.fire({
-              title: 'Venta registrada con exito!',
-              icon: 'success',
-              showCancelButton: true,
-              confirmButtonText: 'Continuar'
-            }).then((result) => {if (result.value) {location.reload();
-              this.toastr.success("Venta Realizada","Exito"); }});
+            // Swal.fire({
+            //   title: 'Venta registrada con exito!',
+            //   icon: 'success',
+            //   showCancelButton: true,
+            //   confirmButtonText: 'Continuar'
+            // }).then((result) => {if (result.value) {location.reload();
+            //   this.toastr.success("Venta Realizada","Exito"); }});
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire('Cancelado', 'Ocurrio un error', 'error');
         }
