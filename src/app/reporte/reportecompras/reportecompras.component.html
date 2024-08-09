@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="container">
+        <div class="container">
+            <h2 mat-dialog-title>Reporte de Compras</h2>
+        </div>
+
+        <div class="">
+            <div class="col-12 col-custom" >
+                ACCIONES RAPIDAS
+            </div>
+            <button mat-flat-button class="col-6" (click)="Onimprimir()">
+                Compras realizadas en el mes
+            </button>
+            <button mat-flat-button class="col-6">
+                Compras realizadas en la ultima semana
+            </button>
+        </div>
+        
+        <div class="container">
+            <h2 mat-dialog-title>Reporte personalizado</h2>
+        </div>
+    <form [formGroup]="agregar">
+
+        <mat-form-field appearance="fill" class="col-12 col-custom">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput formControlName="fechainicio" placeholder="DD-MM-AAAA" [matDatepicker]="releasedAtPicker1">
+          <mat-hint>DD/MM/AAAA</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="releasedAtPicker1">
+          </mat-datepicker-toggle>
+          <mat-datepicker #releasedAtPicker1 [disabled]="false">
+          </mat-datepicker>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill" class="col-12 col-custom">
+          <mat-label>Fecha de Fin</mat-label>
+          <input matInput formControlName="fechafin" placeholder="DD-MM-AAAA" [matDatepicker]="releasedAtPicker">
+          <mat-hint>DD/MM/AAAA</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #releasedAtPicker [disabled]="false">
+          </mat-datepicker>
+        </mat-form-field>
+        
+      </form>
+    
+    <mat-dialog-content class="mat-typography">
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+      <button class="btn btn-primary" >Guardar</button>
+    </mat-dialog-actions>
+</div>

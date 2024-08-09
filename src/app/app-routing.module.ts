@@ -39,8 +39,3 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-
-
-  // if(localStorage.getItem('access')=='1'){
-
-  // }

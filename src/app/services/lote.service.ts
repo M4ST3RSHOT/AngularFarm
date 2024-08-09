@@ -25,4 +25,7 @@ export class LoteService {
   actualizar(formulario:Lote,id:number): Observable<Lote[]> {
     return this.http.put<Lote[]>(this.base + 'lote/'+id,formulario)
   }
+  productosporvencer(dia:number,mes:number,gestion:number): Observable<any[]>{
+    return this.http.get<any[]>(this.base + 'lote/productosporvencer/'+dia+'/'+mes+'/'+gestion)
+  }
 }

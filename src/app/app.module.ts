@@ -109,8 +109,12 @@ import { InventarioComponent } from './menu/inventario/inventario.component';
 import { VentasComponent } from './menu/ventas/ventas.component';
 import { NuevaCompraComponent } from './compra/nueva-compra/nueva-compra.component';
 import { DetallarFacturaComponent } from './factura/detallar-factura/detallar-factura.component';
-
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ReportecomprasComponent } from './reporte/reportecompras/reportecompras.component';
+import { ReporteeconomicoComponent } from './reporte/reporteeconomico/reporteeconomico.component';
+import { ReporteinventarioComponent } from './reporte/reporteinventario/reporteinventario.component';
+import { ReporteventasComponent } from './reporte/reporteventas/reporteventas.component';
+import { ReporteventasusuarioComponent } from './reporte/reporteventasusuario/reporteventasusuario.component';
 
 const router: Routes = [];
 @NgModule({
@@ -141,7 +145,12 @@ const router: Routes = [];
     VentasComponent,
     NuevaCompraComponent,
     DetallarFacturaComponent,
-    DetallarCompraComponent
+    DetallarCompraComponent,
+    ReportecomprasComponent,
+    ReporteeconomicoComponent,
+    ReporteinventarioComponent,
+    ReporteventasComponent,
+    ReporteventasusuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -197,8 +206,9 @@ const router: Routes = [];
     ReactiveFormsModule,
     MatFormFieldModule,
     AppRoutingModule,
-    HttpClientModule
-
+    HttpClientModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),

@@ -1,79 +1,135 @@
 <!--REPORTES Y GRAFICOS BONITOS CUANDO EL ADMIN ENTRE A LA APP -->
 
-<app-admin *ngIf="type=='1'">
-</app-admin>
+<app-admin *ngIf="type=='1'"></app-admin>
+<app-ventas *ngIf="type=='2'"></app-ventas>
+<app-inventario *ngIf="type=='3'"></app-inventario>
+
 
 <div class="container">
     <div class="row">
         <div class="col-4 col-custom">
-            <div id="carouselExampleControls" class="image" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="assets/images/Reporte de inventario.jpg" >
+            <div class="image">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="assets/images/Reporte de inventario.jpg"  alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/Reporte de ventas.jpg"class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/reporte economico.jpg" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
                   </div>
-                  <div class="carousel-item">
-                    <img src="assets/images/Reporte de ventas.jpg" >
-                  </div>
-                  <div class="carousel-item">
-                    <img src="assets/images/reporte economico.jpg" >
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
                 </div>
         </div>
         <div class="col-4 col-custom">
-            INFORME DE PRODUCTOS MAS VENDIDOS SEMANAL <hr>
-            <a href="/reporte/inventario">
+            INFORME DE PRODUCTOS MAS VENDIDOS EN LA ULTIMA SEMANA <hr>
             <div class="image">
-            <img src="assets/images/Reporte de inventario.jpg" alt="">
-            </div>
-            </a>
+            <ngx-charts-pie-chart
+            [view]="view"
+            scheme="aqua"
+            [results]="single1"
+            [gradient]="gradient"
+            [legend]="showLegend"
+            [legendPosition]="legendPosition"
+            [labels]="showLabels"
+            [doughnut]="isDoughnut"
+            >
+            </ngx-charts-pie-chart>
+        </div>
         </div>
         <div class="col-4 col-custom">
             INFORME DE PRODUCTOS MAS VENDIDOS MENSUAL <hr>
-            <a href="/reporte/ventas">
             <div class="image">
-            <img src="assets/images/Reporte de ventas.jpg" alt="">
+                <ngx-charts-pie-chart
+                [view]="view"
+                scheme="aqua"
+                [results]="single2"
+                [gradient]="gradient"
+                [legend]="showLegend"
+                [legendPosition]="legendPosition"
+                [labels]="showLabels"
+                [doughnut]="isDoughnut"
+                >
+                </ngx-charts-pie-chart>
             </div>
-            </a>
         </div>
     </div>
     <div class="row">
         <div class="col-4 col-custom">
-            PRODUCTOS EN PELIGRO DE VENCIMIENTO <hr>
-            <a href="/reporte/economico">
-            <div class="image">
-            <img src="assets/images/reporte economico.jpg" alt="">
+            LOTES DE PRODUCTOS QUE VENCEN ESTE MES <hr>
+            <div>
+                <table class="table">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Unidad</th>
+                            <th scope="col">Fecha de vencimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}" *ngFor="let item of Consultaproductosvencidos;let i=index">
+                          <td>{{i+1}}</td>
+                          <td>{{item.nombre}}</td>
+                          <td>{{item.categoria}}</td>
+                          <td>{{item.peso}}</td>
+                          <td>{{item.unidad}}</td>
+                          <td>{{item.fecha_expiracion}}</td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
-            </a>
         </div>
         <div class="col-4 col-custom">
             ACCIONES RAPIDAS
             <div class=""><hr>
-                <button mat-stroked-button class="col-12">Registrar cliente</button>
-                <button mat-stroked-button class="col-12">Registrar nuevo producto</button>
-                <button mat-stroked-button class="col-12">Registrar compra</button>
-                <button mat-stroked-button class="col-12">Registrar venta</button>
-                <button mat-stroked-button class="col-12">Realizar informe</button>
+                <button mat-stroked-button class="col-12" (click)="nuevocliente()"><mat-icon>group_add</mat-icon> Registrar cliente</button>
+                <button mat-stroked-button class="col-12" (click)="nuevoproducto()"><mat-icon>add_to_photos</mat-icon> Registrar nuevo producto</button>
+                <button mat-stroked-button class="col-12" (click)="compra()"><mat-icon>add_shopping_cart</mat-icon> Registrar compra</button>
+                <button mat-stroked-button class="col-12" (click)="venta()"><mat-icon>shopping_cart</mat-icon> Registrar venta</button>
+                <button mat-stroked-button class="col-12" (click)="informe()"><mat-icon> insert_chart</mat-icon> Realizar informe</button>
             </div>
     </div>
     <div class="col-4 col-custom">
         CONSULTA DE PRODUCTOS EN ALMACEN <hr>
-        <a href="reporte/ventasusuario">
-        <div class="image">
-        <img src="assets/images/reporte ventas por usuario.jpg" alt="">
-        </div>
-    </a>
+            <div class="image">
+                <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="assets/images/Reporte de inventario.jpg"  alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/Reporte de ventas.jpg"class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/reporte economico.jpg" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
 </div>
 </div>
 
 
-<app-ventas *ngIf="type=='2'"></app-ventas>
-<app-inventario *ngIf="type=='3'"></app-inventario>
+

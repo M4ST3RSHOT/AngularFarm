@@ -37,3 +37,7 @@
     border-radius: 10px; /* Redondea las esquinas del borde */
     margin-bottom: 20px; /* Espacio inferior entre las columnas */
   }
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }

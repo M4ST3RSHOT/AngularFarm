@@ -24,4 +24,10 @@ export class DetalleService {
   actualizar(formulario:Detalle,id:number): Observable<Detalle[]> {
     return this.http.put<Detalle[]>(this.base + 'detalle/'+id,formulario)
   }
+  mayorventasmes(mes:number,gestion:number): Observable<any[]>{
+    return this.http.get<any[]>(this.base + 'detalle/mayorventasmes/'+mes+'/'+gestion)
+  }
+  mayorventassemana(dia:number,mes:number,gestion:number): Observable<any[]>{
+    return this.http.get<any[]>(this.base + 'detalle/mayorventassemana/'+dia+'/'+mes+'/'+gestion)
+  }
 }
