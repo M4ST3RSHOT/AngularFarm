@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FacturaService } from '../services/factura.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 import { identifierName } from '@angular/compiler';
 import { DetallarCompraComponent } from '../compra/detallar-compra/detallar-compra.component';
 import { DetallarFacturaComponent } from './detallar-factura/detallar-factura.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-factura',
@@ -36,9 +38,24 @@ export class FacturaComponent implements OnInit{
     }
     this.facturaserv.listar().subscribe(data => {
       this.factura=data
+      this.dataSource = new MatTableDataSource(this.factura);
+      this.dataSource.paginator = this.paginator;
     })
   }
+  
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  displayedColumns: string[] = ['id','fecha','subtotal','descuento','total','personal','cliente','ci','opcion'];
+  dataSource!: MatTableDataSource<any>;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.paginator = this.paginator;
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   nueva_factura():void {
     this.router.navigate(['/crear-venta']);
@@ -50,6 +67,8 @@ export class FacturaComponent implements OnInit{
     this.a1=item.id
       this.router.navigate(['/actualizar-venta', this.a1]);
   }
+
+  eliminar(item:Factura){}
 
   detallarventa(item:any){
       let a:number

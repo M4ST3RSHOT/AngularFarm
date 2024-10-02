@@ -14,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Categoria } from '../models/categoria';
 import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.component';
 import { Router } from '@angular/router';
+import { DetallarProductoComponent } from './detallar-producto/detallar-producto.component';
+import { text } from 'stream/consumers';
 
 
 @Component({
@@ -71,7 +73,7 @@ export class CategoriaComponent implements OnInit {
     nombre:'',
     imagen:'',
     }
-    const dialogRef = this.dialog.open(CrearCategoriaComponent,{data:{categoria:categoria,texto:"Crear categoria"}});
+    const dialogRef = this.dialog.open(CrearCategoriaComponent,{data:{categoria:categoria,texto:"CREAR NUEVA CATEGORIA"}});
     dialogRef.afterClosed().subscribe(result => {
       categoria={
       id:0,
@@ -91,7 +93,7 @@ export class CategoriaComponent implements OnInit {
 
   actualizar(item:Categoria) {
     let categoria:Categoria
-    const dialogRef = this.dialog.open(CrearCategoriaComponent,{data:{categoria:item,texto:"Editar categoria"}});
+    const dialogRef = this.dialog.open(CrearCategoriaComponent,{data:{categoria:item,texto:"EDITAR CATEGORIA"}});
     dialogRef.afterClosed().subscribe(result => {
       categoria={
         id:item.id,
@@ -108,5 +110,8 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
+  visualizar(item:Categoria){
+    const dialogRef = this.dialog.open(DetallarProductoComponent,{data:item});
+  }
 }
 

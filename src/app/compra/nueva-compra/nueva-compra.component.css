@@ -1,19 +1,28 @@
-.mi-card {
-    background-color: lightblue;  /* Cambiar el color de fondo del card */
-    border-radius: 10px;  /* Agregar bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Agregar sombra */
-  }
-  
-  .contenedor {
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-  }
-  
-  .contenido {
-    text-align: center; /* Alinear texto al centro */
-  }
 
-  .cabe{
-    justify-content: center;
-  }
+.container{
+  text-align:left !important; 
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.contenido {
+  text-align: center; /* Alinear texto al centro */
+}
+
+
+.fondo {
+  background-color: #8DE5DB;  /* Cambiar el color de fondo del card */
+}
+
+.user-card{
+  border-radius: 10px; /* Bordes redondeados */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de la fuente */
+  border: none; /* Sin bordes */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}

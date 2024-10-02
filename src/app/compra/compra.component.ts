@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,6 +8,8 @@ import { CompraService } from '../services/compra.service';
 import { Compra } from '../models/compra';
 import { DateAdapter } from '@angular/material/core';
 import { DetallarCompraComponent } from './detallar-compra/detallar-compra.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-compra',
@@ -31,9 +33,27 @@ export class CompraComponent implements OnInit{
     }
     this.compraserv.listar().subscribe(data => {
       this.compra = data
+      
+      this.dataSource = new MatTableDataSource(this.compra);
+      this.dataSource.paginator = this.paginator;
     })
   }
 
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  displayedColumns: string[] = ['id','personal','proveedor','fecha','montototal','opcion'];
+  dataSource!: MatTableDataSource<any>;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.paginator = this.paginator;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  eliminar(item:any){}
 
   detallarcompra(item:any){
     const dialogRef = this.dialog.open(DetallarCompraComponent,{data:item});

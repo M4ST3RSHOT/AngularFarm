@@ -1,0 +1,41 @@
+
+<div class="container">
+<div class="mi-card">
+    
+<h4 style="text-align: center;">CATEGORIA: {{data.nombre}}</h4>
+
+<table class="table">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Precio de Compra</th>
+            <th scope="col">Precio de Venta</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Stock actual</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}" *ngFor="let item of producto;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.unidad}}</td>
+            <td>{{item.peso}}</td>
+            <td>{{item.categoria_id}}</td>
+            <td>{{item.precio_compra}}</td>
+            <td>{{item.precio_venta}}</td>
+            <td>
+                <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
+            </td>
+            <td>{{item.stock}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>

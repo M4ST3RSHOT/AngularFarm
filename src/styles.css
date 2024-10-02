@@ -1,21 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.scss */
 
-html,
-body {
-    height: 100%;
+
+/*COLOR DE FONDOS PARA DETRAS DE LOS COMPONENTES Y VENTANAS EMERGENTES Y ESTILOS PARA EL TAMAÑO DE ESTOS*/
+html, body {
+  background-color: #47466d; /* Cambia este color al que desees */
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Asegura que el fondo cubra toda la altura de la pantalla */
+  width: 100%;
+  font-family: Arial, sans-serif; /* Opcional: cambia la fuente por defecto */
 }
-
-body {
+.container {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
+    padding: 0;
+    width: 100%;
+    height: 100vh; /* Asegura que ocupe el 100% de la altura de la ventana */
+    background-color: #47466d !important; /* Fondo negro para todo el contenedor */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    text-align: center; 
+  }
+  .fondito{
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    padding: 0;
+    background-color: #47466d;
+    
 }
+
+/*------------------------------------------------------------------------------------------------------------*/
+/*ESTILOS PARA LOS TITULOS DE CADA PAGINA Y EL BOTON DE CREAR SEA NECESARIO*/
+.titulo {
+  background-color: #46cdcf;  /* Color de fondo */
+  border-radius: 10px;  /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra */
+  display: inline-block;  /* Ajusta el ancho al contenido del texto */
+  padding: 10px 20px;  /* Espaciado interno para darle un poco de margen */
+  font-size: 16px;  /* Tamaño de la fuente */
+  text-align: center;  /* Centrar el texto */
+  margin: 0 auto;  /* Centra el contenedor horizontalmente */
+  color: white;
+}
+
+.botoncrear {
+  margin-right: 10px; /* Espacio superior entre el texto y la imagen */
+  text-align: left; /* Alinea el contenido dentro del div a la izquierda */
+}
+
+.botoncrear button {
+  background-color: #28a745; /* Color verde para el botón */
+  border-radius: 10px; /* Bordes redondeados */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de la fuente */
+  border: none; /* Sin bordes */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.botoncrear button:hover {
+  background-color: #218838; /* Color verde oscuro al pasar el cursor */
+}
+
+.botoncrear button:focus {
+  outline: none; /* Quita el borde de enfoque del botón */
+}
+
+/*-------------------------------------------------------------------------------------------------------------*/
+
+th {
+  background-color: #3d84a7 !important;
+  color: white !important;
+}
+
+td {
+  background-color: #abedd8 !important;
+  color: black !important;
+}
+
+.table-bordered th{
+  border-color: #47466d; 
+}
+.table-bordered td {
+  border-color: #47466d; /* Cambia el color de las líneas a rojo */
+}
+
+/*ESTILOS PARA LAS TABLAS*/
+/**/
+
+/*COLORES DE LOS CARDS DE ACCION EN LA APP*/
+.col-custom {
+  background-color: white ;  /* Color de fondo de la columna */
+  border: 0px solid #ffffff; /* Borde alrededor de la columna */
+  color: black;
+}
+
+.user-card{
+  background-color:#3d84a7!important;
+  border: 0px solid white;
+  color: white !important;
+}
+
+.card-header{
+  background-color: #abedd8 !important;
+  color: black !important;
+}
+
+
+/**/

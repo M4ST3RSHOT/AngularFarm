@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClienteService } from '../services/cliente.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +7,8 @@ import { Cliente } from '../models/cliente';
 import Swal from 'sweetalert2';
 import { CrearClienteComponent } from './crear-cliente/crear-cliente.component';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-cliente',
@@ -32,8 +34,25 @@ export class ClienteComponent implements OnInit{
     }
     this.clienteServ.listar().subscribe(data => {
       this.cliente = data
+      this.dataSource = new MatTableDataSource(this.cliente);
+      this.dataSource.paginator = this.paginator;
     })
   }
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  displayedColumns: string[] = ['id','nombre','fechanacimiento','ci','correo','telefono','imagen','opcion'];
+  dataSource!: MatTableDataSource<Cliente>;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.paginator = this.paginator;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 
   llenar_imagen(nombre: string): string {
     return this.base + 'cliente/imagen/' + nombre
@@ -72,7 +91,7 @@ export class ClienteComponent implements OnInit{
     telefono: '',
     imagen: '',
     }
-    const dialogRef = this.dialog.open(CrearClienteComponent,{data:{cliente:cliente,texto:"Crear Cliente"}});
+    const dialogRef = this.dialog.open(CrearClienteComponent,{data:{cliente:cliente,texto:"REGISTRAR NUEVO CLIENTE"}});
 
     
     dialogRef.afterClosed().subscribe(result => {
@@ -101,7 +120,7 @@ export class ClienteComponent implements OnInit{
 
   actualizar(item:Cliente) {
     let cliente:Cliente
-    const dialogRef = this.dialog.open(CrearClienteComponent,{data:{cliente:item,texto:"Editar Cliente"}});
+    const dialogRef = this.dialog.open(CrearClienteComponent,{data:{cliente:item,texto:"EDITAR CLIENTE"}});
     dialogRef.afterClosed().subscribe(result => {
       cliente={
       id: item.id,

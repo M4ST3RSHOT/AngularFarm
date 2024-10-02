@@ -34,6 +34,7 @@ constructor(public dialogRef:MatDialogRef<PersonalComponent>, @ Inject (MAT_DIAL
     this.password?.clearValidators() 
     this.imagen?.clearValidators()}
   this.fecha_inicio?.setValue(data.personal.fecha_inicio)
+  
   this.tipo?.setValue(data.personal.tipo)
   this.ci?.setValue(data.personal.ci)
   this.correo?.setValue(data.personal.correo)

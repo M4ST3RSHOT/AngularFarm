@@ -1,6 +1,6 @@
-<div class="container">
+<div class="fonditoemergentes">
 <mat-dialog-content >
-<mat-card class="mi-card">
+<mat-card class="card-header">
     <mat-card-header>
         <mat-card-title-group>
             <mat-card-title>Detalle Factura Nro : {{infofactura?.id}} </mat-card-title>
@@ -29,7 +29,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}"  *ngFor="let item of infodetalle;let i=index">
+        <tr *ngFor="let item of infodetalle;let i=index">
             <td>{{i+1}}</td>
             <td>{{item.nombre}}</td>
             <td>{{item.descripcion}}</td>
@@ -42,8 +42,9 @@
 </table>
 
 
-<mat-dialog-actions>
+<mat-dialog-actions class="botoncrear">
     <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
   </mat-dialog-actions>
+
 
 </div>

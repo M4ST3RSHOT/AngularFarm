@@ -1,18 +1,51 @@
-@media screen and (min-width:992px) {
 
-    .navbar .container-fluid {
-        flex-direction: column;
-    }
 
-    .navbar {
-        /* width: 20%; */
-        /* height: 100vh; */
-    }
 
-    .navbar-brand {
-        margin-left: .5rem;
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
+.navbar-wrapper {
+    background-color: #47466d; /* Color del "margen" */
+    padding: 10px; /* Espaciado para simular el margen */
+
+    display: flex;
+    justify-content: center;
 }
 
+.navbar {
+    background-color: #3d84a7;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un efecto de elevación */
+    padding: 10px 20px; /* Espaciado interno */
+    margin: 0px; /* Espaciado externo */
+    
+}
+
+
+.navbar .nav-link {
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.navbar .nav-link:hover {
+    background-color: #abedd8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    margin-right: auto; /* Alinea la marca a la izquierda */
+    text-align: center; /* Centra el texto de la marca */
+    flex: 1; /* Permite que ocupe el espacio necesario para centrar */
+}
+
+.navbar .navbar-brand {
+    margin-right: 20px; /* Espacio entre la marca y el contenido del menú */
+    text-align: center;
+    flex-grow: 1;
+}
+
+.nav-item a{
+    margin: 0; /* Elimina el margen por defecto del h2 */
+    font-size: 0.7rem; /* Tamaño de la fuente */
+}

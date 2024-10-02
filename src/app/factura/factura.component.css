@@ -1,3 +1,5 @@
+
+
 .row{
     width: 100%;
   }
@@ -41,11 +43,12 @@
     .mat-dialog-custom {
       width: 10%; /* Ancho relativo */
       height: 10px; /* Altura relativa */
-    }
+    } 
     .mi-card {
-      background-color: lightblue;  /* Cambiar el color de fondo del card */
+      background-color: #3d84a7;  /* Cambiar el color de fondo del card */
       border-radius: 10px;  /* Agregar bordes redondeados */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Agregar sombra */
+      color: white;
     }
     
     .contenedor {
@@ -57,3 +60,7 @@
     .contenido {
       text-align: center; /* Alinear texto al centro */
     }
+
+    .a{
+      margin-top: 10px; /* Espacio superior entre el texto y la imagen */
+      }

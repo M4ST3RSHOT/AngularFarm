@@ -8,6 +8,12 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
+          <mat-label>Codigo</mat-label>
+          <input matInput placeholder="0000000000" formControlName="codigo">
+          <mat-error>{{error_codigo()}}</mat-error>
+      </mat-form-field>
+
+        <mat-form-field appearance="fill">
             <mat-label>Descripción</mat-label>
             <input matInput placeholder="Capsula de aspyrina marca tantos" formControlName="descripcion">
             <mat-error>{{error_descripcion()}}</mat-error>
@@ -28,10 +34,15 @@
         <br>
 
         <mat-form-field appearance="fill">
-            <mat-label>Categoría_id</mat-label>
-            <input matInput placeholder="Pildoras" formControlName="categoria_id" >
-            <mat-error>{{error_categoria_id()}}</mat-error>
-        </mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <input formControlName="categoria_id" placeholder="Categoria" matInput [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              @for (option of categoria; track option) {
+                <mat-option [value]="option.nombre">{{option.nombre}}</mat-option>
+              }
+            </mat-autocomplete>
+            <mat-error *ngIf="categoria_id?.invalid">{{error_categoria_id()}}</mat-error>
+          </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Precio de Compra</mat-label>

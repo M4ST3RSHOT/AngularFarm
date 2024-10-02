@@ -1,6 +1,6 @@
-<div class="container">
+<div class="fondito">
 <mat-dialog-content >
-    <mat-card class="mi-card">
+    <mat-card class="user-card">
         <mat-card-header>
             <mat-card-title-group>
                 <mat-card-title>Detalle Compra Nro : {{infoadquiere?.id}} </mat-card-title>
@@ -15,7 +15,6 @@
     </mat-card>
     </mat-dialog-content>
     
-      
     <table class="table table-sm table-bordered table-responsive-sm">
         <thead class="table-primary">
             <tr>
@@ -30,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}"  *ngFor="let item of infolote;let i=index">
+            <tr *ngFor="let item of infolote;let i=index">
                 <td>{{i+1}}</td>
                 <td>{{item.nombre}}</td>
                 <td>{{item.descripcion}}</td>
@@ -39,13 +38,12 @@
                 <td>{{item.precio_compra}}</td>
                 <td>{{item.precio_venta}}</td>
                 <td>{{item.cantidad}}</td>
-                <td></td>
             </tr>
         </tbody>
     </table>
     
     
-    <mat-dialog-actions>
+    <mat-dialog-actions class="botoncrear">
         <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
     </mat-dialog-actions>
 </div>

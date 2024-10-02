@@ -1,7 +1,56 @@
-.mi-card {
-    background-color: lightblue;  /* Cambiar el color de fondo del card */
+.a{
+  margin-top: 10px; /* Espacio superior entre el texto y la imagen */
+  }
+
+.row{
+  width: 100%;
+}
+p {
+    font-family: Lato;
+  }
+  
+  .inp {
+    width: 360px;
+  }
+  
+  .parent {
+    position: relative;
+  }
+  
+  .child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .fixed{
+      position: sticky;
+      top:0;
+      z-index: 999;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .derecha{
+    text-align: right;
+  }
+  .mat-dialog-custom {
+    width: 10%; /* Ancho relativo */
+    height: 10px; /* Altura relativa */
+  }
+  .mi-card {
+    background-color: #2fc4b2;  /* Cambiar el color de fondo del card */
     border-radius: 10px;  /* Agregar bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Agregar sombra */
+    color: white;
   }
   
   .contenedor {

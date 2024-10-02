@@ -1,20 +1,19 @@
 <app-admin *ngIf="type=='1'"></app-admin>
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
-
-<mat-card class="mi-card">
-  <mat-card-header class="cabe">
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title><a>Nueva Factura</a></mat-card-title>
+<div class="fondito">
+<mat-card class="container">
+  <mat-card-header class="user-card">
+    <mat-card-title><a>NUEVA VENTA</a></mat-card-title>
     <mat-card-subtitle>Nro de documento : {{formulario_factura.id}}</mat-card-subtitle>
     <mat-card-subtitle>Fecha : {{formulario_factura.fecha}}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content class="fondito">
     <br>
-    <div class="container">
+    
       <div class="row">
-      <div class="col-md-6">
-        <mat-card class="example-card">
+      <div class="col-md-6 ">
+        <mat-card class="fondo">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
               <form [formGroup]="nuevocliente">
@@ -28,6 +27,7 @@
                   </mat-autocomplete>
                   <mat-error>{{error_ci()}}</mat-error>
                 </mat-form-field>
+                <button mat-fab extended color="assent" (click)="crearysetearcliente()" ><mat-icon style="color: green">add_circle</mat-icon>Nuevo Cliente</button>
                 <br>
                 <mat-form-field class="example-container">
                   <mat-label>Nombre</mat-label>
@@ -43,8 +43,8 @@
           </mat-card-header>
         </mat-card>
       </div>
-        <div class="col-md-6">
-          <mat-card class="example-card">
+        <div class="col-md-6 ">
+          <mat-card class="fondo">
             <mat-card-header>
               <form class="example-form" [formGroup]="descuento_info">
                 <mat-form-field class="example-full-width" >
@@ -63,11 +63,10 @@
           </mat-card>
         </div>
       </div>
-    </div>
 
         <br>
-          <div class="container">
-            <mat-card class="example-card">
+          
+            <mat-card class="fondo">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <form [formGroup]="nuevo">
@@ -83,11 +82,15 @@
                       <mat-error>{{error_nombre_producto()}}</mat-error>
                     </mat-form-field>
                     <mat-form-field class="example-container">
+                      <mat-label>Codigo</mat-label>
+                      <input matInput formControlName="codigo" type="text" placeholder="Codigo"  name="codigo">
+                      <mat-error>{{error_codigo()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-container">
                       <mat-label>Cantidad </mat-label>
                       <input matInput formControlName="cantidad" type="number" placeholder="Cantidad" name="cantidad" min="1" #campoEntrada (input)="validarcantidad(campoEntrada.value)">
                       <mat-error >{{error_cantidad()}}</mat-error>
                     </mat-form-field>
-                    <button mat-fab extended color="assent" (click)="carrito()" *ngIf="nuevo.valid" [disabled]="!nuevo.valid"><mat-icon style="color: green">add_circle</mat-icon>Agregar</button>
                     <br>
                     <mat-form-field class="example-container">
                       <mat-label>Descripcion</mat-label>
@@ -110,17 +113,16 @@
                       <mat-error >{{error_precio_venta()}}</mat-error>
                     </mat-form-field>
                   </div>
+                  <button mat-fab extended color="assent" (click)="carrito()" *ngIf="nuevo.valid" [disabled]="!nuevo.valid"><mat-icon style="color: green">add_circle</mat-icon>Agregar</button>
                 </form>
               </mat-card-header>
             </mat-card>
-          </div>
           <br>
-          <div class="container">
-            <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
+          
+            <mat-card class="col-custom">
+              <mat-card-header class="fondo">
                 <table class="table table-sm table-responsive-sm">
-                  <thead class="thead-dark">
+                  <thead class="thead-primary">
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">id</th>
@@ -154,7 +156,6 @@
               </table>
               </mat-card-header>
             </mat-card>
-          </div> 
           <br>
           <div class="contenedor"><div class="contenido">
         <mat-card-actions>
@@ -165,3 +166,4 @@
       </div></div>
   </mat-card-content>
 </mat-card>
+</div>

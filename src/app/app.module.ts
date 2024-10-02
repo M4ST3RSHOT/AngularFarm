@@ -37,7 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -115,6 +115,9 @@ import { ReporteeconomicoComponent } from './reporte/reporteeconomico/reporteeco
 import { ReporteinventarioComponent } from './reporte/reporteinventario/reporteinventario.component';
 import { ReporteventasComponent } from './reporte/reporteventas/reporteventas.component';
 import { ReporteventasusuarioComponent } from './reporte/reporteventasusuario/reporteventasusuario.component';
+import { DetallarProductoComponent } from './categoria/detallar-producto/detallar-producto.component';
+import { DetallarProductoProveedorComponent } from './proveedor/detallar-producto-proveedor/detallar-producto-proveedor.component';
+import { ImportarinventarioComponent } from './producto/importarinventario/importarinventario.component';
 
 const router: Routes = [];
 @NgModule({
@@ -150,13 +153,16 @@ const router: Routes = [];
     ReporteeconomicoComponent,
     ReporteinventarioComponent,
     ReporteventasComponent,
-    ReporteventasusuarioComponent
+    ReporteventasusuarioComponent,
+    DetallarProductoComponent,
+    DetallarProductoProveedorComponent,
+    ImportarinventarioComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(router),//,{useHash:true}),
+    RouterModule.forRoot(router), //,{useHash:true}),
     MatSliderModule,
     MatListModule,
     MatIconModule,
@@ -208,12 +214,9 @@ const router: Routes = [];
     AppRoutingModule,
     HttpClientModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration(), provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

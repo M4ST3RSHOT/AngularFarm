@@ -7,6 +7,7 @@ import { Proveedor } from '../models/proveedor';
 import Swal from 'sweetalert2';
 import { CrearProveedorComponent } from './crear-proveedor/crear-proveedor.component';
 import { Router } from '@angular/router';
+import { DetallarProductoProveedorComponent } from './detallar-producto-proveedor/detallar-producto-proveedor.component';
 
 @Component({
   selector: 'app-proveedor',
@@ -62,7 +63,7 @@ export class ProveedorComponent {
     telefono: '',
     direccion: '',
     }
-    const dialogRef = this.dialog.open(CrearProveedorComponent,{data:{proveedor:proveedor,texto:"Crear Proveedor"}});
+    const dialogRef = this.dialog.open(CrearProveedorComponent,{data:{proveedor:proveedor,texto:"REGISTRAR PROVEEDOR"}});
 
     
     dialogRef.afterClosed().subscribe(result => {
@@ -86,7 +87,7 @@ export class ProveedorComponent {
 
   actualizar(item:Proveedor) {
     let proveedor:Proveedor
-    const dialogRef = this.dialog.open(CrearProveedorComponent,{data:{proveedor:item,texto:"Editar Proveedor"}});
+    const dialogRef = this.dialog.open(CrearProveedorComponent,{data:{proveedor:item,texto:"EDITAR PROVEEDOR"}});
     dialogRef.afterClosed().subscribe(result => {
       proveedor={
       id: item.id,
@@ -103,6 +104,11 @@ export class ProveedorComponent {
         this.toastr.error('Error','Operacion Cancelada')
       })
     });
+  }
+
+  
+  visualizar(item:Proveedor){
+    const dialogRef = this.dialog.open(DetallarProductoProveedorComponent,{data:item});
   }
 
 }

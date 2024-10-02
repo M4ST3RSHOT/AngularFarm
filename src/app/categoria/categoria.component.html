@@ -1,37 +1,34 @@
-<!-- implementar  https://material.angular.io/components/grid-list/overview -->
-
 <app-admin *ngIf="type=='1'"></app-admin>
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
-<div class="container">
-<div class="mi-card">
-<hr>
-<h4 style="text-align: center;">Categoria</h4>
-<hr>
-</div>
-<button (click)="openDialog()" class="btn btn-primary"><mat-icon>add</mat-icon> Crear Categoria</button>
-<hr>
-<table class="table">
-    <thead class="table-primary">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Opcion</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}" *ngFor="let item of categoria;let i=index">
-            <td>{{i+1}}</td>
-            <td>{{item.nombre}}</td>
-            <td>
-                <img appImagenRota src="{{llenar_imagen(item.imagen)}}" height="50px" width="50[x]">
-            </td>
-            <td>
-                <button class="btn btn-success btn-sm" (click)="actualizar(item)"><mat-icon> border_color</mat-icon></button>
-                <button class="btn btn-danger btn-sm" (click)="eliminar(item)"><mat-icon>delete_forever</mat-icon></button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
+<div class="fondito">
+  <div class="container">  
+  <div class="titulo">
+        <h4 style="text-align: center;">CATEGORIAS</h4>
+    </div>
+    <div class="botoncrear">
+    <button (click)="openDialog()" class="btn btn-primary"><mat-icon>group_add</mat-icon> Crear Categoria</button>
+    </div>    
+    <div class="row">
+            <div class="col-md-3 user-card" *ngFor="let user of categoria">
+              <div class="card-header">
+                <h2>{{user.nombre}}</h2>
+              </div>
+              <div class="image">
+                <img src="{{llenar_imagen(user.imagen)}}">
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary btn-sm round-button" (click)="visualizar(user)">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button class="btn btn-success btn-sm round-button" (click)="actualizar(user)">
+                    <mat-icon>border_color</mat-icon>
+                </button>
+                <button class="btn btn-danger btn-sm round-button" (click)="eliminar(user)">
+                    <mat-icon>delete_forever</mat-icon>
+                </button>            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 

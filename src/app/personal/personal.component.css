@@ -1,19 +1,120 @@
-.mi-container {
-  background-color: rgb(161, 196, 208);  /* Cambiar el color de fondo del card */
+
+
+  /* Estilo base para cada carta */
+  .user-card {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px; /* Espacio superior entre el texto y la imagen */
+    border-radius: 8px;
+    padding: 25px;
+    width: 18rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las columnas se envuelvan en varias líneas si es necesario */
+    gap: 5px; /* Espacio entre columnas */
+    justify-content: center;
+    align-items: center;
+  }
+  .card-header {
+    width: 15rem;
+    margin: 0;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    text-align: center; /* referencia el texto dentro del card-header y lo centrea */
+  }
+
+  .card-header h2 {
+    margin: 0; /* Elimina el margen por defecto del h2 */
+    font-size: 1.2rem; /* Tamaño de la fuente */
+    object-position: center; /* Asegura que el texto esté centrado si tiene imagen o elemento relacionado */
+}
+  
+  .card-body p {
+    margin: 5px 0;
+    font-size: 0.8rem;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    margin-top: 10px; /*espaciado a arriba y abajo*/
+  }
+  
+  .card-footer button {
+    width: 3rem;
+    height: 3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  .card-footer button mat-icon {
+    font-size: 1rem;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+  }
+
+  .image img{
+    width: 200px; /* Ancho fijo del cuadrado */
+    height: 200px; /* Altura fija del cuadrado */
+    object-fit: cover; /* Ajusta la imagen para que cubra todo el área del cuadrado */
+    border-radius: 8px; 
+    margin-top: 20px; /*espaciado a arriba y abajo*/
+    margin-bottom: 20px;
 }
 
-.mi-card {
-    background-color: lightblue;  /* Cambiar el color de fondo del card */
-    border-radius: 10px;  /* Agregar bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Agregar sombra */
-  }
-  
-  .contenedor {
+
+  .round-button {
+    width: 40px; /* Ancho y altura iguales para hacer el botón redondo */
+    height: 40px;
+    border-radius: 50%; /* Hace que el botón sea redondo */
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centra el ícono horizontalmente */
+    align-items: center; /* Centra el ícono verticalmente */
+    padding: 0; /* Quita el padding extra */
+    border: none; /* Quita el borde del botón por defecto */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: sombra para el botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
   }
   
-  .contenido {
-    text-align: center; /* Alinear texto al centro */
+  .round-button .mat-icon {
+    font-size: 18px; /* Tamaño del ícono */
+    color: white; /* Color del ícono, puedes cambiar este valor según lo necesites */
   }
+  
+  .btn-success {
+    background-color: #28a745; /* Verde para botón de éxito */
+  }
+  
+  .btn-danger {
+    background-color: #dc3545; /* Rojo para botón de peligro */
+  }
+  
+  /* Cambia el color del ícono al pasar sobre el botón */
+  .round-button:hover .mat-icon {
+    color: #f8f9fa; /* Color más claro al pasar sobre el botón */
+  }
+  
+  /* Opcional: cambia el color de fondo al pasar sobre el botón */
+  .round-button:hover {
+    background-color: #218838; /* Color de fondo al pasar sobre el botón éxito */
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333; /* Color de fondo al pasar sobre el botón peligro */
+  }
+
+  .btn-primary:hover {
+    background-color: lightblue; /* Color de fondo al pasar sobre el botón peligro */
+  }
+  
+    

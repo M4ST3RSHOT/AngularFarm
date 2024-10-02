@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environments.prod';
 import { Categoria } from '../models/categoria';
+import { Producto } from '../models/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class CategoriaService {
     const fd = new FormData
     fd.append('image',file,nombre)
     return this.http.post(this.base + 'categoria/imagen',fd)
+  }
+
+  listarproductoscategoria(id:number): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.base + 'categoria/productos/'+id)
   }
 
 }

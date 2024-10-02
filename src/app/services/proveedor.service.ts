@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environments.prod';
 import { Observable } from 'rxjs';
 import { Proveedor } from '../models/proveedor';
+import { Producto } from '../models/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,7 @@ export class ProveedorService {
     return this.http.post(this.base + 'proveedor/imagen',fd)
   }
 
+  listarproductosproveedor(id:number): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'proveedor/productos/'+id)
+  }
 }
