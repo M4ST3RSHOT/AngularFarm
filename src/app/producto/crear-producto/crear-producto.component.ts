@@ -55,27 +55,46 @@ export class CrearProductoComponent implements OnInit {
     nombre: new FormControl('', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z\s]*$/),
+      Validators.minLength(3),
+      Validators.maxLength(25),
     ]),
     codigo: new FormControl('', [
       Validators.required,
       Validators.pattern(/^-?\d+$/),
+      Validators.minLength(3),
+      Validators.maxLength(20),
     ]),
-    descripcion: new FormControl('', [Validators.required]),
-    unidad: new FormControl('', [Validators.pattern(/^[a-zA-Z\s]*$/)]),
+    descripcion: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(80),
+    ]),
+    unidad: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z\s]*$/),
+      Validators.minLength(2),
+      Validators.maxLength(10),
+    ]),
     peso: new FormControl('', [
       Validators.required,
       Validators.pattern(/^-?\d+$/),
+      Validators.minLength(3),
+      Validators.maxLength(15),
     ]),
     categoria_id: new FormControl('', [Validators.required]),
     precio_compra: new FormControl('', [
       Validators.required,
       Validators.pattern(/^-?\d+$/),
+      Validators.minLength(1),
+      Validators.maxLength(6),
     ]),
     precio_venta: new FormControl('', [
       Validators.required,
       Validators.pattern(/^-?\d+$/),
+      Validators.minLength(1),
+      Validators.maxLength(6),
     ]),
-    imagen: new FormControl('', [Validators.required]),
+    imagen: new FormControl(''),
     nombreimagen: new FormControl('', []),
     stock: new FormControl('', []),
   });
@@ -114,54 +133,28 @@ export class CrearProductoComponent implements OnInit {
     return this.agregar.get('stock');
   }
 
-  error_nombre(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    if (this.nombre?.hasError('pattern')) return 'Ingrese solamente letras';
-    return '';
-  }
+  getErrorMessage(controlName: string): string {
+    const control = this.agregar.get(controlName);
+    if (!control || !control.errors) return '';
 
-  error_descripcion(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    return '';
-  }
+    const errors = control.errors;
 
-  error_unidad(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    if (this.nombre?.hasError('pattern')) return 'Ingrese solamente letras';
-    return '';
-  }
-
-  error_peso(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    if (this.nombre?.hasError('pattern')) return 'Ingrese solamente numeros';
-    return '';
-  }
-
-  error_categoria_id(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    return '';
-  }
-
-  error_precio_compra(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    if (this.nombre?.hasError('pattern')) return 'Ingrese solamente numeros';
-    return '';
-  }
-
-  error_precio_venta(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    if (this.nombre?.hasError('pattern')) return 'Ingrese solamente numeros';
-    return '';
-  }
-
-  error_imagen(): string {
-    if (this.nombre?.hasError('required')) return 'Campo obligatorio';
-    return '';
-  }
-
-  error_codigo(): string {
-    if (this.codigo?.hasError('required')) return 'Campo obligatorio';
-    if (this.codigo?.hasError('pattern')) return 'Ingrese solamente numeros';
+    if (errors['required']) return 'Campo Obligatorio';
+    if (errors['minlength'])
+      return `Ingrese mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength'])
+      return `Ingrese máximo ${errors['maxlength'].requiredLength} caracteres`;
+    if (errors['fechaInvalida'])
+      return 'La fecha no puede ser mayor a la actual';
+    if (errors['email']) return 'Ingrese un formato email valido';
+    if (errors['pattern']) {
+      if (control === this.nombre) return 'Ingrese solamente letras';
+      if (control === this.codigo) return 'Ingrese solamente numeros';
+      if (control === this.unidad) return 'Ingrese solamente letras';
+      if (control === this.peso) return 'Ingrese solamente numeros';
+      if (control === this.precio_compra) return 'Ingrese solamente numeros';
+      if (control === this.precio_venta) return 'Ingrese solamente numeros';
+    }
     return '';
   }
 

@@ -2,158 +2,182 @@
 <app-ventas *ngIf="type=='2'"></app-ventas>
 <app-inventario *ngIf="type=='3'"></app-inventario>
 <div class="fondito">
-<mat-card class="container">
-  <mat-card-header class="user-card">
-    <mat-card-title><a>NUEVA COMPRA</a></mat-card-title>
-    <mat-card-subtitle>Nro de documento : {{formulario_compra.id}}</mat-card-subtitle>
-    <mat-card-subtitle>Fecha : {{formulario_compra.fecha}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content class="fondito">
-    <br>
+  <mat-card class="container">
+    <mat-card-header class="user-card">
+      <mat-card-title><a>NUEVA COMPRA</a></mat-card-title>
+      <mat-card-subtitle>Nro de documento : {{formulario_compra.id}}</mat-card-subtitle>
+      <mat-card-subtitle>Fecha : {{formulario_compra.fecha}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="fondito">
+      <br>
 
       <div class="row">
-      <div class="col-md-6">
-        <mat-card class="fondo">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
+        <div class="col-md-6">
+          <mat-card class="fondo">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
               <form [formGroup]="nuevoproveedor">
                 <mat-form-field>
                   <mat-label>Nombre</mat-label>
-                  <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput formControlName="nombre" [formControl]="opcionControlproveedor" [matAutocomplete]="auto" >
+                  <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput
+                    formControlName="nombre" [formControl]="opcionControlproveedor" [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let proveedor of opcionesFiltradasproveedor | async" [value]="proveedor.nombre" (click)="setear_proveedor(proveedor)">
-                    {{proveedor.nombre}}
+                    <mat-option *ngFor="let proveedor of opcionesFiltradasproveedor | async" [value]="proveedor.nombre"
+                      (click)="setear_proveedor(proveedor)">
+                      {{proveedor.nombre}}
                     </mat-option>
                   </mat-autocomplete>
+                  <mat-error>{{ getErrorMessageP('nombre') }}</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field class="example-container">
                   <mat-label>CI/NIT</mat-label>
-                  <input matInput formControlName="cinit" type="text" placeholder="CI/NIT"  name="cinit" >
-                  <mat-error>{{error_nombre()}}</mat-error>
+                  <input matInput formControlName="cinit" type="text" placeholder="CI/NIT" name="cinit">
+                  <mat-error>{{ getErrorMessageP('cinit') }}</mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field class="example-container">
                   <mat-label>telefono</mat-label>
-                  <input matInput formControlName="telefono" type="text" placeholder="telefono"  name="telefno" >
+                  <input matInput formControlName="telefono" type="text" placeholder="telefono" name="telefono">
+                  <mat-error>{{ getErrorMessageP('telefono') }}</mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field class="example-container">
                   <mat-label>direccion</mat-label>
-                  <input matInput formControlName="direccion" type="text" placeholder="direccion"  name="direccion" >
+                  <input matInput formControlName="direccion" type="text" placeholder="direccion" name="direccion">
+                  <mat-error>{{ getErrorMessageP('direccion') }}</mat-error>
                 </mat-form-field>
               </form>
-          </mat-card-header>
-        </mat-card>
-      </div>   
-    </div>
-        <br>
-            <mat-card class="fondo">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <form [formGroup]="nuevo">
-                  <div>
-                    <mat-form-field>
-                      <mat-label>Producto</mat-label>
-                      <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput formControlName="nombre_producto" [formControl]="opcionControlproducto" [matAutocomplete]="auto1" >
-                      <mat-autocomplete #auto1="matAutocomplete">
-                        <mat-option *ngFor="let producto of opcionesFiltradasproducto | async" [value]="producto.nombre" (click)="setear_producto(producto)">
-                          {{producto.nombre}} {{producto.peso}} {{producto.unidad}} 
-                        </mat-option>
-                      </mat-autocomplete>
-                      <mat-error>{{error_nombre_producto()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="example-container">
-                      <mat-label>Codigo</mat-label>
-                      <input matInput formControlName="codigo" type="text" placeholder="Codigo"  name="codigo">
-                      <mat-error>{{error_descripcion()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="example-container">
-                      <mat-label>Cantidad </mat-label>
-                      <input matInput formControlName="cantidad" type="number" placeholder="Cantidad" name="cantidad" min="1" #campoEntrada>
-                      <mat-error >{{error_cantidad()}}</mat-error>
-                    </mat-form-field>
-                    <button mat-fab extended color="assent" (click)="carrito()" *ngIf="nuevo.valid" [disabled]="!nuevo.valid"><mat-icon style="color: green">add_circle</mat-icon>Agregar</button>
-                    <br>
-                    <mat-form-field class="example-container">
-                      <mat-label>Descripcion</mat-label>
-                      <input matInput formControlName="descripcion" type="text" placeholder="Descripcion"  name="descripcion">
-                      <mat-error>{{error_descripcion()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="example-container">
-                      <mat-label>Unidad</mat-label>
-                      <input matInput formControlName="unidad" type="text" placeholder="Unidad"  name="unidad">
-                      <mat-error>{{error_unidad()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="example-container">
-                      <mat-label>Peso</mat-label>
-                      <input matInput formControlName="peso" type="Peso" placeholder="Unidad"  name="peso">
-                      <mat-error>{{error_peso()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="example-container">
-                      <mat-label>Precio</mat-label>
-                      <input matInput formControlName="precio_venta" type="number" placeholder="Precio"  name="precio" max="1000" min="0">
-                      <mat-error >{{error_precio_venta()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                      <mat-label>Fecha de Vencimiento</mat-label>
-                      <input matInput formControlName="fecha_vencimiento" [value]="1999-09-09" [matDatepicker]="releasedAtPicker">
-                      <mat-hint>DD/MM/AAAA</mat-hint>
-                      <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
-                      </mat-datepicker-toggle>
-                      <mat-datepicker #releasedAtPicker [disabled]="false">
-                      </mat-datepicker>
-                      <mat-error>error</mat-error>
-                    </mat-form-field>
-                  </div>
-                </form>
-              </mat-card-header>
-            </mat-card>
-          <br>
-            <mat-card class="col-custom">
-              <mat-card-header class="fondo">
-                <table class="table table-sm table-responsive-sm">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">id</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Descripcion</th>
-                      <th scope="col">Peso</th>
-                      <th scope="col">Unidad</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Precio</th>
-                      <th scope="col">Fecha de vencimiento</th>
-                      <th scope="col" colspan="2">Sub Total</th>
-                  </tr>
-                  </thead>
-                  <tbody>    
-                    <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}" *ngFor="let fila of compras;let i =index">
-                      <td >{{i + 1}}</td>
-                      <td *ngFor="let item of fila; let j = index" [ngClass]="{'derecha':j==4,'none':i<4}">{{item}}
-                      </td>
-                      <td style="text-align: center;">
-                        <mat-icon style="color: red; font-size: 20px; cursor: pointer;" (click)="eliminar(i)">cancel</mat-icon>
-                      </td>
-                    </tr>
-                    <tr class="table-warning">
-                      <td colspan="9">Total de la venta</td>
-                      <td class="derecha">{{total}}</td>
-                    </tr>
-                  </tbody>
-              </table>
-              </mat-card-header>
-            </mat-card>
-          <br>
-          <div class="contenedor"><div class="contenido">
-        <mat-card-actions>
-          <button mat-fab extended color="warn" style="color: white" [routerLink]="'/inicio'"><mat-icon style="font-size: 15px;" style="color: white">reply</mat-icon> Volver</button>
-          <button mat-fab extended color="assent" style="color: black" (click)="limpiar()"><mat-icon style="font-size: 15px;" style="color: black">restore_from_trash</mat-icon> limpiar</button>
-          <button mat-fab extended color="primary" style="color: rgb(144, 255, 70)" (click)="realizar_venta()"><mat-icon style="font-size: 15px;" style="color: rgb(144, 255, 70)">attach_money</mat-icon> Comprar</button>
-        </mat-card-actions>
+            </mat-card-header>
+          </mat-card>
+        </div>
       </div>
-    </div>
-  </mat-card-content>
-</mat-card>
-</div>
+      <br>
+      <mat-card class="fondo">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <form [formGroup]="nuevo">
+            <div>
+              <mat-form-field>
+                <mat-label>Producto</mat-label>
+                <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput
+                  formControlName="nombre_producto" [formControl]="opcionControlproducto" [matAutocomplete]="auto1">
+                <mat-autocomplete #auto1="matAutocomplete">
+                  <mat-option *ngFor="let producto of opcionesFiltradasproducto | async" [value]="producto.nombre"
+                    (click)="setear_producto(producto)">
+                    {{producto.nombre}} {{producto.peso}} {{producto.unidad}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error>{{ getErrorMessage('nombre_producto') }}</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Codigo</mat-label>
+                <input type="text" placeholder="Selecciona una opción" aria-label="text-align" matInput
+                  formControlName="codigo" [formControl]="opcionControlproducto" [matAutocomplete]="auto5">
+                <mat-autocomplete #auto5="matAutocomplete">
+                  <mat-option *ngFor="let producto of opcionesFiltradasproducto | async" [value]="producto.codigo"
+                    (click)="setear_producto(producto)">
+                    {{producto.codigo}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error>{{ getErrorMessage('codigo') }}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-container">
+                <mat-label>Cantidad </mat-label>
+                <input matInput formControlName="cantidad" type="number" placeholder="Cantidad" name="cantidad" min="1"
+                  #campoEntrada>
+                <mat-error>{{ getErrorMessage('cantidad') }}</mat-error>
+              </mat-form-field>
+              <button mat-fab extended color="assent" (click)="carrito()" *ngIf="nuevo.valid"
+                [disabled]="!nuevo.valid"><mat-icon style="color: green">add_circle</mat-icon>Agregar</button>
+              <br>
+              <mat-form-field class="example-container">
+                <mat-label>Descripcion</mat-label>
+                <input matInput formControlName="descripcion" type="text" placeholder="Descripcion" name="descripcion">
+                <mat-error>{{ getErrorMessage('descripcion') }}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-container">
+                <mat-label>Unidad</mat-label>
+                <input matInput formControlName="unidad" type="text" placeholder="Unidad" name="unidad">
+                <mat-error>{{ getErrorMessage('unidad') }}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-container">
+                <mat-label>Peso</mat-label>
+                <input matInput formControlName="peso" type="Peso" placeholder="Unidad" name="peso">
+                <mat-error>{{ getErrorMessage('peso') }}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-container">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="precio_venta" type="number" placeholder="Precio" name="precio"
+                  max="1000" min="0">
+                <mat-error>{{ getErrorMessage('precio_venta') }}</mat-error>
+              </mat-form-field>
 
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput formControlName="fecha_vencimiento" placeholder="1999-12-31"
+                  [matDatepicker]="releasedAtPicker">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="releasedAtPicker"></mat-datepicker-toggle>
+                <mat-datepicker #releasedAtPicker [disabled]="false"></mat-datepicker>
+                <mat-error>{{ getErrorMessage('fecha_vencimiento') }}</mat-error>
+              </mat-form-field>
+
+
+            </div>
+          </form>
+        </mat-card-header>
+      </mat-card>
+      <br>
+      <mat-card class="col-custom">
+        <mat-card-header class="fondo">
+          <table class="table table-sm table-responsive-sm">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Unidad</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha de vencimiento</th>
+                <th scope="col" colspan="2">Sub Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr [ngClass]="{'table-ligth':i%2==0,'table-info':i%2==1}" *ngFor="let fila of compras;let i =index">
+                <td>{{i + 1}}</td>
+                <td *ngFor="let item of fila; let j = index" [ngClass]="{'derecha':j==4,'none':i<4}">{{item}}
+                </td>
+                <td style="text-align: center;">
+                  <mat-icon style="color: red; font-size: 20px; cursor: pointer;"
+                    (click)="eliminar(i)">cancel</mat-icon>
+                </td>
+              </tr>
+              <tr class="table-warning">
+                <td colspan="9">Total de la venta</td>
+                <td class="derecha">{{total}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card-header>
+      </mat-card>
+      <br>
+      <div class="contenedor">
+        <div class="contenido">
+          <mat-card-actions>
+            <button mat-fab extended color="warn" style="color: white" [routerLink]="'/inicio'"><mat-icon
+                style="font-size: 15px;" style="color: white">reply</mat-icon> Volver</button>
+            <button mat-fab extended color="assent" style="color: black" (click)="limpiar()"><mat-icon
+                style="font-size: 15px;" style="color: black">restore_from_trash</mat-icon> limpiar</button>
+            <button mat-fab extended color="primary" style="color: rgb(144, 255, 70)"
+              (click)="realizar_venta()"><mat-icon style="font-size: 15px;"
+                style="color: rgb(144, 255, 70)">attach_money</mat-icon> Comprar</button>
+          </mat-card-actions>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

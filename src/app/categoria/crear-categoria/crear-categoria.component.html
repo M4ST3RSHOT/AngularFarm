@@ -1,37 +1,29 @@
-
 <h2 mat-dialog-title>{{texto}}</h2>
 <mat-dialog-content class="mat-typography">
-    <form [formGroup]="agregar">
-        <mat-form-field appearance="fill">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Aspirina" formControlName="nombre">
-            <mat-error>{{error_nombre()}}</mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="fill">
-            <mat-label>Imagen</mat-label>
-            <input matInput value="{{name}}">
-            <input 
-            type="file"
-            id="fileInput"
-            name="fileInput"
-            accept="image/*"
-            (change)="cargarimagen($event)"
-            formControlName="imagen"
-            />
-            <mat-icon matSuffix>image</mat-icon>
-          </mat-form-field>
-        
-          <div class="text-center">
-            <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
-          </div>
+  <form [formGroup]="agregar">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="" formControlName="nombre">
+      <mat-error>{{ getErrorMessage('nombre') }}</mat-error>
+    </mat-form-field>
 
-    </form>
+    <mat-form-field appearance="fill">
+      <mat-label>Imagen</mat-label>
+      <input matInput value="{{name}}">
+      <input type="file" id="fileInput" name="fileInput" accept="image/*" (change)="cargarimagen($event)"
+        formControlName="imagen" />
+      <mat-icon matSuffix>image</mat-icon>
+    </mat-form-field>
 
-<mat-dialog-content class="mat-typography">
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
-  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Guardar</button>
-</mat-dialog-actions>
+    <div class="text-center">
+      <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
+    </div>
 
+  </form>
+
+  <mat-dialog-content class="mat-typography">
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+    <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+  </mat-dialog-actions>

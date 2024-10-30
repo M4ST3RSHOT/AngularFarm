@@ -1,39 +1,38 @@
-<div class="container">
-<h2 mat-dialog-title>{{texto}}</h2>
-<form [formGroup]="agregar">
-<mat-form-field appearance="fill">
-    <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="nombre">
-    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
-  </mat-form-field>
+<div class="">
+  <h2 mat-dialog-title>{{texto}}</h2>
+  <form [formGroup]="agregar">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="" formControlName="nombre">
+      <mat-error>{{ getErrorMessage('nombre') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>CI/NIT</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="nombre">
-    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>CI/NIT</mat-label>
+      <input matInput placeholder="" formControlName="cinit">
+      <mat-error>{{ getErrorMessage('cinit') }}</mat-error>
+    </mat-form-field>
 
-  <br>
+    <br>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Telefono</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="telefono">
-    <mat-error *ngIf="telefono?.invalid">{{error_telefono()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Telefono</mat-label>
+      <input matInput placeholder="" formControlName="telefono">
+      <mat-error>{{ getErrorMessage('telefono') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Direccion</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="direccion">
-    <mat-error *ngIf="direccion?.invalid">{{error_direccion()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Direccion</mat-label>
+      <input matInput placeholder="" formControlName="direccion">
+      <mat-error>{{ getErrorMessage('direccion') }}</mat-error>
+    </mat-form-field>
 
-</form>
+  </form>
 
-<mat-dialog-content class="mat-typography">
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
-  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Guardar</button>
-</mat-dialog-actions>
+  <mat-dialog-content class="mat-typography">
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+    <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+  </mat-dialog-actions>
 </div>
-

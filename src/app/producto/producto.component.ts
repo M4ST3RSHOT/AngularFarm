@@ -154,6 +154,9 @@ export class ProductoComponent implements OnInit {
         imagen: result.value.nombreimagen,
         stock: result.value.stock,
       };
+      if (producto.imagen.length == 0) {
+        producto.imagen = 'predeterminado.jpg';
+      }
       this.productoServ.agregar(producto).subscribe(
         (data) => {
           this.toastr.success('Exito', 'Registro Actualizado');
@@ -185,8 +188,12 @@ export class ProductoComponent implements OnInit {
         precio_compra: result.value.precio_compra,
         precio_venta: result.value.precio_venta,
         imagen: result.value.nombreimagen,
-        stock: '0',
+        stock: result.value.stock,
       };
+
+      if (producto.imagen.length == 0) {
+        producto.imagen = 'predeterminado.jpg';
+      }
       this.productoServ.actualizar(producto, item.id).subscribe(
         (data) => {
           this.toastr.success('Exito', 'Registro Actualizado');

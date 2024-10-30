@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import { Producto } from '../../models/producto';
 import { Detalle } from '../../models/detalle';
@@ -139,23 +145,17 @@ export class NuevaCompraComponent implements OnInit {
   }
 
   nuevo = new FormGroup({
-    nombre_producto: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[a-zA-Z\s]*$/),
-    ]),
+    nombre_producto: new FormControl('', [Validators.required]),
     descripcion: new FormControl('', [Validators.required]),
     unidad: new FormControl('', [Validators.required]),
     codigo: new FormControl('', [Validators.required]),
-    peso: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^-?\d+$/),
-    ]),
-    precio_venta: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^-?\d+$/),
-    ]),
+    peso: new FormControl('', [Validators.required]),
+    precio_venta: new FormControl('', [Validators.required]),
     cantidad: new FormControl('', [Validators.required, Validators.min(1)]),
-    fecha_vencimiento: new FormControl('', [Validators.required]),
+    fecha_vencimiento: new FormControl('', [
+      Validators.required,
+      this.fechaMenorOIgualAFechaActual, // Validador personalizado
+    ]),
   });
 
   nuevoproveedor = new FormGroup({
@@ -210,6 +210,8 @@ export class NuevaCompraComponent implements OnInit {
   }
 
   setear_producto(a1: any) {
+    this.opcionControlproducto.setValue('');
+
     this.form.id_producto = a1.id;
     this.form.descripcion = a1.descripcion;
     this.form.nombre = a1.nombre;
@@ -224,11 +226,12 @@ export class NuevaCompraComponent implements OnInit {
     this.form.unidad = a1.unidad;
     this.nuevo.controls['descripcion'].setValue(a1.descripcion);
     this.nuevo.controls['codigo'].setValue(a1.codigo);
-    this.nuevo.controls['unidad'].setValue(a1.precio_venta);
-    this.nuevo.controls['peso'].setValue(a1.stock);
+    this.nuevo.controls['unidad'].setValue(a1.unidad);
+    this.nuevo.controls['peso'].setValue(a1.peso);
     this.nuevo.controls['nombre_producto'].setValue(a1.nombre);
     this.nuevo.controls['precio_venta'].setValue(a1.precio_venta);
     this.nuevo.controls['cantidad'].setValue('0');
+    // this.opcionControlproducto.reset();
   }
 
   carrito() {
@@ -399,6 +402,8 @@ export class NuevaCompraComponent implements OnInit {
   }
 
   setear_proveedor(c: any) {
+    this.opcionControlproveedor.setValue('');
+
     this.matrizproveedor = [];
     this.matrizinfoproveedor.id = c.id;
     this.matrizinfoproveedor.nombre = c.nombre;
@@ -412,43 +417,64 @@ export class NuevaCompraComponent implements OnInit {
     this.matrizproveedor.push(this.matrizinfoproveedor);
   }
 
-  error_nombre_producto() {
-    if (this.nombre_producto?.hasError('required')) return 'Campo Obligatorio';
+  getErrorMessage(controlName: string): string {
+    const control = this.nuevo.get(controlName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+
+    if (errors['required']) return 'Campo Obligatorio';
+    if (errors['minlength'])
+      return `Ingrese mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength'])
+      return `Ingrese máximo ${errors['maxlength'].requiredLength} caracteres`;
+    if (errors['fechaInvalida']) return 'La fecha debe ser mayor a la actual';
+    if (errors['email']) return 'Ingrese un formato email valido';
+    if (errors['pattern']) {
+      if (control === this.nombre) return 'Ingrese solamente letras';
+      if (control === this.telefono) return 'Ingrese solamente numeros';
+    }
     return '';
   }
-  error_descripcion() {
-    if (this.descripcion?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_codigo() {
-    if (this.codigo?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_unidad() {
-    if (this.unidad?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_peso() {
-    if (this.peso?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_precio_venta() {
-    if (this.precio_venta?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_cantidad() {
-    if (this.cantidad?.hasError('required')) return 'Campo Obligatorio';
-    if (this.cantidad?.hasError('max'))
-      return 'Cantidad insuficiente en almacen';
-    if (this.cantidad?.hasError('min')) return 'Cantidad Invalida';
-    return '';
-  }
-  error_nombre() {
-    if (this.nombre?.hasError('required')) return 'Campo Obligatorio';
+  getErrorMessageP(controlName: string): string {
+    const control = this.nuevoproveedor.get(controlName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+
+    if (errors['required']) return 'Campo Obligatorio';
+    if (errors['minlength'])
+      return `Ingrese mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength'])
+      return `Ingrese máximo ${errors['maxlength'].requiredLength} caracteres`;
+    if (errors['fechaInvalida'])
+      return 'La fecha no puede ser mayor a la actual';
+    if (errors['email']) return 'Ingrese un formato email valido';
+    if (errors['pattern']) {
+      if (control === this.nombre) return 'Ingrese solamente letras';
+      if (control === this.telefono) return 'Ingrese solamente numeros';
+    }
     return '';
   }
 
   limpiar() {
     location.reload();
+  }
+
+  fechaMenorOIgualAFechaActual(
+    control: AbstractControl
+  ): ValidationErrors | null {
+    const fechaActual = new Date(); // Fecha actual
+    const fechaInicio = new Date(control.value); // Valor ingresado en el campo
+
+    if (isNaN(fechaInicio.getTime())) {
+      return { fechaInvalida: true }; // Si la fecha no es válida (mal ingresada o vacía)
+    }
+
+    if (fechaInicio < fechaActual) {
+      return { fechaInvalida: true }; // Si la fecha de inicio es mayor que la fecha actual
+    }
+
+    return null; // La fecha es válida
   }
 }

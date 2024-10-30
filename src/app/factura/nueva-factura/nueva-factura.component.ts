@@ -171,21 +171,12 @@ export class NuevaFacturaComponent implements OnInit {
   }
 
   nuevo = new FormGroup({
-    nombre_producto: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[a-zA-Z\s]*$/),
-    ]),
+    nombre_producto: new FormControl('', [Validators.required]),
     codigo: new FormControl('', [Validators.required]),
     descripcion: new FormControl('', [Validators.required]),
     unidad: new FormControl('', [Validators.required]),
-    peso: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^-?\d+$/),
-    ]),
-    precio_venta: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^-?\d+$/),
-    ]),
+    peso: new FormControl('', [Validators.required]),
+    precio_venta: new FormControl('', [Validators.required]),
     cantidad: new FormControl('', [Validators.required, Validators.min(1)]),
   });
 
@@ -246,6 +237,8 @@ export class NuevaFacturaComponent implements OnInit {
   }
 
   setear_producto(a1: any) {
+    this.opcionControlproducto.setValue('');
+
     this.form.id_producto = a1.id;
     this.form.codigo = a1.codigo;
     this.form.descripcion = a1.descripcion;
@@ -491,6 +484,7 @@ export class NuevaFacturaComponent implements OnInit {
   }
 
   setear_cliente(c: any) {
+    this.opcionControlcliente.setValue('');
     this.matrizcliente = [];
     this.matrizinfocliente.id = c.id;
     this.matrizinfocliente.nombre = c.nombre;
@@ -506,47 +500,43 @@ export class NuevaFacturaComponent implements OnInit {
     this.matrizcliente.push(this.matrizinfocliente);
   }
 
-  error_nombre_producto() {
-    if (this.nombre_producto?.hasError('required')) return 'Campo Obligatorio';
+  getErrorMessage(controlName: string): string {
+    const control = this.nuevo.get(controlName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+
+    if (errors['required']) return 'Campo Obligatorio';
+    if (errors['minlength'])
+      return `Ingrese mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength'])
+      return `Ingrese máximo ${errors['maxlength'].requiredLength} caracteres`;
+    if (errors['fechaInvalida']) return 'La fecha debe ser mayor a la actual';
+    if (errors['email']) return 'Ingrese un formato email valido';
+    if (errors['pattern']) {
+      if (control === this.nombre) return 'Ingrese solamente letras';
+      if (control === this.telefono) return 'Ingrese solamente numeros';
+    }
     return '';
   }
-  error_descripcion() {
-    if (this.descripcion?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_unidad() {
-    if (this.unidad?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_peso() {
-    if (this.peso?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_precio_venta() {
-    if (this.precio_venta?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_cantidad() {
-    if (this.cantidad?.hasError('required')) return 'Campo Obligatorio';
-    if (this.cantidad?.hasError('max'))
-      return 'Cantidad insuficiente en almacen';
-    if (this.cantidad?.hasError('min')) return 'Cantidad Invalida';
-    return '';
-  }
-  error_codigo() {
-    if (this.ci?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_ci() {
-    if (this.ci?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_nombre() {
-    if (this.nombre?.hasError('required')) return 'Campo Obligatorio';
-    return '';
-  }
-  error_apellido() {
-    if (this.apellido?.hasError('required')) return 'Campo Obligatorio';
+  getErrorMessageP(controlName: string): string {
+    const control = this.nuevocliente.get(controlName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+
+    if (errors['required']) return 'Campo Obligatorio';
+    if (errors['minlength'])
+      return `Ingrese mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength'])
+      return `Ingrese máximo ${errors['maxlength'].requiredLength} caracteres`;
+    if (errors['fechaInvalida'])
+      return 'La fecha no puede ser mayor a la actual';
+    if (errors['email']) return 'Ingrese un formato email valido';
+    if (errors['pattern']) {
+      if (control === this.nombre) return 'Ingrese solamente letras';
+      if (control === this.telefono) return 'Ingrese solamente numeros';
+    }
     return '';
   }
 

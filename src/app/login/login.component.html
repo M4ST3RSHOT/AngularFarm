@@ -1,63 +1,61 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color: aqua;">
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="navbar-brand" href="menu/home">FARMACIA "SUPERFARMA"</a> <!-- poner aca el logo y si se puede la imagen de superfarma en letritas chidas -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="/venta" role="button" data-bs-toggle="dropdown" aria-expanded="false"><mat-icon>call</mat-icon> Contactanos</a>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="/venta"><mat-icon>subject</mat-icon> Facebook</a></li>
-                      <li><a class="dropdown-item" href="/venta"><mat-icon>subject</mat-icon> Instagram</a></li>
-                      <li><a class="dropdown-item" href="/crear-venta"><mat-icon>subject</mat-icon> TikTok</a></li>
-                      <li><a class="dropdown-item"><mat-icon>call</mat-icon> 76133846 - 76133846 </a></li>
-                      <li><a class="dropdown-item"><mat-icon>phonelink_setup</mat-icon> Soporte - 76133846 </a></li>
-                  </ul>
-              </li>
+    <a class="navbar-brand" href="menu/home">
+      <img src="path-to-logo.png" alt="Superfarma Logo" style="width: 30px; height: 30px; margin-right: 10px;">
+      FARMACIA "SUPERFARMA"
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <mat-icon>call</mat-icon> Contactanos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><mat-icon>subject</mat-icon> Facebook</a></li>
+            <li><a class="dropdown-item" href="#"><mat-icon>subject</mat-icon> Instagram</a></li>
+            <li><a class="dropdown-item" href="#"><mat-icon>subject</mat-icon> TikTok</a></li>
+            <li><a class="dropdown-item"><mat-icon>call</mat-icon> 76133846 - 76133846</a></li>
+            <li><a class="dropdown-item"><mat-icon>phonelink_setup</mat-icon> Soporte - 76133846</a></li>
           </ul>
-      </div>
+        </li>
+      </ul>
+    </div>
   </div>
-
 </nav>
 
 <br>
 <div class="row">
   <div class="col-sm-12 col-md-2 col-lg-4 col-xl-4"></div>
   <div class="col-sm-12 col-md-8 col-lg-4 col-xl-3">
-  <div class="card">
-    <div class="card-header" style="text-align: center;"><h4><strong>INICIAR SESION</strong></h4></div>
-    <div class="card-body">
-      <div>
-        <div mat-dialog-content>
-          <form [formGroup]="nuevo">
-            <mat-form-field appearance="fill">
-              <mat-label>Cuenta</mat-label>
-              <input matInput formControlName="nombre" type="text" placeholder="Cuenta" name="nombre" >
-              <mat-icon matSuffix>account_circle</mat-icon>
-              <mat-error>{{error_nombre()}}</mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-              <mat-label>Contraseña</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <mat-error>{{error_password()}}</mat-error>
-            </mat-form-field>
-          </form>
-          <div mat-dialog-actions>
-            <div class="form-group" style="text-align: center;">
-              <button type="submit" class="btn btn-danger" [disabled]="!nuevo.valid" (click)="onLogin()">Iniciar Sesion</button>
-            </div>        
+    <div class="card">
+      <div class="card-header text-center">
+        <h4><strong>INICIAR SESION</strong></h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="nuevo">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Cuenta</mat-label>
+            <input matInput formControlName="nombre" type="text" placeholder="Cuenta" name="nombre">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-error>{{ getErrorMessage('nombre') }}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error>{{ getErrorMessage('password') }}</mat-error>
+          </mat-form-field>
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-danger" [disabled]="!nuevo.valid" (click)="onLogin()">Iniciar
+              Sesión</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

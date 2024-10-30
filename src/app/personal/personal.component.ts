@@ -115,7 +115,10 @@ export class PersonalComponent implements OnInit {
           this.toastr.success('Exito', 'Registro guardado');
         },
         (error) => {
-          this.toastr.error('Error', 'Operacion Cancelada');
+          this.toastr.error(
+            'Error',
+            'Ya existe un usuario con ese numero de ci'
+          );
         }
       );
     });
@@ -142,6 +145,9 @@ export class PersonalComponent implements OnInit {
         imagen: result.value.nombreimagen,
         farmacia_id: '1',
       };
+      if (personal.imagen.length == 0) {
+        personal.imagen = 'predeterminado.jpg';
+      }
       personal.fecha_inicio = this.convertirfecha(personal.fecha_inicio);
       this.personalServ.actualizar(personal, item.id).subscribe(
         (data) => {
@@ -149,7 +155,10 @@ export class PersonalComponent implements OnInit {
           this.toastr.success('Exito', 'Registro Actualizado');
         },
         (error) => {
-          this.toastr.error('Error', 'Operacion Cancelada');
+          this.toastr.error(
+            'Error',
+            'Ya existe un usuario con ese numero de ci'
+          );
         }
       );
     });

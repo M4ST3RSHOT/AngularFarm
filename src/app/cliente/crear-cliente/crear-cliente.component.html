@@ -1,110 +1,102 @@
-
 <div *ngIf="texto=='REGISTRAR NUEVO CLIENTE AGILIZADO'">
-<h2 mat-dialog-title>{{texto}}</h2>
-<form [formGroup]="agregar">
-<mat-form-field appearance="fill">
+  <h2 mat-dialog-title>{{texto}}</h2>
+  <form [formGroup]="agregar">
+    <mat-form-field appearance="fill">
 
-    <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="nombre">
-    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
-  </mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="" formControlName="nombre">
+      <mat-error *ngIf="nombre?.invalid">{{ getErrorMessage('nombre') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Apellido</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="apellido">
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput placeholder="" formControlName="apellido">
+    </mat-form-field>
 
-  <br>
+    <br>
 
-  <mat-form-field appearance="fill">
-    <mat-label>CI</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="ci"> 
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>CI</mat-label>
+      <input matInput placeholder="" formControlName="ci">
+    </mat-form-field>
 
-</form>
+  </form>
 
-<mat-dialog-content class="mat-typography">
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
-  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.valid" >Guardar</button>
-</mat-dialog-actions>
+  <mat-dialog-content class="mat-typography">
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+    <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.valid">Guardar</button>
+  </mat-dialog-actions>
 </div>
 
-<div *ngIf="texto=='REGISTRAR NUEVO CLIENTE'||texto=='EDITAR CLIENTE'" class="container">
-<h2 mat-dialog-title>{{texto}}</h2>
-<form [formGroup]="agregar">
-<mat-form-field appearance="fill">
+<div *ngIf="texto=='REGISTRAR NUEVO CLIENTE'||texto=='EDITAR CLIENTE'" class="">
+  <h2 mat-dialog-title>{{texto}}</h2>
+  <form [formGroup]="agregar">
+    <mat-form-field appearance="fill">
 
-    <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="nombre">
-    <mat-error *ngIf="nombre?.invalid">{{error_nombre()}}</mat-error>
-  </mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="" formControlName="nombre">
+      <mat-error>{{ getErrorMessage('nombre') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Apellido</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="apellido">
-    <mat-error *ngIf="apellido?.invalid">{{error_apellido()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput placeholder="" formControlName="apellido">
+      <mat-error>{{ getErrorMessage('apellido') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Fecha de Nacimiento</mat-label>
-    <input matInput formControlName="fecha_nacimiento" placeholder="1999-12-31" [matDatepicker]="releasedAtPicker">
-    <mat-hint>DD/MM/AAAA</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
-    </mat-datepicker-toggle>
-    <mat-datepicker #releasedAtPicker [disabled]="false">
-    </mat-datepicker>
-    <mat-error *ngIf="fecha_nacimiento?.invalid">{{error_fecha_nacimiento()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput formControlName="fecha_nacimiento" placeholder="1999-12-31" [matDatepicker]="releasedAtPicker">
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="releasedAtPicker"></mat-datepicker-toggle>
+      <mat-datepicker #releasedAtPicker [disabled]="false"></mat-datepicker>
 
-  <br>
+      <mat-error>{{ getErrorMessage('fecha_nacimiento') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>CI</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="ci"> 
-    <mat-error *ngIf="ci?.invalid">{{error_ci()}}</mat-error>
-  </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Correo</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="correo">
-    <mat-error *ngIf="correo?.invalid">{{error_correo()}}</mat-error>
-  </mat-form-field>
+    <br>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Telefono</mat-label>
-    <input matInput placeholder="Placeholder" formControlName="telefono">
-    <mat-error *ngIf="telefono?.invalid">{{error_telefono()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>CI</mat-label>
+      <input matInput placeholder="" formControlName="ci">
+      <mat-error>{{ getErrorMessage('ci') }}</mat-error>
+    </mat-form-field>
 
-  <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Correo</mat-label>
+      <input matInput placeholder="" formControlName="correo">
+      <mat-error>{{ getErrorMessage('correo') }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Imagen</mat-label>
-    <input matInput value="{{name}}">
-    <input 
-    type="file"
-    id="fileInput"
-    name="fileInput"
-    accept="image/*"
-    (change)="cargarimagen($event)"
-    formControlName="imagen"
-    />
-    <mat-icon matSuffix>image</mat-icon>
-    <mat-error *ngIf="telefono?.invalid">{{error_imagen()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Telefono</mat-label>
+      <input matInput placeholder="" formControlName="telefono">
+      <mat-error>{{ getErrorMessage('telefono') }}</mat-error>
+    </mat-form-field>
 
-  <div class="text-center">
-    <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
-  </div>
-  
-</form>
+    <br>
 
-<mat-dialog-content class="mat-typography">
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
-  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Guardar</button>
-</mat-dialog-actions>
+    <mat-form-field appearance="fill">
+      <mat-label>Imagen</mat-label>
+      <input matInput value="{{name}}">
+      <input type="file" id="fileInput" name="fileInput" accept="image/*" (change)="cargarimagen($event)"
+        formControlName="imagen" />
+      <mat-icon matSuffix>image</mat-icon>
+    </mat-form-field>
+
+    <div class="text-center">
+      <img appImagenRota src={{previsualizacion}} alt="" height="100px" width="100px">
+    </div>
+
+  </form>
+
+  <mat-dialog-content class="mat-typography">
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+    <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Guardar</button>
+  </mat-dialog-actions>
 </div>
