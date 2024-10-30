@@ -205,4 +205,5 @@ export class ProductoComponent implements OnInit {
     const dialogRef = this.dialog.open(ImportarinventarioComponent);
     dialogRef.afterClosed().subscribe((result) => {});
   }
+  funcionxd() {}
 }
