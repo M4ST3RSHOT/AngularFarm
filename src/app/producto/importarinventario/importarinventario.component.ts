@@ -84,15 +84,16 @@ export class ImportarinventarioComponent implements OnInit {
         }; //cualquier cosita mi rey ESTO ES MAPEAR
 
         producto.id = this.infoarchivo[i][0];
-        producto.nombre = this.infoarchivo[i][1];
-        producto.descripcion = this.infoarchivo[i][2];
-        producto.unidad = this.infoarchivo[i][3];
-        producto.peso = this.infoarchivo[i][4];
-        producto.categoria_id = this.infoarchivo[i][5];
-        producto.precio_compra = this.infoarchivo[i][6];
-        producto.precio_venta = this.infoarchivo[i][7];
-        producto.imagen = this.infoarchivo[i][8];
-        producto.stock = this.infoarchivo[i][9];
+        producto.codigo = this.infoarchivo[i][1];
+        producto.nombre = this.infoarchivo[i][2];
+        producto.descripcion = this.infoarchivo[i][3];
+        producto.unidad = this.infoarchivo[i][4];
+        producto.peso = this.infoarchivo[i][5];
+        producto.categoria_id = this.infoarchivo[i][6];
+        producto.precio_compra = this.infoarchivo[i][7];
+        producto.precio_venta = this.infoarchivo[i][8];
+        producto.imagen = this.infoarchivo[i][9];
+        producto.stock = this.infoarchivo[i][10];
         this.matrizproducto.push(producto);
       }
 
@@ -109,20 +110,28 @@ export class ImportarinventarioComponent implements OnInit {
     reader.readAsBinaryString(target.files[0]);
   }
   insertar() {
-    for (let i = 0; i < this.matrizproducto.length; i++) {
-      console.log(this.matrizproducto[i]);
-      // this.productoserv.agregar(this.matrizproducto[i]).subscribe(
-      //   (data) => {
-      //     this.categoria = data;
-      //     this.toastr.success('Exito', 'Registro Actualizado');
-      //   },
-      //   (error) => {
-      //     this.toastr.success(
-      //       'El producto ' + this.matrizproducto[i].nombre,
-      //       'Ya estaba registrado'
-      //     );
-      //   }
-      // );
-    }
+    console.log(this.matrizproducto);
+    this.productoserv.storeMultiple(this.matrizproducto).subscribe(
+      (data: any) => {
+        if (data.productosGuardados.length != 0) {
+          for (let i = 0; i < data.productosGuardados.length; i++) {
+            this.toastr.success(
+              data.productosGuardados[i].nombre + 'se registro con exito'
+            );
+          }
+        }
+        if (data.errores.length != 0) {
+          for (let i = 0; i < data.errores.length; i++) {
+            this.toastr.warning(
+              data.errores[i].codigo,
+              data.errores[i].mensaje
+            );
+          }
+        }
+      },
+      (error) => {
+        this.toastr.warning('Ocurrio un error en el servidor');
+      }
+    );
   }
 }

@@ -1,60 +1,56 @@
-<h2> Importar inventario </h2>
-<form [formGroup]="agregar">
+<div class="a">
+    <h2> Importar inventario </h2>
+    <form [formGroup]="agregar">
 
-    <mat-form-field appearance="fill">
-        <mat-label>Seleccionar Archivo Excel</mat-label>
-        <input matInput value="{{name}}">
-        <input 
-        type="file"
-        id="fileInput"
-        name="fileInput"
-        accept=".xlsx, .xls"
-        (change)="cargararchivo($event)"
-        formControlName="archivo"
-        />
-        <mat-icon matSuffix>data</mat-icon>
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Seleccionar Archivo Excel</mat-label>
+            <input matInput value="{{name}}">
+            <input type="file" id="fileInput" name="fileInput" accept=".xlsx, .xls" (change)="cargararchivo($event)"
+                formControlName="archivo" />
+            <mat-icon matSuffix>data</mat-icon>
+        </mat-form-field>
 
-      <table class="table table-sm table-bordered table-responsive-sm">
-        <thead class="table-primary">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Unidad</th>
-                <th scope="col">Peso</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Precio de Compra</th>
-                <th scope="col">Precio de Venta</th>
-                <th scope="col">Imagen</th>
-                <th scope="col">Stock</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of infoarchivo;let i=index">
-                <td>{{item[0]}}</td>
-                <td>{{item[1]}}</td>
-                <td>{{item[2]}}</td>
-                <td>{{item[3]}}</td>
-                <td>{{item[4]}}</td>
-                <td>{{item[5]}}</td>
-                <td>{{item[6]}}</td>
-                <td>{{item[7]}}</td>
-                <td>{{item[8]}}</td>
-                <td>{{item[9]}}</td>
-            </tr>
-        </tbody>
-    </table>
-    
-</form>
+        <table class="table table-sm table-bordered table-responsive-sm">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Unidad</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Precio de Compra</th>
+                    <th scope="col">Precio de Venta</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of infoarchivo;let i=index">
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[4]}}</td>
+                    <td>{{item[5]}}</td>
+                    <td>{{item[6]}}</td>
+                    <td>{{item[7]}}</td>
+                    <td>{{item[8]}}</td>
+                    <td>{{item[9]}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-<div class="botoncrear">
-    <button (click)="insertar()" class="btn btn-primary"><mat-icon>add</mat-icon> Insertar productos</button>
+    </form>
+
+    <div class="botoncrear">
+        <button (click)="insertar()" class="btn btn-primary"><mat-icon>add</mat-icon> Insertar productos</button>
     </div>
 
-<mat-dialog-content class="mat-typography">
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid" >Volver</button>
-</mat-dialog-actions>
+    <mat-dialog-content class="mat-typography">
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid">Volver</button>
+    </mat-dialog-actions>
 
+</div>
