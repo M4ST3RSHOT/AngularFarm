@@ -118,6 +118,8 @@ import { ReporteventasusuarioComponent } from './reporte/reporteventasusuario/re
 import { DetallarProductoComponent } from './categoria/detallar-producto/detallar-producto.component';
 import { DetallarProductoProveedorComponent } from './proveedor/detallar-producto-proveedor/detallar-producto-proveedor.component';
 import { ImportarinventarioComponent } from './producto/importarinventario/importarinventario.component';
+import { EmergenteReporteComprasComponent } from './reporte/reportecompras/emergente-reporte-compras/emergente-reporte-compras.component';
+import { EmergenteReporteInventarioComponent } from './reporte/reporteinventario/emergente-reporte-inventario/emergente-reporte-inventario.component';
 
 const router: Routes = [];
 @NgModule({
@@ -157,6 +159,8 @@ const router: Routes = [];
     DetallarProductoComponent,
     DetallarProductoProveedorComponent,
     ImportarinventarioComponent,
+    EmergenteReporteComprasComponent,
+    EmergenteReporteInventarioComponent,
   ],
   imports: [
     BrowserModule,

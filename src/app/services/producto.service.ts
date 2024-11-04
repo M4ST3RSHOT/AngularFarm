@@ -44,4 +44,79 @@ export class ProductoService {
       formulario
     );
   }
+  reporteinventariogeneral(
+    dia1: any,
+    mes1: any,
+    gestion1: any,
+    dia2: any,
+    mes2: any,
+    gestion2: any
+  ): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.base +
+        'producto/reporteinventariogeneral/' +
+        dia1 +
+        '/' +
+        mes1 +
+        '/' +
+        gestion1 +
+        '/' +
+        dia2 +
+        '/' +
+        mes2 +
+        '/' +
+        gestion2
+    );
+  }
+  reporte(
+    dia1: any,
+    mes1: any,
+    gestion1: any,
+    dia2: any,
+    mes2: any,
+    gestion2: any
+  ): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.base +
+        'producto/reporte/' +
+        dia1 +
+        '/' +
+        mes1 +
+        '/' +
+        gestion1 +
+        '/' +
+        dia2 +
+        '/' +
+        mes2 +
+        '/' +
+        gestion2
+    );
+  }
+  reportecomprasventasproducto(
+    dia1: any,
+    mes1: any,
+    gestion1: any,
+    dia2: any,
+    mes2: any,
+    gestion2: any,
+    codigo: any
+  ): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.base +
+        'producto/reportedemovimientodeproducto/' +
+        dia1 +
+        '/' +
+        mes1 +
+        '/' +
+        gestion1 +
+        '/' +
+        dia2 +
+        '/' +
+        mes2 +
+        '/' +
+        gestion2 +
+        '/' +
+        codigo
+    );
+  }
 }

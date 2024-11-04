@@ -1,0 +1,86 @@
+.a {
+    margin: 20px;
+}
+
+.titulo {
+    margin-bottom: 10px;
+}
+
+.botoncrear {
+    margin-bottom: 20px;
+}
+
+/* Contenedor para las tablas con barra de desplazamiento */
+.table-container {
+    max-height: 400px;
+    /* Ajusta la altura según sea necesario */
+    overflow-y: auto;
+    /* Agrega barra de desplazamiento vertical */
+    border: 1px solid #ccc;
+    /* Añade un borde para mejor visibilidad */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    margin-bottom: 20px;
+    /* Espacio entre tablas */
+}
+
+/* Estilos para las tablas */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Colapsar bordes para mejor visualización */
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #007bff;
+    /* Color de fondo para el encabezado */
+    color: white;
+    /* Color del texto del encabezado */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Color alternativo para filas */
+}
+
+/* Cambiar el color de las filas al pasar el mouse */
+.table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Clases de color para las celdas */
+.red {
+    background-color: red !important;
+    color: white !important;
+}
+
+.yellow {
+    background-color: yellow !important;
+    color: black !important;
+}
+
+.green {
+    background-color: green !important;
+    color: white !important;
+}
+
+.red {
+    background-color: red !important;
+    color: white !important;
+}
+
+.yellow {
+    background-color: yellow !important;
+    color: black !important;
+}
+
+.green {
+    background-color: green !important;
+    color: white !important;
+}

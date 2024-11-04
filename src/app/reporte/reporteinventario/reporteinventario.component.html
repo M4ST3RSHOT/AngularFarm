@@ -1,1 +1,89 @@
-<p>reporte de inventario</p>
+<div class="">
+    <div class="">
+        <div class="">
+            <h2 mat-dialog-title>REPORTES DE INVENTARIO</h2>
+        </div>
+
+        <div class="">
+            <div class="col-12 col-custom">
+                ACCIONES RAPIDAS
+            </div>
+            <button mat-flat-button class="col-6" (click)="reporte1()">
+                Reporte de productos con fecha de vencimiento proxima
+            </button>
+            <button mat-flat-button class="col-6" (click)="reporte2()">
+                Reporte de productos con fecha de vencimiento en esta semana
+            </button>
+        </div>
+
+        <div class="">
+            <h2 mat-dialog-title>Reporte de producto personalizado</h2>
+        </div>
+        <form [formGroup]="agregar" class="col-custom">
+            <mat-form-field appearance="fill">
+                <mat-label>Producto</mat-label>
+                <input formControlName="producto" placeholder="Producto" matInput [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of productos; track option) {
+                    <mat-option [value]="option.nombre" (click)="setear_producto(option)">{{option.nombre}}</mat-option>
+                    }
+                </mat-autocomplete>
+                <mat-error>{{ getErrorMessage('producto') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Codigo</mat-label>
+                <input formControlName="codigo" placeholder="Codigo" matInput [matAutocomplete]="auto1">
+                <mat-autocomplete #auto1="matAutocomplete">
+                    @for (option of productos; track option) {
+                    <mat-option [value]="option.codigo" (click)="setear_producto(option)">{{option.codigo}}</mat-option>
+                    }
+                </mat-autocomplete>
+                <mat-error>{{ getErrorMessage('producto') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput formControlName="fechainicio" placeholder="DD-MM-AAAA"
+                    [matDatepicker]="releasedAtPicker1">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="releasedAtPicker1">
+                </mat-datepicker-toggle>
+                <mat-datepicker #releasedAtPicker1 [disabled]="false">
+                </mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput formControlName="fechafin" placeholder="DD-MM-AAAA" [matDatepicker]="releasedAtPicker">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+                </mat-datepicker-toggle>
+                <mat-datepicker #releasedAtPicker [disabled]="false">
+                </mat-datepicker>
+            </mat-form-field>
+
+            <div class="botoncrear">
+                <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid"
+                    (click)="reporte3()"><mat-icon>add</mat-icon>Generar
+                    Reporte</button>
+            </div>
+        </form>
+
+        <div class="">
+            <div class="col-12 col-custom">
+                REPORTE GENERAL DE INVENTARIO
+            </div>
+            <div class="botoncrear">
+                <button class="btn btn-primary" (click)="reporte4()"><mat-icon>add</mat-icon>Generar
+                    Reporte GENERAL </button>
+            </div>
+        </div>
+
+        <mat-dialog-content class="mat-typography">
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+            <button class="btn btn-primary">Guardar</button>
+        </mat-dialog-actions>
+    </div>
