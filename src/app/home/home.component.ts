@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
       imagen: '',
     };
     const dialogRef = this.dialog.open(CrearClienteComponent, {
-      data: { cliente: cliente, texto: 'Crear Cliente' },
+      data: { cliente: cliente, texto: 'REGISTRAR NUEVO CLIENTE' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -65,3 +65,14 @@
     display: table-cell;
     max-width: 600px;
 }
+
+.table-container {
+    max-height: 300px;
+    /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto;
+    /* Habilita el desplazamiento vertical */
+    border: 1px solid #ccc;
+    /* Opcional: añade un borde alrededor de la tabla */
+    margin-top: 10px;
+    /* Espacio entre el botón y la tabla */
+}

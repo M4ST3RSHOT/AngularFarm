@@ -1,7 +1,8 @@
-<div *ngIf="data.texto=='REPORTE DE VENTAS REALIZADAS EN EL MES'||data.texto=='REPORTE DE VENTAS REALIZADAS EN LA SEMANA'
-    ||data.texto=='REPORTE PERSONALIZADO DE VENTAS'">
+<div *ngIf="data.texto=='REPORTE DE VENTAS REALIZADAS EN EL MES' || 
+             data.texto=='REPORTE DE VENTAS REALIZADAS EN LA SEMANA' || 
+             data.texto=='REPORTE PERSONALIZADO DE VENTAS'">
 
-    <div class=" titulo">
+    <div class="titulo">
         <h4 style="text-align: center;">{{data.texto}}</h4>
     </div>
 
@@ -11,7 +12,7 @@
         </button>
     </div>
 
-    <div class="table-container">
+    <div class="table-container scrollable-table"> <!-- Añade la clase scrollable-table aquí -->
         <table class="table centered table-borderless">
             <thead class="table-primary">
                 <tr>
@@ -40,6 +41,7 @@
         </table>
     </div>
 </div>
+
 <div *ngIf="data.texto=='REPORTE DE VENTAS POR USUARIO'">
     <div class="titulo">
         <h4 style="text-align: center;">{{data.texto}}</h4>
@@ -51,17 +53,17 @@
         </button>
     </div>
 
-    <div class="table-container">
+    <div class="table-container scrollable-table"> <!-- Añade la clase scrollable-table aquí también -->
         <table class="table centered table-borderless">
             <thead class="table-primary">
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">CI</th>
-                    <th scope="col">fecha</th>
+                    <th scope="col">Fecha</th>
                     <th scope="col">Producto</th>
-                    <th scope="col">descuento</th>
-                    <th scope="col">total</th>
+                    <th scope="col">Descuento</th>
+                    <th scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>

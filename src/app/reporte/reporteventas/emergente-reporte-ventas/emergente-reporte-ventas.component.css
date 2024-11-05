@@ -1,0 +1,15 @@
+.table-container {
+    margin: 20px 0;
+    /* Margen superior e inferior */
+}
+
+.scrollable-table {
+    max-height: 300px;
+    /* Ajusta la altura máxima según lo necesites */
+    overflow-y: auto;
+    /* Permitir desplazamiento vertical */
+    border: 1px solid #ddd;
+    /* Borde opcional */
+    border-radius: 5px;
+    /* Bordes redondeados opcionales */
+}

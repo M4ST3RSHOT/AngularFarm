@@ -11,36 +11,38 @@
     </div>
 
     <div class="table-container">
-        <table class="table centered table-borderless">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Unidad</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Precio de compra</th>
-                    <th scope="col">Precio de venta</th>
-                    <th scope="col">Fecha de Expiración</th>
-                    <th scope="col">Stock por caducar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of productos_entre_fechas; let i = index">
-                    <td>{{item.codigo}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td>{{item.peso}}</td>
-                    <td>{{item.unidad}}</td>
-                    <td>{{item.categoria}}</td>
-                    <td>{{item.precio_compra}}</td>
-                    <td>{{item.precio_venta}}</td>
-                    <td [ngClass]="getColorfecha(item.fecha_expiracion)">{{item.fecha_expiracion}}</td>
-                    <td>{{item.porcaducar}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table centered table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Unidad</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Precio de compra</th>
+                        <th scope="col">Precio de venta</th>
+                        <th scope="col">Fecha de Expiración</th>
+                        <th scope="col">Stock por caducar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productos_entre_fechas; let i = index">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.peso}}</td>
+                        <td>{{item.unidad}}</td>
+                        <td>{{item.categoria}}</td>
+                        <td>{{item.precio_compra}}</td>
+                        <td>{{item.precio_venta}}</td>
+                        <td [ngClass]="getColorfecha(item.fecha_expiracion)">{{item.fecha_expiracion}}</td>
+                        <td>{{item.porcaducar}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
@@ -58,36 +60,38 @@
     </div>
 
     <div class="table-container">
-        <table class="table centered table-borderless">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Unidad</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Precio de compra</th>
-                    <th scope="col">Precio de venta</th>
-                    <th scope="col">Fecha de Expiración</th>
-                    <th scope="col">Stock por caducar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of productos_entre_fechas; let i = index">
-                    <td>{{item.codigo}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td>{{item.peso}}</td>
-                    <td>{{item.unidad}}</td>
-                    <td>{{item.categoria}}</td>
-                    <td>{{item.precio_compra}}</td>
-                    <td>{{item.precio_venta}}</td>
-                    <td [ngClass]="getColorfecha(item.fecha_expiracion)">{{item.fecha_expiracion}}</td>
-                    <td>{{item.porcaducar}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table centered table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Unidad</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Precio de compra</th>
+                        <th scope="col">Precio de venta</th>
+                        <th scope="col">Fecha de Expiración</th>
+                        <th scope="col">Stock por caducar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productos_entre_fechas; let i = index">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.peso}}</td>
+                        <td>{{item.unidad}}</td>
+                        <td>{{item.categoria}}</td>
+                        <td>{{item.precio_compra}}</td>
+                        <td>{{item.precio_venta}}</td>
+                        <td [ngClass]="getColorfecha(item.fecha_expiracion)">{{item.fecha_expiracion}}</td>
+                        <td>{{item.porcaducar}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
@@ -106,55 +110,59 @@
     <h4 style="text-align: center;">Movimientos en ventas</h4>
 
     <div class="table-container">
-        <table class="table centered table-borderless">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Cantidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of productosventas; let i = index">
-                    <td>{{item.codigo}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.usuario}}</td>
-                    <td>{{item.cliente}}</td>
-                    <td>{{item.fecha}}</td>
-                    <td>{{item.cantidad}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table centered table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productosventas; let i = index">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.usuario}}</td>
+                        <td>{{item.cliente}}</td>
+                        <td>{{item.fecha}}</td>
+                        <td>{{item.cantidad}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <h4 style="text-align: center;">Movimientos en compras</h4>
 
     <div class="table-container">
-        <table class="table centered table-borderless">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Proveedor</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Cantidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of productoscompras; let i = index">
-                    <td>{{item.codigo}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.usuario}}</td>
-                    <td>{{item.proveedor}}</td>
-                    <td>{{item.fecha}}</td>
-                    <td>{{item.cantidad}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table centered table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productoscompras; let i = index">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.usuario}}</td>
+                        <td>{{item.proveedor}}</td>
+                        <td>{{item.fecha}}</td>
+                        <td>{{item.cantidad}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
@@ -172,70 +180,75 @@
 
     <h4 style="text-align: center;">Productos que vencen en el siguiente año</h4>
     <div class="table-container">
-        <table class="table centered table-borderless">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Unidad</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Precio de compra</th>
-                    <th scope="col">Precio de venta</th>
-                    <th scope="col">Fecha de Expiración</th>
-                    <th scope="col">Stock por caducar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of productos_entre_fechas; let i = index">
-                    <td>{{item.codigo}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td>{{item.peso}}</td>
-                    <td>{{item.unidad}}</td>
-                    <td>{{item.categoria}}</td>
-                    <td>{{item.precio_compra}}</td>
-                    <td>{{item.precio_venta}}</td>
-                    <td [ngClass]="getColorfecha(item.fecha_expiracion)">{{item.fecha_expiracion}}</td>
-                    <td>{{item.porcaducar}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table centered table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Unidad</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Precio de compra</th>
+                        <th scope="col">Precio de venta</th>
+                        <th scope="col">Fecha de Expiración</th>
+                        <th scope="col">Stock por caducar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productos_entre_fechas; let i = index">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.peso}}</td>
+                        <td>{{item.unidad}}</td>
+                        <td>{{item.categoria}}</td>
+                        <td>{{item.precio_compra}}</td>
+                        <td>{{item.precio_venta}}</td>
+                        <td [ngClass]="getColorfecha(item.fecha_expiracion)">{{item.fecha_expiracion}}
+                        </td>
+                        <td>{{item.porcaducar}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <br>
 
     <h4 style="text-align: center;">Estado de Stock de productos en inventario</h4>
     <div class="table-container">
-        <table class="table centered table-borderless">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Unidad</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Precio de compra</th>
-                    <th scope="col">Precio de venta</th>
-                    <th scope="col">Stock</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of todos_los_productos; let i = index">
-                    <td>{{item.codigo}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.descripcion}}</td>
-                    <td>{{item.peso}}</td>
-                    <td>{{item.unidad}}</td>
-                    <td>{{item.categoria}}</td>
-                    <td>{{item.precio_compra}}</td>
-                    <td>{{item.precio_venta}}</td>
-                    <td [ngClass]="getColorstock(item.stock)">{{item.stock}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scrollable-table">
+            <table class="table centered table-borderless">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Unidad</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Precio de compra</th>
+                        <th scope="col">Precio de venta</th>
+                        <th scope="col">Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of todos_los_productos; let i = index">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.peso}}</td>
+                        <td>{{item.unidad}}</td>
+                        <td>{{item.categoria}}</td>
+                        <td>{{item.precio_compra}}</td>
+                        <td>{{item.precio_venta}}</td>
+                        <td [ngClass]="getColorstock(item.stock)">{{item.stock}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>

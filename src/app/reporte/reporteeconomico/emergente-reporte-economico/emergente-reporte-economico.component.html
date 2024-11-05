@@ -8,7 +8,7 @@
         </button>
     </div>
 
-    <div class="table-container">
+    <div class="table-container scrollable-table"> <!-- Añade la clase scrollable-table aquí -->
         <table class="table centered table-borderless">
             <thead class="table-primary">
                 <tr>
@@ -44,10 +44,9 @@
     <div class="">
         <h3 mat-dialog-title>Ganancias total de la farmacia con descuentos : {{ingresos_total}} Bs.-</h3>
     </div>
-
 </div>
-<div *ngIf="data.texto=='REPORTE DE EGRESOS DE LA FARMACIA'">
 
+<div *ngIf="data.texto=='REPORTE DE EGRESOS DE LA FARMACIA'">
     <div class="">
         <h2 mat-dialog-title>{{data.texto}}</h2>
     </div>
@@ -57,7 +56,7 @@
         </button>
     </div>
 
-    <div class="table-container">
+    <div class="table-container scrollable-table"> <!-- Añade la clase scrollable-table aquí -->
         <table class="table centered table-borderless">
             <thead class="table-primary">
                 <tr>
@@ -87,10 +86,9 @@
     <div class="">
         <h3 mat-dialog-title>Total de egresos de la farmacia : {{egresos_total}} Bs.-</h3>
     </div>
-
 </div>
-<div *ngIf="data.texto=='REPORTE GENERAL ECONOMICO DE LA FARMACIA'">
 
+<div *ngIf="data.texto=='REPORTE GENERAL ECONOMICO DE LA FARMACIA'">
     <div class="">
         <h2 mat-dialog-title>{{data.texto}}</h2>
     </div>
@@ -104,8 +102,7 @@
         <h2 mat-dialog-title>Tabla de Ingresos</h2>
     </div>
 
-
-    <div class="table-container">
+    <div class="table-container scrollable-table"> <!-- Añade la clase scrollable-table aquí -->
         <table class="table centered table-borderless">
             <thead class="table-primary">
                 <tr>
@@ -138,8 +135,7 @@
         <h2 mat-dialog-title>Tabla de Egresos</h2>
     </div>
 
-
-    <div class="table-container">
+    <div class="table-container scrollable-table"> <!-- Añade la clase scrollable-table aquí -->
         <table class="table centered table-borderless">
             <thead class="table-primary">
                 <tr>
@@ -181,5 +177,4 @@
     <div class="">
         <h3 mat-dialog-title>Total liquido : {{ingresos_total-egresos_total}} Bs.-</h3>
     </div>
-
 </div>
