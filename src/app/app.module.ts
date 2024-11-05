@@ -121,6 +121,7 @@ import { ImportarinventarioComponent } from './producto/importarinventario/impor
 import { EmergenteReporteComprasComponent } from './reporte/reportecompras/emergente-reporte-compras/emergente-reporte-compras.component';
 import { EmergenteReporteInventarioComponent } from './reporte/reporteinventario/emergente-reporte-inventario/emergente-reporte-inventario.component';
 import { EmergenteReporteVentasComponent } from './reporte/reporteventas/emergente-reporte-ventas/emergente-reporte-ventas.component';
+import { EmergenteReporteEconomicoComponent } from './reporte/reporteeconomico/emergente-reporte-economico/emergente-reporte-economico.component';
 
 const router: Routes = [];
 @NgModule({
@@ -163,6 +164,7 @@ const router: Routes = [];
     EmergenteReporteComprasComponent,
     EmergenteReporteInventarioComponent,
     EmergenteReporteVentasComponent,
+    EmergenteReporteEconomicoComponent,
   ],
   imports: [
     BrowserModule,

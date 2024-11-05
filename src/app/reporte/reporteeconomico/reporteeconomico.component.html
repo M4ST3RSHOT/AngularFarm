@@ -1,1 +1,90 @@
-<p>reporte economico</p>
+<div class="">
+    <div class="header">
+        <h2 mat-dialog-title>REPORTES ECONOMICOS</h2>
+    </div>
+
+    <div>
+        <h2 mat-dialog-title>Reporte de ingresos de la farmacia</h2>
+        <form [formGroup]="formIngresos" class="col-custom">
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput formControlName="fechainicio" [matDatepicker]="pickerIngresosInicio"
+                    placeholder="DD-MM-AAAA">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="pickerIngresosInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerIngresosInicio [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput formControlName="fechafin" [matDatepicker]="pickerIngresosFin" placeholder="DD-MM-AAAA">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="pickerIngresosFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerIngresosFin [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+
+            <div class="botoncrear">
+                <button [mat-dialog-close]="formIngresos" class="btn btn-primary" [disabled]="formIngresos.invalid"
+                    (click)="reportedeingresos()"><mat-icon>add</mat-icon> Generar Reporte</button>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <h2 mat-dialog-title>Reporte de egresos de la farmacia</h2>
+        <form [formGroup]="formEgresos" class="col-custom">
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput formControlName="fechainicio" [matDatepicker]="pickerEgresosInicio"
+                    placeholder="DD-MM-AAAA">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="pickerEgresosInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEgresosInicio [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput formControlName="fechafin" [matDatepicker]="pickerEgresosFin" placeholder="DD-MM-AAAA">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="pickerEgresosFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEgresosFin [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+
+            <div class="botoncrear">
+                <button [mat-dialog-close]="formEgresos" class="btn btn-primary" [disabled]="formEgresos.invalid"
+                    (click)="reportedeegresos()"><mat-icon>add</mat-icon> Generar Reporte</button>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <h2 mat-dialog-title>Reporte general de la farmacia</h2>
+        <form [formGroup]="formGeneral" class="col-custom">
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput formControlName="fechainicio" [matDatepicker]="pickerGeneralInicio"
+                    placeholder="DD-MM-AAAA">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="pickerGeneralInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerGeneralInicio [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput formControlName="fechafin" [matDatepicker]="pickerGeneralFin" placeholder="DD-MM-AAAA">
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="pickerGeneralFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerGeneralFin [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+
+            <div class="botoncrear">
+                <button [mat-dialog-close]="formGeneral" class="btn btn-primary" [disabled]="formGeneral.invalid"
+                    (click)="reportegeneral()"><mat-icon>add</mat-icon> Generar Reporte</button>
+            </div>
+        </form>
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+    </mat-dialog-actions>
+</div>

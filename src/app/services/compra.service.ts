@@ -57,4 +57,28 @@ export class CompraService {
         gestion2
     );
   }
+  reporteegresos(
+    dia1: any,
+    mes1: any,
+    gestion1: any,
+    dia2: any,
+    mes2: any,
+    gestion2: any
+  ): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.base +
+        'adquiere/reportedeegresos/' +
+        dia1 +
+        '/' +
+        mes1 +
+        '/' +
+        gestion1 +
+        '/' +
+        dia2 +
+        '/' +
+        mes2 +
+        '/' +
+        gestion2
+    );
+  }
 }

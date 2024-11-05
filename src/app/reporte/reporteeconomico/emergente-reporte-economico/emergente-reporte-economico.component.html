@@ -1,0 +1,185 @@
+<div *ngIf="data.texto=='REPORTE DE INGRESOS DE LA FARMACIA'">
+    <div class="">
+        <h2 mat-dialog-title>{{data.texto}}</h2>
+    </div>
+    <div class="botoncrear">
+        <button (click)="generarPDFingresos()">
+            <mat-icon>add</mat-icon> Generar Reporte
+        </button>
+    </div>
+
+    <div class="table-container">
+        <table class="table centered table-borderless">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Descuento</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of datosingresos; let i = index">
+                    <td>{{item.id}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.producto}}</td>
+                    <td>{{item.cantidad}}</td>
+                    <td>{{item.subtotal}}</td>
+                    <td>{{item.descuento}}</td>
+                    <td>{{item.total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Ganancia Subtotal de la farmacia : {{ingresos_subtotal}} Bs.-</h3>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Ganancias total de la farmacia con descuentos : {{ingresos_total}} Bs.-</h3>
+    </div>
+
+</div>
+<div *ngIf="data.texto=='REPORTE DE EGRESOS DE LA FARMACIA'">
+
+    <div class="">
+        <h2 mat-dialog-title>{{data.texto}}</h2>
+    </div>
+    <div class="botoncrear">
+        <button (click)="generarPDFegresos()">
+            <mat-icon>add</mat-icon> Generar Reporte
+        </button>
+    </div>
+
+    <div class="table-container">
+        <table class="table centered table-borderless">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Monto total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of datosegresos; let i = index">
+                    <td>{{item.id}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.proveedor}}</td>
+                    <td>{{item.producto}}</td>
+                    <td>{{item.stock}}</td>
+                    <td>{{item.montototal}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Total de egresos de la farmacia : {{egresos_total}} Bs.-</h3>
+    </div>
+
+</div>
+<div *ngIf="data.texto=='REPORTE GENERAL ECONOMICO DE LA FARMACIA'">
+
+    <div class="">
+        <h2 mat-dialog-title>{{data.texto}}</h2>
+    </div>
+    <div class="botoncrear">
+        <button (click)="generarPDFgeneral()">
+            <mat-icon>add</mat-icon> Generar Reporte
+        </button>
+    </div>
+
+    <div class="">
+        <h2 mat-dialog-title>Tabla de Ingresos</h2>
+    </div>
+
+
+    <div class="table-container">
+        <table class="table centered table-borderless">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Descuento</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of datosingresos; let i = index">
+                    <td>{{item.id}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.producto}}</td>
+                    <td>{{item.cantidad}}</td>
+                    <td>{{item.subtotal}}</td>
+                    <td>{{item.descuento}}</td>
+                    <td>{{item.total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="">
+        <h2 mat-dialog-title>Tabla de Egresos</h2>
+    </div>
+
+
+    <div class="table-container">
+        <table class="table centered table-borderless">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Monto total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of datosegresos; let i = index">
+                    <td>{{item.id}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.proveedor}}</td>
+                    <td>{{item.producto}}</td>
+                    <td>{{item.stock}}</td>
+                    <td>{{item.montototal}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Ganancia Subtotal de la farmacia : {{ingresos_subtotal}} Bs.-</h3>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Ganancias total de la farmacia con descuentos : {{ingresos_total}} Bs.-</h3>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Total de egresos de la farmacia : {{egresos_total}} Bs.-</h3>
+    </div>
+
+    <div class="">
+        <h3 mat-dialog-title>Total liquido : {{ingresos_total-egresos_total}} Bs.-</h3>
+    </div>
+
+</div>

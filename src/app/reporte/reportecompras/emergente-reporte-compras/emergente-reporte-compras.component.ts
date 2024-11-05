@@ -5,6 +5,8 @@ import { ReportecomprasComponent } from '../reportecompras.component';
 import { ProductoService } from '../../../services/producto.service';
 import { CompraService } from '../../../services/compra.service';
 
+import 'jspdf-autotable';
+
 @Component({
   selector: 'app-emergente-reporte-compras',
   templateUrl: './emergente-reporte-compras.component.html',
