@@ -34,6 +34,10 @@ export class FacturaService {
   detallar(id: number): Observable<any[]> {
     return this.http.get<any[]>(this.base + 'factura/detallar/' + id);
   }
+
+  detallarpdf(id: number): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'factura/detallarpdf/' + id);
+  }
   reporte(
     dia1: any,
     mes1: any,

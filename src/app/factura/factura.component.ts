@@ -15,6 +15,8 @@ import { DetallarCompraComponent } from '../compra/detallar-compra/detallar-comp
 import { DetallarFacturaComponent } from './detallar-factura/detallar-factura.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { subscribe } from 'node:diagnostics_channel';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-factura',
@@ -85,11 +87,10 @@ export class FacturaComponent implements OnInit {
   detallarventa(item: any) {
     let a: number;
     a = item.idfactura;
-    console.log(item);
     const dialogRef = this.dialog.open(DetallarFacturaComponent, {
-      data: item,
+      data: {
+        id: a,
+      },
     });
   }
-
-  generarPdf(id: number) {}
 }

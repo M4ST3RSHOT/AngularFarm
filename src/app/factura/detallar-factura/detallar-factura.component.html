@@ -1,50 +1,58 @@
 <div class="fonditoemergentes">
-<mat-dialog-content >
-<mat-card class="card-header">
-    <mat-card-header>
-        <mat-card-title-group>
-            <mat-card-title>Detalle Factura Nro : {{infofactura?.id}} </mat-card-title>
-            <mat-card-subtitle>Usuario : {{infousuario?.nombre}}</mat-card-subtitle>
-        </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content>
-                Cliente : {{infocliente?.nombre}} {{infocliente?.apellido}}        CI/NIT : {{infocliente?.ci}}  
-                <h1>Fecha de emision : {{infofactura?.fecha}}  Subtotal : {{infofactura?.subtotal}}  Bs.- Descuento : {{infofactura?.descuento}}  Total : {{infofactura?.total}} Bs.-
+    <mat-dialog-content>
+        <mat-card class="card-header">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Detalle Factura Nro : {{infofactura?.id}} </mat-card-title>
+                    <mat-card-subtitle>Usuario : {{infousuario?.nombre}} {{infousuario?.apellido}}</mat-card-subtitle>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                Cliente : {{infocliente?.nombre}} {{infocliente?.apellido}} CI/NIT : {{infocliente?.ci}}
+                <h1>Fecha de emision : {{infofactura?.fecha}} Subtotal : {{infofactura?.subtotal}} Bs.- Descuento :
+                    {{infofactura?.descuento}} Total : {{infofactura?.total}} Bs.-
                 </h1>
-    </mat-card-content>
-</mat-card>
-</mat-dialog-content>
-
-  
-<table class="table table-sm table-bordered table-responsive-sm">
-    <thead class="table-primary">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Peso</th>
-            <th scope="col">Unidad</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad vendida</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of infodetalle;let i=index">
-            <td>{{i+1}}</td>
-            <td>{{item.nombre}}</td>
-            <td>{{item.descripcion}}</td>
-            <td>{{item.peso}}</td>
-            <td>{{item.unidad}}</td>
-            <td>{{item.precio_venta}}</td>
-            <td>{{item.cantidad}}</td>
-        </tr>
-    </tbody>
-</table>
+            </mat-card-content>
+        </mat-card>
+    </mat-dialog-content>
 
 
-<mat-dialog-actions class="botoncrear">
-    <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
-  </mat-dialog-actions>
+    <table class="table table-sm table-bordered table-responsive-sm">
+        <thead class="table-primary">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Unidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad vendida</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of infodetalle;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{item.nombre}}</td>
+                <td>{{item.codigo}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.peso}}</td>
+                <td>{{item.unidad}}</td>
+                <td>{{item.precio_venta}}</td>
+                <td>{{item.cantidad}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <mat-dialog-actions class="botoncrear">
+        <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+
+        <button (click)="generarPdf()">
+            <mat-icon>print</mat-icon>
+            <span>Imprimir PDF</span>
+        </button>
+
+    </mat-dialog-actions>
 
 
 </div>

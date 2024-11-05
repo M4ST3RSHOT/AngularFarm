@@ -1,28 +1,30 @@
 <div class="fondito">
-<mat-dialog-content >
-    <mat-card class="user-card">
-        <mat-card-header>
-            <mat-card-title-group>
-                <mat-card-title>Detalle Compra Nro : {{infoadquiere?.id}} </mat-card-title>
-                <mat-card-subtitle>Usuario : {{infousuario?.nombre}}</mat-card-subtitle>
-            </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-                    Proveedor : {{infoproveedor?.nombre}}  CI/NIT : {{infoproveedor?.cinit}}  Telefono : {{infoproveedor?.telefono}} Direccion : {{infoproveedor?.direccion}}  
-                    <h1>Fecha de adquisicion : {{infoadquiere?.fecha}}  Total : {{infoadquiere?.montototal}} Bs.-
-                    </h1>
-        </mat-card-content>
-    </mat-card>
+    <mat-dialog-content>
+        <mat-card class="user-card">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Detalle Compra Nro : {{infoadquiere?.id}} </mat-card-title>
+                    <mat-card-subtitle>Usuario : {{infousuario?.nombre}} {{infousuario?.apellido}}</mat-card-subtitle>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                Proveedor : {{infoproveedor?.nombre}} CI/NIT : {{infoproveedor?.cinit}} Telefono :
+                {{infoproveedor?.telefono}} Direccion : {{infoproveedor?.direccion}}
+                <h1>Fecha de adquisicion : {{infoadquiere?.fecha}} Total : {{infoadquiere?.montototal}} Bs.-
+                </h1>
+            </mat-card-content>
+        </mat-card>
     </mat-dialog-content>
-    
+
     <table class="table table-sm table-bordered table-responsive-sm">
         <thead class="table-primary">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Codigo</th>
                 <th scope="col">Descripcion</th>
-                <th scope="col">Peso</th>
                 <th scope="col">Unidad</th>
+                <th scope="col">Peso</th>
                 <th scope="col">Precio de Compra</th>
                 <th scope="col">Precio de Venta</th>
                 <th scope="col">Cantidad comprada</th>
@@ -32,18 +34,24 @@
             <tr *ngFor="let item of infolote;let i=index">
                 <td>{{i+1}}</td>
                 <td>{{item.nombre}}</td>
+                <td>{{item.codigo}}</td>
                 <td>{{item.descripcion}}</td>
-                <td>{{item.peso}}</td>
                 <td>{{item.unidad}}</td>
+                <td>{{item.peso}}</td>
                 <td>{{item.precio_compra}}</td>
                 <td>{{item.precio_venta}}</td>
                 <td>{{item.cantidad}}</td>
             </tr>
         </tbody>
     </table>
-    
-    
+
+
     <mat-dialog-actions class="botoncrear">
         <button mat-dialog-close class="btn btn-secundary">Cancelar</button>
+
+        <button (click)="generarPdf()">
+            <mat-icon>print</mat-icon>
+            <span>Imprimir PDF</span>
+        </button>
     </mat-dialog-actions>
 </div>

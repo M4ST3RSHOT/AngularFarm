@@ -33,6 +33,10 @@ export class CompraService {
   detallar(id: number): Observable<any[]> {
     return this.http.get<any[]>(this.base + 'adquiere/detallar/' + id);
   }
+
+  detallarpdf(id: number): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'adquiere/detallarpdf/' + id);
+  }
   reporte(
     dia1: any,
     mes1: any,
