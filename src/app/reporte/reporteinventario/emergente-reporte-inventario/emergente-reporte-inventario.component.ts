@@ -8,6 +8,7 @@ import { ProductoService } from '../../../services/producto.service';
 import { subscribe } from 'diagnostics_channel';
 import test from 'node:test';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-emergente-reporte-inventario',
@@ -144,7 +145,82 @@ export class EmergenteReporteInventarioComponent implements OnInit {
         break;
     }
   }
-  generarPDF() {}
+
+  generarPDF() {
+    const cuerpoVencidos = this.productos_entre_fechas.map((item: any) => [
+      item.codigo,
+      item.nombre,
+      item.descripcion,
+      item.peso,
+      item.unidad,
+      item.categoria,
+      item.precio_compra,
+      item.precio_venta,
+      item.fecha_expiracion,
+      item.porcaducar,
+    ]);
+
+    const doc = new jsPDF();
+
+    // Agregar logo
+    const logoBase64 = 'assets/images/logopdf.jpg'; // Cambia '...' por el base64 del logo
+    doc.addImage(logoBase64, 'JPEG', 20, 10, 20, 20);
+
+    // Título
+    doc.setFontSize(18);
+    doc.text(this.data.texto, 14, 40);
+
+    // Descripción debajo del título
+    doc.setFontSize(12);
+    const descripcion =
+      'Tomando datos desde el: ' +
+      this.fechaATexto(this.data.fecha1) +
+      ' al ' +
+      this.fechaATexto(this.data.fecha2);
+    doc.text(descripcion, 14, 50);
+
+    // Generar la tabla
+    (doc as any).autoTable({
+      head: [
+        [
+          'Código',
+          'Nombre',
+          'Descripción',
+          'Peso',
+          'Unidad',
+          'Categoria',
+          'Precio de compra',
+          'Precio de venta',
+          'Fecha de Expiración',
+          'Stock por caducar',
+        ],
+      ],
+      body: cuerpoVencidos,
+      startY: 55,
+      theme: 'grid',
+      didParseCell: (data: any) => {
+        if (data.column.index === 8) {
+          // Índice de `fecha_expiracion`
+          const fechaActual = new Date();
+          const fechaExpiracion = new Date(data.cell.raw);
+          const diferenciaDias = Math.floor(
+            (fechaExpiracion.getTime() - fechaActual.getTime()) /
+              (1000 * 60 * 60 * 24)
+          );
+          // Color de fondo según la diferencia en días
+          if (diferenciaDias <= 7) {
+            data.cell.styles.fillColor = [255, 0, 0]; // Rojo
+          } else if (diferenciaDias <= 180) {
+            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo
+          } else {
+            data.cell.styles.fillColor = [0, 255, 0]; // Verde
+          }
+        }
+      },
+    });
+    // Descargar el PDF
+    doc.save(this.data.texto + '.pdf');
+  }
 
   generarpdfventasycompras() {
     const cuerpoVencidos = this.productosventas.map((item: any) => [

@@ -39,7 +39,4 @@ export class ReporteComponent implements OnInit {
   reporteeconomico() {
     const dialogRef = this.dialog.open(ReporteeconomicoComponent);
   }
-  reporteventasusuario() {
-    const dialogRef = this.dialog.open(ReporteventasusuarioComponent);
-  }
 }

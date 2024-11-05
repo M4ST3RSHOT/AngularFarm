@@ -8,20 +8,20 @@
             <div class="col-12 col-custom">
                 ACCIONES RAPIDAS
             </div>
-            <button mat-flat-button class="col-6" (click)="Onimprimir()">
-                Compras realizadas en el mes
+            <button mat-flat-button class="col-6" (click)="reporte1()">
+                Reporte de compras realizadas en el mes
             </button>
-            <button mat-flat-button class="col-6">
-                Compras realizadas en la ultima semana
+            <button mat-flat-button class="col-6" (click)="reporte2()">
+                Reporte de compras realizadas en la ultima semana
             </button>
         </div>
 
         <div class="">
-            <h2 mat-dialog-title>Reporte personalizado</h2>
+            <h2 mat-dialog-title>Reporte de compras personalizado</h2>
         </div>
-        <form [formGroup]="agregar">
+        <form [formGroup]="agregar" class="col-custom">
 
-            <mat-form-field appearance="fill" class="col-12 col-custom">
+            <mat-form-field appearance="fill">
                 <mat-label>Fecha de Inicio</mat-label>
                 <input matInput formControlName="fechainicio" placeholder="DD-MM-AAAA"
                     [matDatepicker]="releasedAtPicker1">
@@ -32,7 +32,7 @@
                 </mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="col-12 col-custom">
+            <mat-form-field appearance="fill">
                 <mat-label>Fecha de Fin</mat-label>
                 <input matInput formControlName="fechafin" placeholder="DD-MM-AAAA" [matDatepicker]="releasedAtPicker">
                 <mat-hint>DD/MM/AAAA</mat-hint>
@@ -43,8 +43,8 @@
             </mat-form-field>
 
             <div class="botoncrear">
-                <button [mat-dialog-close]="agregar" class="btn btn-primary"
-                    [disabled]="agregar.invalid"><mat-icon>add</mat-icon>Generar
+                <button [mat-dialog-close]="agregar" class="btn btn-primary" [disabled]="agregar.invalid"
+                    (click)="reporte3()"><mat-icon>add</mat-icon>Generar
                     Reporte</button>
             </div>
         </form>

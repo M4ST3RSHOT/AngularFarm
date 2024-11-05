@@ -47,7 +47,7 @@ export class ReporteinventarioComponent implements OnInit {
   reporte1() {
     const fecha1 = new Date();
     const fecha2 = new Date(fecha1);
-    fecha2.setDate(fecha2.getFullYear() + 1);
+    fecha2.setFullYear(fecha2.getFullYear() + 1);
     const dialogRef = this.dialog.open(EmergenteReporteInventarioComponent, {
       data: {
         fecha1: fecha1,
@@ -86,7 +86,7 @@ export class ReporteinventarioComponent implements OnInit {
   reporte4() {
     const fecha1 = new Date();
     const fecha2 = new Date(fecha1);
-    fecha2.setDate(fecha2.getFullYear() + 1);
+    fecha2.setFullYear(fecha2.getFullYear() + 1);
     const dialogRef = this.dialog.open(EmergenteReporteInventarioComponent, {
       data: {
         fecha1: fecha1,

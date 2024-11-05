@@ -3,43 +3,37 @@
 <app-inventario *ngIf="type=='3'"></app-inventario>
 
 <div class="fondito">
-<div class="container">
-    <div class="titulo">
-        <h4 style="text-align: center;">REPORTES</h4>
-    </div>
-    <div class="row">
-            <button (click)="reportecompras()" class="col-custom col-4">
-            Reporte de Compras
-            <div class="image">
-            <img src="assets/images/Reporte de compras.jpg">
-            </div>
-        </button>
-            <button (click)="reporteinventario()" class="col-custom col-4">
-            Reporte de Inventario
-            <div class="image">
-                <img src="assets/images/Reporte de inventario.jpg" alt="">
-            </div>
-        </button>
-            <button (click)="reporteventas()" class="col-custom col-4">
-            Reporte de Ventas
-            <div class="image">
-                <img src="assets/images/Reporte de ventas.jpg" alt="">
-            </div>
-        </button>
-    </div>
-    <div class="row">
-            <button (click)="reporteeconomico()" class="col-custom col-4">
-            Reporte Economico
-            <div class="image">
-                <img src="assets/images/reporte economico.jpg" alt="">
-            </div>
-        </button>
-            <button (click)="reporteventasusuario()" class="col-custom col-4">
-            Reporte de ventas por usuario
-            <div class="image">
-                <img src="assets/images/reporte ventas por usuario.jpg" alt="">
-            </div>
-        </button>
+    <div class="container">
+        <div class="titulo">
+            <h4 style="text-align: center;">REPORTES</h4>
         </div>
-</div>
+        <div class="row">
+            <button (click)="reportecompras()" class="col-custom col-4">
+                Reporte de Compras
+                <div class="image">
+                    <img src="assets/images/Reporte de compras.jpg">
+                </div>
+            </button>
+            <button (click)="reporteinventario()" class="col-custom col-4">
+                Reporte de Inventario
+                <div class="image">
+                    <img src="assets/images/Reporte de inventario.jpg" alt="">
+                </div>
+            </button>
+            <button (click)="reporteventas()" class="col-custom col-4">
+                Reporte de Ventas
+                <div class="image">
+                    <img src="assets/images/Reporte de ventas.jpg" alt="">
+                </div>
+            </button>
+        </div>
+        <div class="row">
+            <button (click)="reporteeconomico()" class="col-custom col-4">
+                Reporte Economico
+                <div class="image">
+                    <img src="assets/images/reporte economico.jpg" alt="">
+                </div>
+            </button>
+        </div>
+    </div>
 </div>

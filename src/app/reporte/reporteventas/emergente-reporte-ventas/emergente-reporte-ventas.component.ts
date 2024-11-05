@@ -1,26 +1,25 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ReporteventasComponent } from '../reporteventas.component';
+import { FacturaService } from '../../../services/factura.service';
 import jsPDF from 'jspdf';
-import { ReportecomprasComponent } from '../reportecompras.component';
-import { ProductoService } from '../../../services/producto.service';
-import { CompraService } from '../../../services/compra.service';
-
+import 'jspdf-autotable';
 @Component({
-  selector: 'app-emergente-reporte-compras',
-  templateUrl: './emergente-reporte-compras.component.html',
-  styleUrl: './emergente-reporte-compras.component.css',
+  selector: 'app-emergente-reporte-ventas',
+  templateUrl: './emergente-reporte-ventas.component.html',
+  styleUrl: './emergente-reporte-ventas.component.css',
 })
-export class EmergenteReporteComprasComponent {
+export class EmergenteReporteVentasComponent {
   constructor(
-    public dialogRef: MatDialogRef<ReportecomprasComponent>,
+    public dialogRef: MatDialogRef<ReporteventasComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private compraserv: CompraService
+    private facturaserv: FacturaService
   ) {}
   datos: any = [];
   ngOnInit(): void {
     switch (this.data.texto) {
-      case 'REPORTE DE COMPRAS REALIZADAS EN EL MES':
-        this.compraserv
+      case 'REPORTE DE VENTAS REALIZADAS EN EL MES':
+        this.facturaserv
           .reporte(
             this.data.fecha2.getDate(),
             this.data.fecha2.getMonth() + 1,
@@ -36,8 +35,8 @@ export class EmergenteReporteComprasComponent {
             });
           });
         break;
-      case 'REPORTE DE COMPRAS REALIZADAS EN LA SEMANA':
-        this.compraserv
+      case 'REPORTE DE VENTAS REALIZADAS EN LA SEMANA':
+        this.facturaserv
           .reporte(
             this.data.fecha2.getDate(),
             this.data.fecha2.getMonth() + 1,
@@ -54,8 +53,8 @@ export class EmergenteReporteComprasComponent {
           });
         break;
 
-      case 'REPORTE PERSONALIZADO DE COMPRAS':
-        this.compraserv
+      case 'REPORTE PERSONALIZADO DE VENTAS':
+        this.facturaserv
           .reporte(
             this.data.fecha1.getDate(),
             this.data.fecha1.getMonth() + 1,
@@ -73,21 +72,42 @@ export class EmergenteReporteComprasComponent {
           });
         break;
 
+      case 'REPORTE DE VENTAS POR USUARIO':
+        this.facturaserv
+          .ventasporusuario(
+            this.data.fecha1.getDate(),
+            this.data.fecha1.getMonth() + 1,
+            this.data.fecha1.getFullYear(),
+            this.data.fecha2.getDate(),
+            this.data.fecha2.getMonth() + 1,
+            this.data.fecha2.getFullYear(),
+            this.data.ci
+          )
+          .subscribe((data: any) => {
+            this.datos = data;
+            // Ordenar los datos por fecha de expiración
+            this.datos.sort((a: any, b: any) => {
+              return new Date(a.fecha).getTime() - new Date(b.fecha).getTime();
+            });
+          });
+        break;
+
       default:
         break;
     }
   }
+
   generarPDF() {
     console.log(this.datos);
-    const cuerpoVencidos = this.datos.map((item: any) => [
+    const cuerpodatos = this.datos.map((item: any) => [
       item.id,
       item.fecha,
-      item.proveedor,
+      item.cliente,
       item.usuario,
       item.producto,
-      item.stock,
-      item.fecha_expiracion,
-      item.montototal,
+      item.cantidad,
+      item.descuento,
+      item.total,
     ]);
 
     const doc = new jsPDF();
@@ -97,7 +117,7 @@ export class EmergenteReporteComprasComponent {
     doc.addImage(logoBase64, 'JPEG', 20, 10, 20, 20);
 
     // Título
-    doc.setFontSize(18);
+    doc.setFontSize(15);
     doc.text(this.data.texto, 14, 40);
 
     // Descripción debajo del título
@@ -115,39 +135,74 @@ export class EmergenteReporteComprasComponent {
         [
           'Id',
           'Fecha',
-          'Proveedor',
+          'Cliente',
           'Usuario',
           'Producto',
-          'Stock',
-          'Fecha de expiracion',
-          'Monto total',
+          'cantidad',
+          'Descuento',
+          'Total',
         ],
       ],
-      body: cuerpoVencidos,
+      body: cuerpodatos,
       startY: 55,
       theme: 'grid',
-      didParseCell: (data: any) => {
-        if (data.column.index === 8) {
-          // Índice de `fecha_expiracion`
-          const fechaActual = new Date();
-          const fechaExpiracion = new Date(data.cell.raw);
-          const diferenciaDias = Math.floor(
-            (fechaExpiracion.getTime() - fechaActual.getTime()) /
-              (1000 * 60 * 60 * 24)
-          );
-          // Color de fondo según la diferencia en días
-          if (diferenciaDias <= 7) {
-            data.cell.styles.fillColor = [255, 0, 0]; // Rojo
-          } else if (diferenciaDias <= 180) {
-            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo
-          } else {
-            data.cell.styles.fillColor = [0, 255, 0]; // Verde
-          }
-        }
-      },
     });
     // Descargar el PDF
     doc.save(this.data.texto + '.pdf');
+  }
+
+  ventasporusuarioPDF() {
+    {
+      console.log(this.datos);
+      const cuerpodatos = this.datos.map((item: any) => [
+        item.id,
+        item.usuario,
+        item.ci,
+        item.fecha,
+        item.nombre,
+        item.descuento,
+        item.total,
+      ]);
+
+      const doc = new jsPDF();
+
+      // Agregar logo
+      const logoBase64 = 'assets/images/logopdf.jpg'; // Cambia '...' por el base64 del logo
+      doc.addImage(logoBase64, 'JPEG', 20, 10, 20, 20);
+
+      // Título
+      doc.setFontSize(18);
+      doc.text(this.data.texto + ' para el usuario ' + this.data.ci, 14, 40);
+
+      // Descripción debajo del título
+      doc.setFontSize(12);
+      const descripcion =
+        'Tomando datos desde el: ' +
+        this.fechaATexto(this.data.fecha1) +
+        ' al ' +
+        this.fechaATexto(this.data.fecha2);
+      doc.text(descripcion, 14, 50);
+
+      // Generar la tabla
+      (doc as any).autoTable({
+        head: [
+          [
+            'Id',
+            'Usuario',
+            'CI',
+            'Fecha de venta',
+            'Producto',
+            'Descuento',
+            'Total',
+          ],
+        ],
+        body: cuerpodatos,
+        startY: 55,
+        theme: 'grid',
+      });
+      // Descargar el PDF
+      doc.save(this.data.texto + '.pdf');
+    }
   }
 
   fechaATexto(fechaString: string): string {

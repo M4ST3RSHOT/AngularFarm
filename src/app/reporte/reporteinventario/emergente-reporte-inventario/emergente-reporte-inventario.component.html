@@ -5,7 +5,7 @@
     </div>
 
     <div class="botoncrear">
-        <button (click)="generarPDFgeneral()">
+        <button (click)="generarPDF()">
             <mat-icon>add</mat-icon> Generar Reporte
         </button>
     </div>
@@ -43,6 +43,7 @@
         </table>
     </div>
 
+
 </div>
 <div *ngIf="data.texto=='REPORTE DE PRODUCTOS CON FECHA DE VENCIMIENTO DE ESTA SEMANA'">
 
@@ -51,7 +52,7 @@
     </div>
 
     <div class="botoncrear">
-        <button (click)="generarPDFgeneral()">
+        <button (click)="generarPDF()">
             <mat-icon>add</mat-icon> Generar Reporte
         </button>
     </div>
@@ -169,7 +170,7 @@
         </button>
     </div>
 
-    <h4 style="text-align: center;">Productos que vencen en el siguiente año y medio</h4>
+    <h4 style="text-align: center;">Productos que vencen en el siguiente año</h4>
     <div class="table-container">
         <table class="table centered table-borderless">
             <thead class="table-primary">

@@ -1,1 +1,112 @@
-<p>reporte de ventas</p>
+<div class="">
+    <div class="">
+        <h2 mat-dialog-title>REPORTES DE VENTAS</h2>
+    </div>
+
+    <div class="">
+        <div class="col-12 col-custom">
+            ACCIONES RÁPIDAS
+        </div>
+        <button mat-flat-button class="col-6" (click)="reporte1()">
+            Reporte de ventas realizadas en el mes
+        </button>
+        <button mat-flat-button class="col-6" (click)="reporte2()">
+            Reporte de ventas realizadas en la última semana
+        </button>
+    </div>
+
+    <div class="">
+        <h2 mat-dialog-title>Reporte de ventas personalizado</h2>
+    </div>
+    <form [formGroup]="agregar" class="col-custom">
+
+        <!-- Fecha de Inicio -->
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput formControlName="fechainicio" placeholder="DD-MM-AAAA" [matDatepicker]="pickerInicio">
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicio></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Fecha de Fin -->
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput formControlName="fechafin" placeholder="DD-MM-AAAA" [matDatepicker]="pickerFin">
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Botón Generar Reporte -->
+        <div class="botoncrear">
+            <button class="btn btn-primary" [disabled]="agregar.invalid" (click)="reporte3()">
+                <mat-icon>add</mat-icon> Generar Reporte
+            </button>
+        </div>
+    </form>
+
+    <div class="">
+        <h2 mat-dialog-title>Reporte de ventas por usuario</h2>
+    </div>
+    <form [formGroup]="ventascliente" class="col-custom">
+
+        <!-- Campo Nombre -->
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" placeholder="Nombre" matInput [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of infocliente; trackBy: trackByOption" [value]="option.nombre"
+                    (click)="setear_cliente(option)">
+                    {{ option.nombre }} {{ option.apellido }}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error>{{ getErrorMessage('nombre') }}</mat-error>
+        </mat-form-field>
+
+        <!-- Campo CI -->
+        <mat-form-field appearance="fill">
+            <mat-label>CI</mat-label>
+            <input formControlName="ci" placeholder="CI" matInput [matAutocomplete]="auto1">
+            <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let option of infocliente; trackBy: trackByOption" [value]="option.codigo"
+                    (click)="setear_cliente(option)">
+                    {{ option.ci }}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error>{{ getErrorMessage('ci') }}</mat-error>
+        </mat-form-field>
+
+        <!-- Fecha de Inicio para Usuario -->
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput formControlName="fechainicio1" placeholder="DD-MM-AAAA"
+                [matDatepicker]="pickerUsuarioInicio">
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerUsuarioInicio"></mat-datepicker-toggle>
+            <mat-datepicker #pickerUsuarioInicio></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Fecha de Fin para Usuario -->
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput formControlName="fechafin1" placeholder="DD-MM-AAAA" [matDatepicker]="pickerUsuarioFin">
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerUsuarioFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerUsuarioFin></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Botón Generar Reporte Usuario -->
+        <div class="botoncrear">
+            <button class="btn btn-primary" [disabled]="ventascliente.invalid" (click)="reporteUsuario()">
+                <mat-icon>add</mat-icon> Generar Reporte
+            </button>
+        </div>
+    </form>
+
+    <!-- Footer de Diálogo -->
+    <mat-dialog-actions align="end">
+        <button mat-dialog-close class="btn btn-secondary">Cancelar</button>
+        <button class="btn btn-primary">Guardar</button>
+    </mat-dialog-actions>
+</div>

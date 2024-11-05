@@ -9,70 +9,81 @@ import { Producto } from '../models/producto';
 import { response } from 'express';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FacturaService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  base = environment.base
+  base = environment.base;
   listar(): Observable<any[]> {
-    return this.http.get<any[]>(this.base + 'factura')
+    return this.http.get<any[]>(this.base + 'factura');
   }
-  eliminar(id:number): Observable<Factura[]> {
-    return this.http.delete<Factura[]>(this.base + 'factura/'+id)
+  eliminar(id: number): Observable<Factura[]> {
+    return this.http.delete<Factura[]>(this.base + 'factura/' + id);
   }
-  agregar(formulario:Factura): Observable<number> {
-    return this.http.post<any>(this.base + 'factura/',formulario).pipe(map(response=>{return response.id})) // con este cambio, al momento de agregar una factura nos devuelve el id y lo trasforema a una solo caracter,de lo que era un objeto con el caracter
+  agregar(formulario: Factura): Observable<number> {
+    return this.http.post<any>(this.base + 'factura/', formulario).pipe(
+      map((response) => {
+        return response.id;
+      })
+    ); // con este cambio, al momento de agregar una factura nos devuelve el id y lo trasforema a una solo caracter,de lo que era un objeto con el caracter
   }
-  actualizar(formulario:Factura,id:number): Observable<Factura[]> {
-    return this.http.put<Factura[]>(this.base + 'factura/'+id,formulario)
+  actualizar(formulario: Factura, id: number): Observable<Factura[]> {
+    return this.http.put<Factura[]>(this.base + 'factura/' + id, formulario);
   }
-  detallar(id:number): Observable<any[]> {
-    return this.http.get<any[]>(this.base + 'factura/detallar/'+id)
+  detallar(id: number): Observable<any[]> {
+    return this.http.get<any[]>(this.base + 'factura/detallar/' + id);
+  }
+  reporte(
+    dia1: any,
+    mes1: any,
+    gestion1: any,
+    dia2: any,
+    mes2: any,
+    gestion2: any
+  ): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.base +
+        'factura/reporte/' +
+        dia1 +
+        '/' +
+        mes1 +
+        '/' +
+        gestion1 +
+        '/' +
+        dia2 +
+        '/' +
+        mes2 +
+        '/' +
+        gestion2
+    );
   }
 
-  // async factura_factura(id:number): Promise<Factura[]> {
-  //   try {
-  //     const response = await this.http.get<any>(this.base + 'factura/factura/'+id).toPromise();
-  //     return response;
-  //   } catch (error) {
-  //     console.error('Error al obtener datos:', error);
-  //     throw error; 
-  //   }
-  // }
-
-  // async factura_personal(id:number): Promise<Personal[]> {
-  //   try {
-  //     const response = await this.http.get<any>(this.base + 'factura/personal/'+id).toPromise();
-  //     return response;
-  //   } catch (error) {
-  //     console.error('Error al obtener datos:', error);
-  //     throw error; 
-  //   }
-  // }
-
-  // async factura_producto(id:number): Promise<Producto[]> {
-  //   try {
-  //     const response = await this.http.get<any>(this.base + 'factura/producto/'+id).toPromise();
-  //     return response;
-  //   } catch (error) {
-  //     console.error('Error al obtener datos:', error);
-  //     throw error; 
-  //   }
-  // }
-
-  // async factura_detalle(id:number): Promise<Detalle[]> {
-  //   try {
-  //     const response = await this.http.get<any>(this.base + 'factura/detalle/'+id).toPromise();
-  //     return response;
-  //   } catch (error) {
-  //     console.error('Error al obtener datos:', error);
-  //     throw error; 
-  //   }
-  // }
-
-
-
-  
+  ventasporusuario(
+    dia1: any,
+    mes1: any,
+    gestion1: any,
+    dia2: any,
+    mes2: any,
+    gestion2: any,
+    ci: any
+  ): Observable<any[]> {
+    return this.http.get<any[]>(
+      this.base +
+        'factura/ventasporusuario/' +
+        dia1 +
+        '/' +
+        mes1 +
+        '/' +
+        gestion1 +
+        '/' +
+        dia2 +
+        '/' +
+        mes2 +
+        '/' +
+        gestion2 +
+        '/' +
+        ci
+    );
+  }
 }
