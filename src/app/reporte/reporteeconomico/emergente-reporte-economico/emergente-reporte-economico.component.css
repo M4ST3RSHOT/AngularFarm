@@ -81,3 +81,18 @@
     border-radius: 5px;
     /* Bordes redondeados opcionales */
 }
+
+.main-container {
+    max-height: 80vh;
+    /* Ajusta esta altura según lo que necesites */
+    overflow-y: auto;
+    /* Permitir desplazamiento vertical */
+    padding: 20px;
+    /* Espaciado interno */
+    border: 1px solid #ddd;
+    /* Borde opcional */
+    border-radius: 5px;
+    /* Bordes redondeados opcionales */
+    background-color: #f9f9f9;
+    /* Color de fondo opcional */
+}

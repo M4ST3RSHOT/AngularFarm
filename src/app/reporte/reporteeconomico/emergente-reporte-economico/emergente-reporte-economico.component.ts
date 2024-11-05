@@ -244,7 +244,7 @@ export class EmergenteReporteEconomicoComponent {
 
     // Agregar logo
     const logoBase64 = 'assets/images/logopdf.jpg'; // Cambia '...' por el base64 del logo
-    doc.addImage(logoBase64, 'JPEG', 20, 5, 20, 20);
+    doc.addImage(logoBase64, 'JPEG', 20, 10, 20, 20);
 
     // Título
     doc.setFontSize(18);

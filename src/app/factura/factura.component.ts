@@ -19,33 +19,47 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-factura',
   templateUrl: './factura.component.html',
-  styleUrl: './factura.component.css'
+  styleUrl: './factura.component.css',
 })
-export class FacturaComponent implements OnInit{
+export class FacturaComponent implements OnInit {
+  constructor(
+    private route: Router,
+    private facturaserv: FacturaService,
+    public dialog: MatDialog,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
+  base = environment.base;
+  factura: any[] = [];
+  a1: number = 0;
 
-  constructor(private route:Router,private facturaserv: FacturaService, public dialog: MatDialog, private toastr:ToastrService, private router:Router) { }
-  base = environment.base
-  factura: any[] = []
-  a1:number=0
-
-  type:string | null | undefined
+  type: string | null | undefined;
   ngOnInit(): void {
-    this.type = localStorage.getItem("access")
-    if(this.type==""||this.type=="3" )
-    {      
-      this.toastr.warning("No tiene acceso",'Inicia sesion');
-      this.route.navigate(["/home"]);
+    this.type = localStorage.getItem('access');
+    if (this.type == '' || this.type == '3') {
+      this.toastr.warning('No tiene acceso', 'Inicia sesion');
+      this.route.navigate(['/home']);
     }
-    this.facturaserv.listar().subscribe(data => {
-      this.factura=data
+    this.facturaserv.listar().subscribe((data) => {
+      this.factura = data;
       this.dataSource = new MatTableDataSource(this.factura);
       this.dataSource.paginator = this.paginator;
-    })
+    });
   }
-  
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  displayedColumns: string[] = ['id','fecha','subtotal','descuento','total','personal','cliente','ci','opcion'];
+  displayedColumns: string[] = [
+    'id',
+    'fecha',
+    'subtotal',
+    'descuento',
+    'total',
+    'personal',
+    'cliente',
+    'ci',
+    'opcion',
+  ];
   dataSource!: MatTableDataSource<any>;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -57,24 +71,25 @@ export class FacturaComponent implements OnInit{
     }
   }
 
-  nueva_factura():void {
+  nueva_factura(): void {
     this.router.navigate(['/crear-venta']);
-
   }
 
-
-  actualizar_factura(item:Factura):void {
-    this.a1=item.id
-      this.router.navigate(['/actualizar-venta', this.a1]);
+  actualizar_factura(item: Factura): void {
+    this.a1 = item.id;
+    this.router.navigate(['/actualizar-venta', this.a1]);
   }
 
-  eliminar(item:Factura){}
+  eliminar(item: Factura) {}
 
-  detallarventa(item:any){
-      let a:number
-      a=item.idfactura
-      console.log(item)
-      const dialogRef = this.dialog.open(DetallarFacturaComponent,{data:item});
+  detallarventa(item: any) {
+    let a: number;
+    a = item.idfactura;
+    console.log(item);
+    const dialogRef = this.dialog.open(DetallarFacturaComponent, {
+      data: item,
+    });
   }
 
+  generarPdf(id: number) {}
 }

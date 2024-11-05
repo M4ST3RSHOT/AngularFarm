@@ -136,4 +136,10 @@ export class FacturaService {
         gestion2
     );
   }
+
+  generarPdf(id: number): Observable<Blob> {
+    return this.http.get<Blob>(`${this.base}generar-pdf/${id}`, {
+      responseType: 'blob' as 'json',
+    });
+  }
 }
