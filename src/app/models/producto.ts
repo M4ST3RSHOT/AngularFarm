@@ -10,4 +10,5 @@ export interface Producto {
   precio_venta: string;
   imagen: string;
   stock: string;
+  stockdeseado: string;
 }

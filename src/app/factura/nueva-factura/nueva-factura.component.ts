@@ -428,6 +428,7 @@ export class NuevaFacturaComponent implements OnInit {
               precio_venta: '',
               imagen: '',
               stock: '',
+              stockdeseado: '',
             };
             let nuevostock = 0;
             a = data;

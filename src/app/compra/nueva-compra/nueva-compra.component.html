@@ -106,11 +106,18 @@
                 <input matInput formControlName="peso" type="Peso" placeholder="Unidad" name="peso">
                 <mat-error>{{ getErrorMessage('peso') }}</mat-error>
               </mat-form-field>
+
               <mat-form-field class="example-container">
-                <mat-label>Precio</mat-label>
-                <input matInput formControlName="precio_venta" type="number" placeholder="Precio" name="precio"
-                  max="1000" min="0">
+                <mat-label>Precio de venta</mat-label>
+                <input matInput formControlName="precio_venta" type="precio_venta" placeholder="precio de venta"
+                  name="precio_venta">
                 <mat-error>{{ getErrorMessage('precio_venta') }}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-container">
+                <mat-label>Precio de compra</mat-label>
+                <input matInput formControlName="precio_compra" type="precio_compra" placeholder="precio de compra"
+                  name="precio_compra">
+                <mat-error>{{ getErrorMessage('precio_compra') }}</mat-error>
               </mat-form-field>
 
               <mat-form-field appearance="fill">

@@ -32,6 +32,7 @@ export class DetallarFacturaComponent implements OnInit {
       }
       this.infofactura = data.consulta_factura[0];
       this.infousuario = data.consulta_usuario[0];
+      console.log(this.infodetalle);
     });
   }
 

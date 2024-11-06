@@ -131,7 +131,8 @@ export class HomeComponent implements OnInit {
       precio_compra: '',
       precio_venta: '',
       imagen: '',
-      stock: '0',
+      stock: '',
+      stockdeseado: '',
     };
     const dialogRef = this.dialog.open(CrearProductoComponent, {
       data: { producto: producto, texto: 'Crear Producto' },
@@ -148,7 +149,8 @@ export class HomeComponent implements OnInit {
         precio_compra: result.value.precio_compra,
         precio_venta: result.value.precio_venta,
         imagen: result.value.nombreimagen,
-        stock: '0',
+        stock: result.value.stock,
+        stockdeseado: result.value.stockdeseado,
       };
       this.productoServ.agregar(producto).subscribe(
         (data) => {

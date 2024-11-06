@@ -67,7 +67,7 @@ export class ImportarinventarioComponent implements OnInit {
       for (let i = 1; i < this.data.length; i++) {
         this.infoarchivo[i - 1] = this.data[i];
       }
-
+      console.log(this.infoarchivo);
       for (let i = 0; i < this.infoarchivo.length; i++) {
         let producto: Producto = {
           id: 0,
@@ -81,6 +81,7 @@ export class ImportarinventarioComponent implements OnInit {
           precio_venta: '',
           imagen: '',
           stock: '',
+          stockdeseado: '',
         }; //cualquier cosita mi rey ESTO ES MAPEAR
 
         producto.id = this.infoarchivo[i][0];
@@ -94,6 +95,7 @@ export class ImportarinventarioComponent implements OnInit {
         producto.precio_venta = this.infoarchivo[i][8];
         producto.imagen = this.infoarchivo[i][9];
         producto.stock = this.infoarchivo[i][10];
+        producto.stockdeseado = this.infoarchivo[i][11];
         this.matrizproducto.push(producto);
       }
 
@@ -105,6 +107,7 @@ export class ImportarinventarioComponent implements OnInit {
           }
         }
       }
+      console.log(this.matrizproducto);
     };
     // Leer el archivo como binario
     reader.readAsBinaryString(target.files[0]);

@@ -61,6 +61,14 @@
       <input matInput placeholder="0" formControlName="stock">
     </mat-form-field>
 
+
+    <mat-form-field appearance="fill">
+      <mat-label>Stock deseado</mat-label>
+      <input matInput placeholder="0" formControlName="stockdeseado">
+      <mat-error>{{ getErrorMessage('stockdeseado') }}</mat-error>
+    </mat-form-field>
+
+
     <br>
 
     <mat-form-field appearance="fill">

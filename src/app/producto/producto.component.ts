@@ -72,6 +72,7 @@ export class ProductoComponent implements OnInit {
     'precioventa',
     'imagen',
     'stock',
+    'stockdeseado',
     'opcion',
   ];
   dataSource!: MatTableDataSource<Producto>;
@@ -130,6 +131,7 @@ export class ProductoComponent implements OnInit {
       precio_venta: '',
       imagen: '',
       stock: '',
+      stockdeseado: '',
     };
     const dialogRef = this.dialog.open(CrearProductoComponent, {
       data: { producto: producto, texto: 'REGISTRAR NUEVO PRODUCTO' },
@@ -153,6 +155,7 @@ export class ProductoComponent implements OnInit {
         precio_venta: result.value.precio_venta,
         imagen: result.value.nombreimagen,
         stock: result.value.stock,
+        stockdeseado: result.value.stockdeseado,
       };
       if (producto.imagen.length == 0) {
         producto.imagen = 'predeterminado.jpg';
@@ -189,6 +192,7 @@ export class ProductoComponent implements OnInit {
         precio_venta: result.value.precio_venta,
         imagen: result.value.nombreimagen,
         stock: result.value.stock,
+        stockdeseado: result.value.stockdeseado,
       };
 
       if (producto.imagen.length == 0) {

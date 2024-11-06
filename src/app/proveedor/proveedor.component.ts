@@ -26,7 +26,7 @@ export class ProveedorComponent {
   type: string | null | undefined;
   ngOnInit(): void {
     this.type = localStorage.getItem('access');
-    if (this.type == '' || this.type == '2' || this.type == '3') {
+    if (this.type == '2') {
       this.toastr.warning('No tiene acceso', 'Inicia sesion');
       this.route.navigate(['/home']);
     }

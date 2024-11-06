@@ -158,7 +158,7 @@
                         <td>{{item.usuario}}</td>
                         <td>{{item.proveedor}}</td>
                         <td>{{item.fecha}}</td>
-                        <td>{{item.cantidad}}</td>
+                        <td>{{item.stock}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -232,6 +232,7 @@
                         <th scope="col">Precio de compra</th>
                         <th scope="col">Precio de venta</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Stock deseado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -244,7 +245,8 @@
                         <td>{{item.categoria}}</td>
                         <td>{{item.precio_compra}}</td>
                         <td>{{item.precio_venta}}</td>
-                        <td [ngClass]="getColorstock(item.stock)">{{item.stock}}</td>
+                        <td [ngClass]="getColorStock(item.stock,item.stockdeseado)">{{item.stock}}</td>
+                        <td>{{item.stockdeseado}}</td>
                     </tr>
                 </tbody>
             </table>

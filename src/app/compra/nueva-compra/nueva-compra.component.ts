@@ -137,6 +137,9 @@ export class NuevaCompraComponent implements OnInit {
   get precio_venta() {
     return this.nuevo.get('precio_venta');
   }
+  get precio_compra() {
+    return this.nuevo.get('precio_compra');
+  }
   get cantidad() {
     return this.nuevo.get('cantidad');
   }
@@ -151,6 +154,7 @@ export class NuevaCompraComponent implements OnInit {
     codigo: new FormControl('', [Validators.required]),
     peso: new FormControl('', [Validators.required]),
     precio_venta: new FormControl('', [Validators.required]),
+    precio_compra: new FormControl('', [Validators.required]),
     cantidad: new FormControl('', [Validators.required, Validators.min(1)]),
     fecha_vencimiento: new FormControl('', [
       Validators.required,
@@ -170,12 +174,7 @@ export class NuevaCompraComponent implements OnInit {
   user_id: string | null | undefined;
 
   ngOnInit(): void {
-    this.user_id = localStorage.getItem('user_id');
     this.type = localStorage.getItem('access');
-    if (this.type == '' || this.type == '3') {
-      this.toastr.warning('No tiene acceso', 'Inicia sesion');
-      this.route.navigate(['/home']);
-    }
     this.producto.listar().subscribe((data) => {
       this.opcionesproducto = data;
       this.opcionesFiltradasproducto =
@@ -230,6 +229,7 @@ export class NuevaCompraComponent implements OnInit {
     this.nuevo.controls['peso'].setValue(a1.peso);
     this.nuevo.controls['nombre_producto'].setValue(a1.nombre);
     this.nuevo.controls['precio_venta'].setValue(a1.precio_venta);
+    this.nuevo.controls['precio_compra'].setValue(a1.precio_compra);
     this.nuevo.controls['cantidad'].setValue('0');
     // this.opcionControlproducto.reset();
   }
@@ -247,7 +247,7 @@ export class NuevaCompraComponent implements OnInit {
       this.cantidad?.value != undefined ? +this.cantidad?.value : 0;
     formulario_lote.producto_id = this.form.id_producto;
 
-    this.subtotal = formulario_lote.stock * this.form.precio_venta;
+    this.subtotal = formulario_lote.stock * this.form.precio_compra;
 
     this.total += this.subtotal;
 
@@ -264,7 +264,7 @@ export class NuevaCompraComponent implements OnInit {
     v.push(this.form.peso);
     v.push(this.form.unidad);
     v.push(formulario_lote.stock);
-    v.push(this.form.precio_venta);
+    v.push(this.form.precio_compra);
     v.push(a);
     v.push(this.subtotal);
 
@@ -275,8 +275,10 @@ export class NuevaCompraComponent implements OnInit {
     this.unidad?.setValue('');
     this.peso?.setValue('');
     this.precio_venta?.setValue('');
+    this.precio_compra?.setValue('');
     this.cantidad?.setValue('');
     this.fecha_vencimiento?.setValue('');
+    console.log(this.compras);
   }
 
   realizar_venta() {
@@ -351,6 +353,7 @@ export class NuevaCompraComponent implements OnInit {
               precio_venta: '',
               imagen: '',
               stock: '',
+              stockdeseado: '',
             };
             let nuevostock = 0;
             a = data;

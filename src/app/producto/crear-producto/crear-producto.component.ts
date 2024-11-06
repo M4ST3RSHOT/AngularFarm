@@ -40,6 +40,7 @@ export class CrearProductoComponent implements OnInit {
         this.base + 'producto/imagen/' + data.producto.imagen;
     }
     this.stock?.setValue(data.producto.stock);
+    this.stockdeseado?.setValue(data.producto.stockdeseado);
   }
 
   categoria: Categoria[] = [];
@@ -97,6 +98,12 @@ export class CrearProductoComponent implements OnInit {
     imagen: new FormControl(''),
     nombreimagen: new FormControl('', []),
     stock: new FormControl('', []),
+    stockdeseado: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^-?\d+$/),
+      Validators.minLength(1),
+      Validators.maxLength(10),
+    ]),
   });
 
   get nombre() {
@@ -131,6 +138,9 @@ export class CrearProductoComponent implements OnInit {
   }
   get stock() {
     return this.agregar.get('stock');
+  }
+  get stockdeseado() {
+    return this.agregar.get('stockdeseado');
   }
 
   getErrorMessage(controlName: string): string {

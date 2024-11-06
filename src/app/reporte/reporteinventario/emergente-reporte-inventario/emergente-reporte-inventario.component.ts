@@ -203,17 +203,19 @@ export class EmergenteReporteInventarioComponent implements OnInit {
           // Índice de `fecha_expiracion`
           const fechaActual = new Date();
           const fechaExpiracion = new Date(data.cell.raw);
-          const diferenciaDias = Math.floor(
-            (fechaExpiracion.getTime() - fechaActual.getTime()) /
-              (1000 * 60 * 60 * 24)
-          );
-          // Color de fondo según la diferencia en días
-          if (diferenciaDias <= 7) {
-            data.cell.styles.fillColor = [255, 0, 0]; // Rojo
-          } else if (diferenciaDias <= 180) {
-            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo
+
+          // Calcular la diferencia en meses
+          const diferenciaMeses =
+            (fechaExpiracion.getFullYear() - fechaActual.getFullYear()) * 12 +
+            (fechaExpiracion.getMonth() - fechaActual.getMonth());
+
+          // Aplicar color según el rango de meses
+          if (diferenciaMeses <= 2) {
+            data.cell.styles.fillColor = [255, 0, 0]; // Rojo (0 a 2 meses)
+          } else if (diferenciaMeses <= 12) {
+            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo (2 meses a 1 año)
           } else {
-            data.cell.styles.fillColor = [0, 255, 0]; // Verde
+            data.cell.styles.fillColor = [0, 255, 0]; // Verde (más de 1 año)
           }
         }
       },
@@ -320,6 +322,7 @@ export class EmergenteReporteInventarioComponent implements OnInit {
       item.precio_compra,
       item.precio_venta,
       item.stock,
+      item.stockdeseado,
     ]);
 
     const doc = new jsPDF();
@@ -362,26 +365,22 @@ export class EmergenteReporteInventarioComponent implements OnInit {
       didParseCell: (data: any) => {
         if (data.column.index === 7) {
           // Índice de `fecha_expiracion`
-          const fechaActual = new Date(); // Fecha actual
-          const fechaExpiracion = new Date(data.cell.raw); // Convertir a objeto Date
-          const diferenciaDias = Math.floor(
-            (fechaExpiracion.getTime() - fechaActual.getTime()) /
-              (1000 * 60 * 60 * 24)
-          );
+          const fechaActual = new Date();
+          const fechaExpiracion = new Date(data.cell.raw);
 
-          // Cambiar color de fondo según la diferencia en días
-          if (diferenciaDias <= 7) {
-            data.cell.styles.fillColor = [255, 0, 0]; // Rojo (expira en una semana o menos)
-          } else if (diferenciaDias > 7 && diferenciaDias <= 180) {
-            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo (expira en más de una semana, pero menos de 6 meses)
+          // Calcular la diferencia en meses
+          const diferenciaMeses =
+            (fechaExpiracion.getFullYear() - fechaActual.getFullYear()) * 12 +
+            (fechaExpiracion.getMonth() - fechaActual.getMonth());
+
+          // Aplicar color según el rango de meses
+          if (diferenciaMeses <= 2) {
+            data.cell.styles.fillColor = [255, 0, 0]; // Rojo (0 a 2 meses)
+          } else if (diferenciaMeses <= 12) {
+            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo (2 meses a 1 año)
           } else {
-            data.cell.styles.fillColor = [0, 255, 0]; // Verde (expira después de 6 meses)
+            data.cell.styles.fillColor = [0, 255, 0]; // Verde (más de 1 año)
           }
-        }
-        if (data.column.index === 8) {
-          // Índice de `stock por caducar`
-          const stock = data.cell.raw; // Obtener stock
-          data.cell.styles.fillColor = this.getColorstock(stock); // Usar función para obtener color
         }
       },
     });
@@ -402,6 +401,7 @@ export class EmergenteReporteInventarioComponent implements OnInit {
           'Precio de compra',
           'Precio de venta',
           'Stock',
+          'Stock deseado',
         ],
       ],
       body: cuerpoProductos,
@@ -409,27 +409,18 @@ export class EmergenteReporteInventarioComponent implements OnInit {
       theme: 'grid',
       didParseCell: (data: any) => {
         if (data.column.index === 8) {
-          // Índice de `fecha_expiracion`
-          const fechaActual = new Date(); // Fecha actual
-          const fechaExpiracion = new Date(data.cell.raw); // Convertir a objeto Date
-          const diferenciaDias = Math.floor(
-            (fechaExpiracion.getTime() - fechaActual.getTime()) /
-              (1000 * 60 * 60 * 24)
-          );
-
-          // Cambiar color de fondo según la diferencia en días
-          if (diferenciaDias <= 7) {
-            data.cell.styles.fillColor = [255, 0, 0]; // Rojo (expira en una semana o menos)
-          } else if (diferenciaDias > 7 && diferenciaDias <= 180) {
-            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo (expira en más de una semana, pero menos de 6 meses)
-          } else {
-            data.cell.styles.fillColor = [0, 255, 0]; // Verde (expira después de 6 meses)
-          }
-        }
-        if (data.column.index === 9) {
           // Índice de `stock`
-          const stock = data.cell.raw; // Obtener stock
-          data.cell.styles.fillColor = this.getColorstock(stock); // Usar función para obtener color
+          const stock = data.cell.raw; // Obtener stock actual
+          const stockDeseado = data.row.raw[9]; // Suponiendo un valor deseado de stock (puedes ajustar o hacerlo dinámico)
+
+          // Aplicar color según el valor de stock en relación al stock deseado
+          if (stock < stockDeseado) {
+            data.cell.styles.fillColor = [255, 0, 0]; // Rojo si el stock es menor que el stock deseado
+          } else if (stock === stockDeseado) {
+            data.cell.styles.fillColor = [255, 255, 0]; // Amarillo si el stock es igual al stock deseado
+          } else {
+            data.cell.styles.fillColor = [0, 255, 0]; // Verde si el stock es mayor que el stock deseado
+          }
         }
       },
     });
@@ -452,16 +443,14 @@ export class EmergenteReporteInventarioComponent implements OnInit {
       return 'green'; // Verde si falta más de un año
     }
   }
-  getColorstock(stock: number): string {
-    const lowStockThreshold = 10; // Umbral para stock bajo
-    const mediumStockThreshold = 50; // Umbral para stock medio
 
-    if (stock <= lowStockThreshold) {
-      return 'red'; // Rojo si el stock es bajo o igual a 10
-    } else if (stock > lowStockThreshold && stock <= mediumStockThreshold) {
-      return 'yellow'; // Amarillo si el stock está entre 11 y 50
+  getColorStock(stock: number, stockdeseado: number): string {
+    if (stock < stockdeseado) {
+      return 'red'; // Rojo si el stock es menor que el stock deseado
+    } else if (stock === stockdeseado) {
+      return 'yellow'; // Amarillo si el stock es igual al stock deseado
     } else {
-      return 'green'; // Verde si el stock es mayor a 50
+      return 'green'; // Verde si el stock supera el stock deseado
     }
   }
 
